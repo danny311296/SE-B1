@@ -10,7 +10,7 @@ browser = webdriver.Chrome(executable_path='/Users/danielisaac/Downloads/chromed
 browser.get("https://www.99acres.com/search/property/buy/independent-house/bangalore-all?search_type=QS&search_location=SH&lstAcn=SEARCH&lstAcnId=9532695904381129&src=CLUSTER&preference=S&city=20&res_com=R&property_type=2&selected_tab=1&isvoicesearch=N&keyword_suggest=bangalore%20(all)%3B&fullSelectedSuggestions=bangalore%20(all)&strEntityMap=W3sidHlwZSI6ImNpdHkifSx7IjEiOlsiYmFuZ2Fsb3JlIChhbGwpIiwiQ0lUWV8yMCwgUFJFRkVSRU5DRV9TLCBSRVNDT01fUiJdfV0%3D&refine_results=Y&Refine_Localities=Refine%20Localities&action=%2Fdo%2Fquicksearch%2Fsearch&searchform=1&price_min=null&price_max=null")
 l = [['locality','area','cost','costPerSquareFeet','bedrooms']]
 
-for i in range(10):
+for i in range(1):
 	elems = browser.find_elements_by_class_name('srpWrap')
 	for elem in elems:
 		title = elem.find_element_by_tag_name('span').text.split('in')[1].strip()
@@ -24,7 +24,7 @@ for i in range(10):
 		perSquareFeet = elem.find_element_by_class_name('_auto_ppu_area').text
 		print(perSquareFeet)
 		l.append([title,area,price,perSquareFeet,bedrooms])
-	browser.get('https://www.99acres.com/independent-house-in-bangalore-ffid-page-' + str(i + 2))
+	#browser.get('https://www.99acres.com/independent-house-in-bangalore-ffid-page-' + str(i + 2))
 
 with open('property2.csv','w') as csvFile:
     writer = csv.writer(csvFile)
