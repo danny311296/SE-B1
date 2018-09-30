@@ -4,7 +4,7 @@ import requests
 
 f = open('Predicting-House-Prices-In-Bengaluru-Train-Data.csv')
 reader = csv.reader(f)
-w = open('Predicting-House-Prices-In-Bengaluru-Train-Data-pincodes.csv','a')
+w = open('Predicting-House-Prices-In-Bengaluru-Train-Data-pincodes-2.csv','a')
 writer = csv.writer(w)
 
 all_rows = []
@@ -12,7 +12,6 @@ row0 = next(reader)
 row0.append('Pincode')
 all_rows.append(row0)
 
-i = 1
 for row in reader:
 	locality = row[2]
 	modify = [x.lower() for x in locality.split()]
@@ -30,8 +29,5 @@ for row in reader:
 		print('Error for ' + locality)
 		row.append('ERROR')
 	all_rows.append(row)
-	i += 1
-	if(i==1000):
-		break
 
 writer.writerows(all_rows)
