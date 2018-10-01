@@ -296,7 +296,7 @@ section
 {
 	display: none;
 }
-.breadcrumbs span a
+.breadcrumbs span 
 {
 	font-size: 16px;
 	font-weight: 600;
