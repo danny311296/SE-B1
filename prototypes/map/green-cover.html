@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+        function calculateGreenIndex()
+        {
+            var i = document.getElementById('static-map');
+
+        }
+    </script>
+  </head>
+  <body>
+    <script>
+        var image = document.createElement('img');
+        image.class = "static-map";
+        image.src = "https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=16&size=600x300&maptype=satellite&key=AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ";
+        document.body.appendChild(image);
+    </script>
+    <input type="button" value="Compute Green Index" onclick="calculateGreenIndex()">
+  </body>
+</html>
