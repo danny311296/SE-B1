@@ -21,5 +21,17 @@ def listings_single():
 def listings():
     return render_template('listings.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/post_ad')
+def post_ad_page():
+    return render_template('post-ad.html')
+
+@app.route('/register')
+def register_page():
+    return render_template('register.html')
+
 if __name__ == '__main__':
    app.run()
