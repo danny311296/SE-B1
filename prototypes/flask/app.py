@@ -13,5 +13,9 @@ def about_page():
 def contact_page():
     return render_template('contact.html')
     
+@app.route('/listings_single')
+def listings_single():
+    return render_template('listings_single.html')
+
 if __name__ == '__main__':
    app.run()
