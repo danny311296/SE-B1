@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/elements_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/elements_responsive.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}"> rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/elements_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/elements_responsive.css')}}">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 	<!-- Home -->
 	<div class="home">
 		<!-- Image by: https://unsplash.com/@etnbr -->
-		<div class="home_background" style="background-image:url(images/elements.jpg)"></div>
+		<div class="home_background" style="background-image:url({{url_for('static', filename='images/elements.jpg')}}">
 		
 		<div class="container">
 			<div class="row">
@@ -54,7 +54,7 @@
 						<div class="logo_container">
 							<a href="#">
 								<div class="logo">
-									<img src="images/logo.png" alt="">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
 									<span>the estate</span>
 								</div>
 							</a>
@@ -263,35 +263,35 @@
 								
 								<!-- Milestone -->
 								<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_1.svg" alt=""></div>
+									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/milestone_1.svg')}}" alt=""></div>
 									<div class="milestone_counter" data-end-value="310">0</div>
 									<div class="milestone_text">houses sold</div>
 								</div>
 
 								<!-- Milestone -->
 								<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_2.svg" alt=""></div>
+									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/milestone_2.svg')}}" alt=""></div>
 									<div class="milestone_counter" data-end-value="129">0</div>
 									<div class="milestone_text">clients</div>
 								</div>
 
 								<!-- Milestone -->
 								<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_3.svg" alt=""></div>
+									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/milestone_3.svg')}}" alt=""></div>
 									<div class="milestone_counter" data-end-value="14">0</div>
 									<div class="milestone_text">agents</div>
 								</div>
 
 								<!-- Milestone -->
 								<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_4.svg" alt=""></div>
+									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/milestone_4.svg')}}" alt=""></div>
 									<div class="milestone_counter" data-end-value="521">0</div>
 									<div class="milestone_text">rents</div>
 								</div>
 
 								<!-- Milestone -->
 								<div class="milestone text-center d-flex flex-column align-items-center justify-content-start">
-									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="images/milestone_5.svg" alt=""></div>
+									<div class="milestone_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/milestone_5.svg')}}"  alt=""></div>
 									<div class="milestone_counter" data-end-value="1107">0</div>
 									<div class="milestone_text">contracts</div>
 								</div>
@@ -311,7 +311,7 @@
 
 								<div class="col-lg-4 icon_box_col">
 									<div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
-										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="images/real-estate.svg" alt="Icon by http://www.freepik.com/"></div>
+										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/real-estate.svg')}}" alt="Icon by http://www.freepik.com/"></div>
 										<div class="icon_box_title">Choose a location</div>
 										<p class="icon_box_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
 									</div>
@@ -319,7 +319,7 @@
 
 								<div class="col-lg-4 icon_box_col">
 									<div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
-										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="images/house.svg" alt="Icon by http://www.freepik.com/"></div>
+										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/house.svg')}}" alt="Icon by http://www.freepik.com/"></div>
 										<div class="icon_box_title">Choose a location</div>
 										<p class="icon_box_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
 									</div>
@@ -327,7 +327,7 @@
 
 								<div class="col-lg-4 icon_box_col">
 									<div class="icon_box d-flex flex-column align-items-center justify-content-start text-center">
-										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="images/garage.svg" alt="Icon by http://www.freepik.com/"></div>
+										<div class="icon_box_icon d-flex flex-column justify-content-end"><img src="{{url_for('static', filename='images/garage.svg')}}" alt="Icon by http://www.freepik.com/"></div>
 										<div class="icon_box_title">Choose a location</div>
 										<p class="icon_box_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</p>
 									</div>

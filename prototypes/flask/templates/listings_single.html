@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/listings_single_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/listings_single_responsive.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/clistings_single_responsive.css')}}">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 	<!-- Home -->
 	<div class="home">
 		<!-- Image by: https://unsplash.com/@jbriscoe -->
-		<div class="home_background" style="background-image:url(images/listings_single.jpg)"></div>
+		<div class="home_background" style="background-image:url({{url_for('static', filename='images/listings_single.jpg')}})"></div>
 		
 		<div class="container">
 			<div class="row">
@@ -54,7 +54,7 @@
 						<div class="logo_container">
 							<a href="#">
 								<div class="logo">
-									<img src="images/logo.png" alt="">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
 									<span>4sale.com</span>
 								</div>
 							</a>
@@ -169,7 +169,7 @@
 				<!-- Listing Price -->
 				<div class="col-lg-4 listing_price_col clearfix">
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
-						<img src="images/tag.svg" alt="https://www.flaticon.com/authors/lucy-g">
+						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
 							<div class="featured_card_price_title trans_300">For Sale</div>
 							<div class="featured_card_price trans_300">₹540,000</div>
@@ -188,37 +188,37 @@
 							
 							<!-- Listing Slider Item -->
 							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
+								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
 							</div>
 
 							<!-- Listing Slider Item -->
 							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
+								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
 							</div>
 
 							<!-- Listing Slider Item -->
 							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
+								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
 							</div>
 
 							<!-- Listing Slider Item -->
 							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
+								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
 							</div>
 
 							<!-- Listing Slider Item -->
 							<div class="owl-item listing_slider_item">
-								<img src="images/listing_slider_1.jpg" alt="https://unsplash.com/@astute">
+								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
 							</div>
 							
 						</div>
 
 						<div class="listing_slider_nav listing_slider_prev d-flex flex-row align-items-center justify-content-center trans_200">
-							<img src="images/nav_left.png" alt="">
+							<img src="{{url_for('static', filename='images/nav_left.png')}}" alt="">
 						</div>
 
 						<div class="listing_slider_nav listing_slider_next d-flex flex-row align-items-center justify-content-center trans_200">
-							<img src="images/nav_right.png" alt="">
+							<img src="{{url_for('static', filename='images/nav_right.png')}}" alt="">
 						</div>
 
 					</div>
@@ -241,7 +241,7 @@
 							<div class="room">
 								<span class="room_title">Bedrooms</span>
 								<div class="room_content">
-									<div class="room_image"><img src="images/bedroom.png" alt=""></div>
+									<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
 									<span class="room_number">4</span>
 								</div>
 							</div>
@@ -249,7 +249,7 @@
 							<div class="room">
 								<span class="room_title">Bathrooms</span>
 								<div class="room_content">
-									<div class="room_image"><img src="images/shower.png" alt=""></div>
+									<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
 									<span class="room_number">3</span>
 								</div>
 							</div>
@@ -257,7 +257,7 @@
 							<div class="room">
 								<span class="room_title">Area</span>
 								<div class="room_content">
-									<div class="room_image"><img src="images/area.png" alt=""></div>
+									<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
 									<span class="room_number">7100 Sq Ft</span>
 								</div>
 							</div>
@@ -265,7 +265,7 @@
 							<div class="room">
 								<span class="room_title">Patio</span>
 								<div class="room_content">
-									<div class="room_image"><img src="images/patio.png" alt=""></div>
+									<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
 									<span class="room_number">1</span>
 								</div>
 							</div>
@@ -273,7 +273,7 @@
 							<div class="room">
 								<span class="room_title">Garage</span>
 								<div class="room_content">
-									<div class="room_image"><img src="images/garage.png" alt=""></div>
+									<div class="room_image"><img src="{{url_for('static', filename='images/garage.png')}}" alt=""></div>
 									<span class="room_number">2</span>
 								</div>
 							</div>
@@ -304,8 +304,8 @@
 					<div class="listing_video">
 						<div class="listing_subtitle">Property Video</div>
 						<div class="listing_video_link">
-							<a class="video" href="https://vimeo.com/99340873" title=""><img src="images/listing_video.jpg" alt="https://www.pexels.com/u/binyaminmellish/"></a>
-							<div class="video_play"><img src="images/play.svg" alt=""></div>
+							<a class="video" href="https://vimeo.com/99340873" title=""><img src="{{url_for('static', filename='images/listing_video.jpg')}}" alt="https://www.pexels.com/u/binyaminmellish/"></a>
+							<div class="video_play"><img src="{{url_for('static', filename='images/play.svg')}}" alt=""></div>
 						</div>
 					</div>
 
@@ -386,14 +386,15 @@
 
 </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="js/listings_single_custom.js"></script>
+<script src="{{url_for('static', filename='js/listings_single_custom.js')}}"></script>
+    
 </body>
 
 </html>
