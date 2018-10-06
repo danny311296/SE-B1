@@ -13,23 +13,23 @@ def about_page():
 def contact_page():
     return render_template('contact.html')
     
-@app.route('/listings_single')
+@app.route('/listings_single.html')
 def listings_single():
     return render_template('listings_single.html')
 
-@app.route('/listings')
+@app.route('/listings.html')
 def listings():
     return render_template('listings.html')
 
-@app.route('/login')
+@app.route('/login.html')
 def login():
     return render_template('login.html')
 
-@app.route('/post-ad')
+@app.route('/post-ad.html')
 def post_ad_page():
     return render_template('post-ad.html')
 
-@app.route('/register')
+@app.route('/register.html')
 def register_page():
     return render_template('register.html')
 
