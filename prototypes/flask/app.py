@@ -7,7 +7,7 @@ def home_page():
 
 @app.route('/about')
 def about_page():
-   return render_template('about.html')
+    return render_template('about.html')
 
 @app.route('/contact')
 def contact_page():
@@ -25,7 +25,7 @@ def listings():
 def login():
     return render_template('login.html')
 
-@app.route('/post_ad')
+@app.route('/post-ad')
 def post_ad_page():
     return render_template('post-ad.html')
 
@@ -34,4 +34,4 @@ def register_page():
     return render_template('register.html')
 
 if __name__ == '__main__':
-   app.run()
+    app.run()
