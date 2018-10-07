@@ -1,9 +1,18 @@
 from flask import Flask, render_template, request, redirect
+import psycopg2
+from argon2 import PasswordHasher
+
 app = Flask(__name__)
 
 @app.route('/')
-@app.route('/index.html')
+@app.route('/index.html', methods=['GET','POST'])
 def home_page():
+    if request.method == 'POST':
+            data = request.form
+            print(data)
+            hashedPassword = ph.hash(data["password"])
+            cur.execute("insert into users values('" + data["username"] + "','" + hashedPassword + "','" + data["firstname"] + "','" + data["lastname"] + "','" + data["emailid"] + "','" + data["phone"] + "');")
+            conn.commit()
     return render_template('index.html')
 
 @app.route('/about.html')
@@ -35,4 +44,7 @@ def register_page():
     return render_template('register.html')
 
 if __name__ == '__main__':
+    conn = psycopg2.connect(database="forsale", user="root", password="root", host="localhost")
+    cur = conn.cursor()
+    ph = PasswordHasher()
     app.run()
