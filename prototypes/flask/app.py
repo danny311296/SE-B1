@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 from argon2 import PasswordHasher
 
@@ -27,8 +27,23 @@ def contact_page():
 def listings_single():
     return render_template('listings_single.html')
 
-@app.route('/listings.html')
+@app.route('/listings.html', methods=['GET','POST'])
 def listings():
+    if request.method == 'POST':
+        data = request.form
+        cur.execute("select * from users where username = '" + data['username'] + "';")
+        if(cur.rowcount == 1):
+            print('Success: valid username')
+            cur.execute("select passwd from users where username = '" + data['username'] + "';")
+            passwordHash = cur.fetchall()[0][0]
+            try:
+                if(ph.verify(passwordHash,data['password'])):
+                    print('Success: valid password')
+            except:
+                print('Failure: invalid password')
+                return redirect(url_for('login'))
+        else:
+            print('Failure: invalid username')
     return render_template('listings.html')
 
 @app.route('/login.html')
