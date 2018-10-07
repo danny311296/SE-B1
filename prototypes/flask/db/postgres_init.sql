@@ -14,10 +14,10 @@ create table tags(pid int, tag varchar(30), primary key(pid,tag));
 /* Dummy values */
 
 insert into properties values(1,'Rent','Ready to Move',2,1,1230,1200300,'MurugeshPalya','S R Layout ');
-insert into properties values(2,'Buy','Ready to Move',2,1,314,43525245,'MurugeshPalya','S R Layout ');
-insert into properties values(3,'Rent','Ready to Move',2,1,414,2131414,'MurugeshPalya','S R Layout ');
-insert into properties values(4,'Buy','Ready to Move',2,1,1445,4134145,'MurugeshPalya','S R Layout ');
-insert into properties values(5,'Rent','Ready to Move',2,1,34513,145531,'MurugeshPalya','S R Layout ');
+insert into properties values(2,'Buy','Ready to Move',1,2,314,43525245,'MurugeshPalya','S R Layout ');
+insert into properties values(3,'Rent','Ready to Move',3,1,414,2131414,'MurugeshPalya','S R Layout ');
+insert into properties values(4,'Buy','Ready to Move',4,1,1445,4134145,'MurugeshPalya','S R Layout ');
+insert into properties values(5,'Rent','Ready to Move',2,2,34513,145531,'MurugeshPalya','S R Layout ');
 
 insert into tags values(1,'Swimming Pool');
 insert into tags values(1,'Gym');

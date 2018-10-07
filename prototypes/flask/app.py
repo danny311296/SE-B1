@@ -44,7 +44,9 @@ def listings():
                 return redirect(url_for('login'))
         else:
             print('Failure: invalid username')
-    return render_template('listings.html')
+    cur.execute('select * from properties')
+    data = cur.fetchall()
+    return render_template('listings.html', data = data)
 
 @app.route('/login.html')
 def login():
