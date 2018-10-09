@@ -21,6 +21,12 @@ insert into properties values(5,'Rent','Ready to Move',2,2,34513,145531,'Muruges
 
 insert into tags values(1,'Swimming Pool');
 insert into tags values(1,'Gym');
-
+insert into tags values(2,'Restaurant');
+insert into tags values(3,'Play House');
+insert into tags values(3,'Buffet House');
+insert into tags values(3,'Gym');
+insert into tags values(4,'Lounge');
+insert into tags values(4,'Swimming Pool');
+insert into tags values(5,'Gym');
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;

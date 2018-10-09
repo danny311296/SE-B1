@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
+import psycopg2.extras
 from argon2 import PasswordHasher
+from collections import defaultdict
 
 app = Flask(__name__)
 
@@ -46,6 +48,17 @@ def listings():
             print('Failure: invalid username')
     cur.execute('select * from properties')
     data = cur.fetchall()
+    print(data)
+    cur.execute('select * from tags')
+    tags = cur.fetchall()
+    print(type(tags[0]))
+    d = defaultdict(list)
+    for tag in tags:
+        d[tag["pid"]].append(tag["tag"])
+    print(d)
+    for elem in data:
+        elem.append(d[elem[0]])
+    print(data)
     return render_template('listings.html', data = data)
 
 @app.route('/login.html')
@@ -62,6 +75,6 @@ def register_page():
 
 if __name__ == '__main__':
     conn = psycopg2.connect(database="forsale", user="root", password="root", host="localhost")
-    cur = conn.cursor()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     ph = PasswordHasher()
     app.run()

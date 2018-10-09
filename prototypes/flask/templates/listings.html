@@ -354,8 +354,8 @@
 								<div class="featured_card_box d-flex flex-row align-items-center trans_300">
 									<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 									<div class="featured_card_box_content">
-										<div class="featured_card_price_title trans_300">{{item[1]}}</div>
-										<div class="featured_card_price trans_300">₹{{item[6]}}</div>
+										<div class="featured_card_price_title trans_300">{{item["type"]}}</div>
+										<div class="featured_card_price trans_300">₹{{item["cost"]}}</div>
 									</div>
 								</div>
 							</div>
@@ -368,7 +368,7 @@
 										<span class="room_title">Bedrooms</span>
 										<div class="room_content">
 											<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
-											<span class="room_number">{{item[3]}}</span>
+											<span class="room_number">{{item["bedrooms"]}}</span>
 										</div>
 									</div>
 
@@ -376,7 +376,7 @@
 										<span class="room_title">Bathrooms</span>
 										<div class="room_content">
 											<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
-											<span class="room_number">{{item[4]}}</span>
+											<span class="room_number">{{item["bathrooms"]}}</span>
 										</div>
 									</div>
 
@@ -384,18 +384,16 @@
 										<span class="room_title">Area</span>
 										<div class="room_content">
 											<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
-											<span class="room_number">{{item[5]}} Sq Ft</span>
+											<span class="room_number">{{item["area"]}} Sq Ft</span>
 										</div>
 									</div>
 
 								</div>
 
 								<div class="room_tags">
-									<span class="room_tag"><a href="#">Hottub</a></span>
-									<span class="room_tag"><a href="#">Swimming Pool</a></span>
-									<span class="room_tag"><a href="#">Garden</a></span>
-									<span class="room_tag"><a href="#">Patio</a></span>
-									<span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+                                    {% for tag in item[9] %}
+									<span class="room_tag"><a href="#">{{tag}}</a></span>
+                                    {% endfor %}
 								</div>
 							</div>
 						</div>
