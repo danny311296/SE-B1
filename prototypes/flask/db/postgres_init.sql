@@ -9,18 +9,17 @@ create table properties(pid int primary key, type varchar(10),status varchar(20)
 
 create table users( username varchar(30) primary key, passwd varchar(1000), firstname varchar(30), lastname varchar(30), email varchar(30), phone varchar(20) );
 
-create table posts_ad(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid)
- , date posted_date);
+create table posts_ad(username varchar(30), pid int, posted_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table purchase(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid) , date purchased_date);
+create table purchase(username varchar(30), pid int, purchased_date date, primary key(pid), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table request(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid) , date requested_date);
+create table request(username varchar(30), pid int, requested_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table property_images(prop_id int NOT NULL primary key ,image BLOB);
+create table property_images(prop_id int NOT NULL primary key ,image varchar(30));
 
 create table tags(pid int NOT NULL , tag varchar(30), primary key(pid,tag));
 
-create table property_analytics(p_id int NOT NULL primary key AUTO_INCREMENT , distance int);
+create table property_analytics(p_id int NOT NULL primary key , distance int);
 
 /* Dummy values */
 
@@ -38,33 +37,31 @@ insert into users values('mani_m','mani_123','mani','m','mmani@gmail.com','94087
 insert into users values('rajath','rajath_123','rajath','r','raj.raj@gmail.com','9980155856');
 
 
-insert into posts_ad values('ram_raj',1,20-06-2000);
-insert into posts_ad values('ram_roy',2,10-07-2001);
-insert into posts_ad values('rajath',1,10-02-2003);
-insert into posts_ad values('mani_m',5,22-06-2007);
-insert into posts_ad values('sadvi_s',9,30-01-2012);
+insert into posts_ad values('ram_raj',1,'2000-02-01');
+insert into posts_ad values('ram_roy',2,'2001-02-03');
+insert into posts_ad values('rajath',1,'2001-02-03');
+insert into posts_ad values('mani_m',5,'2001-02-03');
+insert into posts_ad values('sadvi_s',3,'2001-02-03');
 
 
-insert into purchase values('ram_raj'1,22-07-2012);
-insert into purchase values('mani_m'2,23-05-2001);
-insert into purchase values('sadvi_s'6,24-06-2002);
-insert into purchase values('ram_raj'9,16-03-2007);
-insert into purchase values('ram_raj'2,17-04-2009);
+insert into purchase values('ram_raj',1,'2001-02-03');
+insert into purchase values('mani_m',2,'2001-02-03');
+insert into purchase values('sadvi_s',3,'2001-02-03');
+insert into purchase values('ram_raj',4,'2001-02-03');
+insert into purchase values('ram_raj',5,'2001-02-03');
 
 
-insert into request values('mani_m'1,15-07-2013);
-insert into request values('ram_raj'2,11-11-2016);
-insert into request values('sadvi_s'3,09-12-2009);
-insert into request values('rajath'4,23-06-2006);
-insert into request values('ram_raj'9,27-02-2005);
+insert into request values('mani_m',1,'2001-02-03');
+insert into request values('ram_raj',2,'2001-02-03');
+insert into request values('sadvi_s',3,'2001-02-03');
+insert into request values('rajath',4,'2001-02-03');
+insert into request values('ram_raj',3,'2001-02-03');
 
-
-
-insert into property_image values(5,'1.png');
-insert into property_image values(7,'2.png');
-insert into property_image values(9,'3.png');
-insert into property_image values(1,'4.png');
-insert into property_image values(2,'5.png');
+insert into property_images values(5,'1.png');
+insert into property_images values(7,'2.png');
+insert into property_images values(9,'3.png');
+insert into property_images values(1,'4.png');
+insert into property_images values(2,'5.png');
 
 insert into tags values(1,'Swimming Pool');
 insert into tags values(1,'Gym');
