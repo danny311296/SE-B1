@@ -194,7 +194,7 @@
 						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
 							<div class="featured_card_price_title trans_300">{{data[0]["type"]}}</div>
-							<div class="featured_card_price trans_300">{{data[0]["cost"]}}</div>
+							<div class="featured_card_price trans_300">₹ {{data[0]["cost"]}}</div>
 						</div>
 					</div>
 				</div>
@@ -307,7 +307,7 @@
 						<div class="listing_subtitle">Property on map</div>
 						<div id="google_map">
 							<div class="map_container">
-								<div id="map"></div>
+								<div id="map">  </div>
 							</div>
 						</div>
 					</div>
@@ -416,18 +416,13 @@
 
 </div>
 
-
-
-
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="{{url_for('static', filename='js/listings_single_custom.js')}}"></script>
-    
 </body>
 
 </html>
