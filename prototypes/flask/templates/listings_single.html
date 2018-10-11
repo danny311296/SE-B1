@@ -14,6 +14,30 @@
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 500px;
+		margin: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: DarkSlateGray;
+		font-size: 17px;
+		font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+</style>
 </head>
 
 <body>
@@ -293,58 +317,95 @@
 			</div>
 		</div>
     </div>
-    <!-- Generated Data about Property -->
+     <!-- Generated Data about Property -->
     <div class="listing_additional_details" style="margin-bottom:20px;">
         <div class="listing_subtitle"> Generated Analytics about Property </div>
         <ul class="additional_details_list">
-            <li class="additional_detail"><span>proximity :</span> 
-                <div> Hospitals 
-                    <span> Manipal Hospital 10 km</span>  
-                    <span> Manipal Hospital 10 km</span>
+            <li class="additional_detail"><span>proximity :</span>
+							<br>
+                <div class="dropdown">
+									<img src="{{url_for('static', filename='images/hospital1.png')}}" alt="hospital" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Manipal Hospital 10 km</a>
+											<a href="#">Manipal Hospital 10 km</a>
+										</div>
                 </div>
-                <div> Banks     
-                    <span> Karnataka Bank with ATM, Sarakki Layout Branch 7 km</span> 
-                    <span> Canara Bank 8 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bank.png')}}" alt="Banks" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Karnataka Bank with ATM, Sarakki Layout Branch 7 km</a>
+											<a href="#">Canara Bank 8 km</a>
+										</div>
                 </div>
-                <div> Bookstore 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bookstore.jpg')}}" alt="Bookstore" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">book1</a>
+											<a href="#">book2</a>
+										</div>
                 </div>
-                <div> Bus Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bus station.png')}}" alt="Bus station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">KR Market 10 km</a>
+											<a href="#">Churchstreet 15 km</a>
+										</div>
                 </div>
-                <div> School 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/school.png')}}" alt="School" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Vibgyor School 10 km</a>
+											<a href="#">DPS 15 km</a>
+										</div>
                 </div>
-                <div> Train Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/train.png')}}" alt="Train Station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">KR Market 10 km</a>
+											<a href="#">Churchstreet 15 km</a>
+										</div>
                 </div>
-                <div> Restaurant 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/restaurant.png')}}" alt="Restaurant" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">KR Market 10 km</a>
+											<a href="#">Churchstreet 15 km</a>
+										</div>
                 </div>
-                <div> Gym 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/gym.png')}}" alt="Gym" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Bodyholics 10 km</a>
+											<a href="#">Stayfit 15 km</a>
+										</div>
                 </div>
-                <div> Gas Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/gas station.png')}}" alt="Gas Station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Indian Oil 10 km</a>
+											<a href="#">HP 15 km</a>
+										</div>
                 </div>
-                <div> Doctor 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/doctor.png')}}" alt="Doctor" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Dr. Ashok 10 km</a>
+											<a href="#">Dr. Ram 15 km</a>
+										</div>
                 </div>
-                <div> Electronics Store 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/electronics.png')}}" alt="Electronics" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Croma 10 km</a>
+											<a href="#">Reliance Digital 15 km</a>
+										</div>
                 </div>
-                <div> Religious Places 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/religious.png')}}" alt="Religious" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">Ganesh Temple 10 km</a>
+											<a href="#">Church 15 km</a>
+										</div>
                 </div>
             </li>
             <li class="additional_detail"><span>traffic:</span> 23min average time </li>
@@ -354,6 +415,9 @@
     </div>
 
 </div>
+
+
+
 
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
