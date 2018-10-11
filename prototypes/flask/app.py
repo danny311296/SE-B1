@@ -27,7 +27,13 @@ def contact_page():
     
 @app.route('/listings_single.html')
 def listings_single():
-    return render_template('listings_single.html')
+    pid = request.args.get('id')
+    cur.execute("select * from properties where pid = " + pid + ";")
+    data = cur.fetchall()
+    cur.execute("select * from tags where pid = " + pid + ";")
+    tags = cur.fetchall()
+    print(tags)
+    return render_template('listings_single.html', data = data, tags = tags)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():

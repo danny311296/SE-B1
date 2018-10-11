@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/clistings_single_responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
 </head>
 
 <body>
@@ -154,14 +154,12 @@
 					
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title">House in Murgeshpalya</div>
-						<p class="listing_text">2BK house in murugeshplaya filled with amazing features </p>
+						<div class="listing_title">{{data[0]["title"]}}</div>
+						<p class="listing_text">{{data[0]["short_description"]}}</p>
 						<div class="room_tags">
-							<span class="room_tag"><a href="#">Hottub</a></span>
-							<span class="room_tag"><a href="#">Swimming Pool</a></span>
-							<span class="room_tag"><a href="#">Garden</a></span>
-							<span class="room_tag"><a href="#">Patio</a></span>
-							<span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+                            {% for tag in tags %}
+							<span class="room_tag"><a href="#">{{tag['tag']}}</a></span>
+                            {% endfor %}
 						</div>
 					</div>
 				</div>
@@ -171,8 +169,8 @@
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
 						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300">For Sale</div>
-							<div class="featured_card_price trans_300">₹540,000</div>
+							<div class="featured_card_price_title trans_300">{{data[0]["type"]}}</div>
+							<div class="featured_card_price trans_300">{{data[0]["cost"]}}</div>
 						</div>
 					</div>
 				</div>
@@ -234,15 +232,16 @@
 				<div class="col-lg-8 listing_col">
 
 					<div class="listing_details">
-						<div class="listing_subtitle">Extra Facilities</div>
-						<p class="listing_details_text">Gym, ambient enviroment</p>
-						<div class="rooms">
+                        <div class="listing_subtitle">Address</div>
+						<p class="listing_details_text">{{data[0]["address"]}} {{data[0]["city"]}} - {{data[0]["pincode"]}}</p>
+						<div class="listing_subtitle" style="margin-top:20px;">Parameters</div>
+                        <div class="rooms">
 
 							<div class="room">
 								<span class="room_title">Bedrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
-									<span class="room_number">4</span>
+									<span class="room_number">{{data[0]["bedrooms"]}}</span>
 								</div>
 							</div>
 
@@ -250,7 +249,7 @@
 								<span class="room_title">Bathrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
-									<span class="room_number">3</span>
+									<span class="room_number">{{data[0]["bathrooms"]}}</span>
 								</div>
 							</div>
 
@@ -258,7 +257,7 @@
 								<span class="room_title">Area</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
-									<span class="room_number">7100 Sq Ft</span>
+									<span class="room_number">{{data[0]["area"]}} Sq Ft</span>
 								</div>
 							</div>
 
@@ -266,26 +265,16 @@
 								<span class="room_title">Patio</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
-									<span class="room_number">1</span>
+									<span class="room_number">{{data[0]["patio"]}}</span>
 								</div>
 							</div>
-
-							<div class="room">
-								<span class="room_title">Garage</span>
-								<div class="room_content">
-									<div class="room_image"><img src="{{url_for('static', filename='images/garage.png')}}" alt=""></div>
-									<span class="room_number">2</span>
-								</div>
-							</div>
-
 						</div>
-						
 					</div>
 					
 					<!-- Listing Description -->
 					<div class="listing_description">
 						<div class="listing_subtitle">Description</div>
-						<p class="listing_description_text">This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house. </p>
+						<p class="listing_description_text">{{data[0]["description"]}} </p>
 					</div>
 					
 
