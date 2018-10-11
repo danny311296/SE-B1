@@ -5,30 +5,30 @@ drop database forsale;
 create database forsale;
 \c forsale
 
-create table properties(pid int primary key, type varchar(10),status varchar(20), bedrooms int, bathrooms int, area float, cost float, locality varchar(20), address varchar(60) );
+create table properties(pid serial primary key, title varchar(30), locality varchar(30), type varchar(10), description varchar(200), bedrooms int, bathrooms int, patio int, address varchar(30), city varchar(20), pincode int, cost float, area float);
 
 create table users( username varchar(30) primary key, passwd varchar(1000), firstname varchar(30), lastname varchar(30), email varchar(30), phone varchar(20) );
 
-create table posts_ad(username varchar(30), pid int, posted_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid));
+create table posts_ad(username varchar(30), pid int, posted_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table purchase(username varchar(30), pid int, purchased_date date, primary key(pid), FOREIGN KEY(pid) REFERENCES properties(pid));
+create table purchase(username varchar(30), pid int, purchased_date date, primary key(pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table request(username varchar(30), pid int, requested_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid));
+create table request(username varchar(30), pid int, requested_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table property_images(prop_id int NOT NULL primary key ,image varchar(30));
+create table property_images(pid int, image varchar(30), primary key(pid,image), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table tags(pid int NOT NULL , tag varchar(30), primary key(pid,tag));
+create table tags(pid int, tag varchar(30), primary key(pid,tag), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table property_analytics(p_id int NOT NULL primary key , distance int);
+create table property_analytics(pid int NOT NULL primary key , distance int);
 
 /* Dummy values */
 
-insert into properties values(1,'Rent','Ready to Move',2,1,1230,1200300,'MurugeshPalya','S R Layout ');
-insert into properties values(2,'Buy','Ready to Move',1,2,314,43525245,'MurugeshPalya','Indiranagar ');
-insert into properties values(3,'Rent','Ready to Move',3,1,414,2131414,'Ittamadu','Banashankari ');
-insert into properties values(4,'Buy','Ready to Move',4,1,1445,4134145,'Hoskerehalli',' Banashankari');
-insert into properties values(5,'Rent','Ready to Move',2,2,34513,145531,'MurugeshPalya','R R Nagar');
-
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('Beautiful Green House','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('Beautiful Blue House','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('House for sale','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('Villa in domlur','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('Green Villa','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
+insert into properties(title, locality, type, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area) values('Green Bungalow','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020);
 
 insert into users values('ram_raj','ram_123','ram','raj','ram.raj@gmail.com','9445245856');
 insert into users values('ram_roy','ram_roy','ram','roy','ram.roy@gmail.com','9446585856');
@@ -58,8 +58,8 @@ insert into request values('rajath',4,'2001-02-03');
 insert into request values('ram_raj',3,'2001-02-03');
 
 insert into property_images values(5,'1.png');
-insert into property_images values(7,'2.png');
-insert into property_images values(9,'3.png');
+insert into property_images values(3,'2.png');
+insert into property_images values(2,'3.png');
 insert into property_images values(1,'4.png');
 insert into property_images values(2,'5.png');
 
