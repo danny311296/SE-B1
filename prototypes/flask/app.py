@@ -3,6 +3,7 @@ import psycopg2
 import psycopg2.extras
 from argon2 import PasswordHasher
 from collections import defaultdict
+import map
 
 app = Flask(__name__)
 
@@ -33,7 +34,21 @@ def listings_single():
     cur.execute("select * from tags where pid = " + pid + ";")
     tags = cur.fetchall()
     print(tags)
-    return render_template('listings_single.html', data = data, tags = tags)
+    address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
+    location = map.get_latitude_and_longitude(address)
+    print(location)
+    l = []
+    for place in map.place_types:
+        l.append(map.get_closest_places(location,place,num=2,radius=2000))
+    print(l)
+    distances = []
+    for item in l:
+        if item:
+            distances.append([map.get_distance_and_time(location,item[0][1]),map.get_distance_and_time(location,item[1][1])])
+        else:
+            distances.append([])
+    print(distances)
+    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():

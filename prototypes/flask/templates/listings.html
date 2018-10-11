@@ -361,7 +361,7 @@
 							</div>
 							<div class="listing_content">
 								<div class="listing_title"><a href="listings_single.html?id={{item['pid']}}">{{item["title"]}}</a></div>
-								<div class="listing_text">{{item["description"]}}</div>
+								<div class="listing_text">{{item["short_description"]}}</div>
                                 <div class="listing_text">Locality: {{item["locality"]}}</div>
 								<div class="rooms">
 
@@ -398,7 +398,7 @@
 								</div>
 
 								<div class="room_tags">
-                                    {% for tag in item[13] %}
+                                    {% for tag in item[16] %}
 									<span class="room_tag"><a href="#">{{tag}}</a></span>
                                     {% endfor %}
 								</div>
