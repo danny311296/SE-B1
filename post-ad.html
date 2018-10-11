@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Estate - Contact</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<link rel="stylesheet" href="awesomplete.css" />
+</head>
+
+<body>
+
+<div class="super_container">
+	
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@breather -->
+		<div class="home_background" style="background-image:url(images/contact.jpg)"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>Post an Ad</h2>
+						</div>
+						<div class="breadcrumbs">
+							<span> Post an advertisement of your property and get in contact with buyers today </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="images/logo.png" alt="">
+									<span>4sale.com</span>
+								</div>
+							</a>
+						</div>
+						
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="index.html">home</a></li>
+								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="listings.html">listings</a></li>
+								<li class="main_nav_item"><a href="news.html">forums</a></li>
+								<li class="main_nav_item"><a href="#">contact</a></li>
+							</ul>
+						</nav>
+						
+						<!-- Phone Home -->
+                        <a href="login.html">
+						  <div class="phone_home text-center">
+							<span>Log In</span>
+						  </div>
+                        </a>
+						
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="index.html">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="about.html">about us</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="listings.html">listings</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="news.html">forums</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="#">contact</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+
+	<!-- Contact -->
+
+	<div class="contact">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-lg-6 contact_col" style="margin: auto auto">
+					<div class="estate_contact_form">
+						<div class="contact_title">advertisement details</div>
+						<div class="estate_contact_form_container">
+							<form id="estate_contact_form" class="estate_contact_form" action="post">
+                                <input id="propertyname" class="estate_input_field estate_contact_form_name" type="text" placeholder="Property Name" required="required" data-error="First Name is required.">
+                                <input id="name" class="estate_input_field estate_contact_form_name" type="text" placeholder="Owner's Name" required="required" data-error="Last Name is required.">
+                                <input id="emailid" class="estate_input_field estate_contact_form_name" type="text" placeholder="Email ID" required="required" data-error="email id is required.">
+                                <input id="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Phone number" required="required" data-error="phone number is required.">
+                                Porperty Details<br><br>
+                                <select class="dropdown_item_select">
+                                    <option> Buy  </option>
+                                    <option> Rent </option>
+                                </select><br><br>
+                                <input id="propertylocation" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required" data-error="field is required.">
+                                <input id="propertyarea" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (Total Sq. Ft.)" required="required" data-error="field is required.">
+                                <input id="propertybedrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="No. of bedrooms" required="required" data-error="field is required.">
+                                <input id="propertybathrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="No. of bathrooms" required="required" data-error="field is required.">
+                                <input id="propertyprice" class="estate_input_field estate_contact_form_name" type="text" placeholder="Price (in INR)" required="required" data-error="field is required.">
+                                <input id="propertytags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Other tags like Swimming Pool,Park etc." required="required" data-error="field is required."><br>
+                                Select file to upload<br/><br>
+                                <input id="fileupload" type="file" value="fileupload" style="margin-bottom:30px;"><br>
+                                <button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">post ad</button>
+							</form>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+<script src="js/contact_custom.js"></script>
+<script src="awesomplete.js"></script>
+
+<script>
+	
+	var input = document.getElementById("propertylocation");
+	new Awesomplete(input, {
+		list: ['Ashoknagar','Austin Town','Avenue Road','Balepet','Balepete','Benson Town','Bestamaranahalli','Bharati Nagar','Brigade Road','Brunton Road','Central Street','Chakravarthy Lane','Chickpet','Chikpet','Chord Road','Church Street','Commercial Street','Cooke Town','Cox town','Coxtown','Crescent Road','Cubban Road','Cubbon Road','Cubbonpet','Cunningham','Cunningham Road','Dickenson Road','Dr. ambedkar veedhi','Ebrahim Sahib Street','Edward Road','Gayathrinagar','Gayatri Nagar','Haines Road','Harogadde','Hennagara','High Grounds','Hulimangala','Indalavadi','Infantry Road','Iyengar Road','J.C. Road','Jayachamaraja Road','Jumma Masjid Road','K. Kamraj Road','K.P.west','Kamaraj Road','Kasturba Road','Kilari Road','Kumara Krupa Road','KUMARAPARK','Lady Curzon Road','Lalbagh West','Langford Town','Lavelle Road','Madhava Nagar','Magadi Main Road','Magadi Road','Magrath Road','Mahatma Gandhi road','Mamulpet','Manjunatha Nagar','Marsur','Mavalli','MG Railway Colony','Millers Road','Minerva Circle','Mission Road','Museum Road','Nagarathpet','Narayan Pillai street','Narayana Pillai Street','Nrupathunga Road','Okalipuram','P&t Col. kavalbyrasandra','Palace Road','Pasmpamahakavi Road','Prakash Nagar','Promenade Road','Queens Road','Raj Bhavan Road','Raja Ram Mohan Roy Road','Rajbhavan','Ramachandrapuram','Residency Road','Rest House Road','Richmond Road','Richmond Town','S. R. Nagar','Samandur','Sampangiram Nagar','Sampangiramnagar','Seppings Road','Seshadri Road','Shankarapuram','Shankarpura','Shanthinagar','Shivaji Nagar','Shivajinagar','Sidihoskote','Sivan Chetty gardens','Srirampuram','St. Johns Road','St. Marks Road','Subbarama Chetty Road','Subedar Chatram Rd','Subedar Chatram Road','Thammanayakanahalli','Thimmaiah Road','Ulsoor','Vanakanahalli','Vasanth Nagar','Vasanthnagar','Victoria Layout','Visveswarapuram','Vittal Mallya Road','Vittalnagar','Agrahara','Airport Road','Akshaya Nagar','Ali Asker Road','Amruthahalli','Baiyappanahalli','Ballandur','Bangalore Air port','Basavanagar','Bellandur','Brookefield','Brookfield Road','Brookfields','C. V. Raman Nagar','C.V. Raman Nagar','C.V.raman nagar','Devanagundi','Devasandra','Doddanakundi','Doddanekkundi','Domlur','Domlur Layout','Dooravani Nagar','Doorvaninagar','Fraser Town','Frazer Town','Frazertown','Gangadhar Chetty Road','GR Tech Park','Gunjur','H.A.l ii stage','HAL Airport','HAL Airport Road','HAL Road','Haralur Road','Harlur Road','Hoodi','HRBR Layout','Immedihalli','Indira Nagar','Indiranagar','Indiranagar Com. complex','ITPL Road','J C Nagar','J. C. Nagar','J.C. Nagar','J.C.nagar','Jayamahal Road','Jeevan Bheema Nagar','Jeevan Bhima Nagar','Jeevanbhima Nagar','Jeevanbhimanagar','Kadugodi','Kaggadasapura','Kaggalipura','Kaggdaspura','Kalkunte','Kannamangala','Kasavanahalli','Kasavanhalli','Kodihalli','Koramangala','Koramangala I block','Koramangala Vi bk','KR Puram','Krishnaraja Puram','Krishnarajapuram','Krishnarajapuram R s','Kundalahalli','M.H. Colony','Mahadevapura','Mahadevapura Post','Mahadevpura Post','Malleshpalya','Marathahalli','Marathahalli Colony','Medimallasandra','Murugeshpalya','Muthusandra','Naduvathi','Nal','Old Airport Road','Old Madras Road','Panathur','Ramagondanahalli','Ramamurthy Nagar','Rameshnagar','S M Road','S. V. Road','Samethanahalli','St. johns medical college','Thippasandra','Training Command iaf','Udaypura Post','Varthur','Vartur','Vibhutipura','Vimanapura','Vimapura','Whitefield','Whitefield','Whitefield Sarjapur','Whitefield-Sarjapur','Yemalur','Allalasandra','Anandnagar','Arabic College','Aranya Bhavan','Attur','Bagalgunte','Bagalkunte','Bagalur Road','Banaswadi','Bel Road','Bellary Road','Bennigana Halli','Bhuvaneshwari Nagar','Bsf Campus yelahanka','Byappanahalli','Byatarayanapura','Byatarayanapura','Cholanayakkanahilli','Coles Road','Crpf Campus yelahanka','Damodaran Road','Dasarahalli','Dasarahalli','Devanahalli','Devarjeevanahalli','Dodda Bomasandra','Dollars Colony','Embassy Manyatha Tech Park','G.K.V.K','G.K.V.K Post','G.K.v.k.','Ganga Nagar','Ganga Nagar Extension','Gangenahalli','Geddalahalli','GKVK Post','Gokula Extension','Goraguntepalya','Govindapalya','Guddadahalli','Guttahalli','H M t','H.A. farm','H.M.T','HBR Layout','Hebbal','Hebbal Agrl Farm','Hebbal Kempapura','Hebbal-Kempapura','Hennur','Hesaraghatta','Hesaraghatta Lake','Hesarghatta Main Rd','Hessaraghatta','HMT Layout','HMT Road','Horamavu','Hutchins Road','Industrial Estate','Industrial state','Jakkur','Jala Hobli','Jalahalli','Jalahalli East','Jalahalli Village','Jalahalli West','Jalavayuvihar','Jaymahal','Jeevanahalli','Kacharakanahalli','Kadugondanahalli','Kalasipalyam','Kalyan Nagar','Kalyanagar','Kamagondanahalli','Kammagondahalli','Kanteeravanagar','Kasturi Nagar','Kasturinagar','Kaval Bairasandra','Kavalbyrasandra','Kempaura','Kendriya Vihar','Kodigehalli','Kothanur','KUMARA PARK','KUMARAPARK SHESHADRIPURAM','Lingarajapuram','M S r road','Malkand Lines','Malleshwaram','Malleswaram','Malleswaram West','Mandalay Lines','Maruthi Nagar','Maruthi Sevanagar','Mathikere','Mathikere Extension','MS Ramaiah Road','Msrit','Nagarvar Kari','Nagasandra','Nagashetty Halli','Nagavara','Nagavara Road','Nalagadderanahalli','Nandhini Layout','Nandidurg Road','Nandidurga Road','Nandini Layout','Nandinilayout','Nelamangala','OMBR Layout','Palace Guttahalli','Peenya','Peenya I stage','Peenya Ii stage','Peenya S.I.','Peenya Small industries','Pulikeshi Nagar','R T nagar','R. K. Puram','R.M.V. Extension','R.M.v. extension ii stage','R.T. Nagar','Rajanakunte','Rajankunte','Ramakrishna Hegde nagar','RMV 2nd stage','RT Nagar','Sadashiv Nagar','Sadashiva Nagar','Sadashivanagar','Sadashivnagar','Sahakara Nagar','Sahakaranagar P.o','Sahakarnagar','Sanjay Nagar','Sanjaynagar','Sankey Road','Saraswathipuram','Science Institute','Seshadripuram','Sharada Nagar','Singanayakanahalli','St. thomas town','Subbaiah Palaya','Sultanpalya','Swimming Pool extn','Tank Bund Road','Tata Nagar','Telecom Layouts','Vaiyyalikaval','Vasant Nagar','Venkatagiri Kote','Venkatarangapura','Venkateshapura','Vyalikaval Extn','Wheel And axle plant','Yelahanka','Yelahanka Road','Yelahanka Satellite town','Yeshwanthpur','Yeshwanthpur Bazar','Yeswanthpur','Yeswanthpura','Agara','Anekal','Anekal Taluk','Anekalbazar','Arakere','Attibele','B Sk ii stage','Banashankari','Banashankari Iii stage','Bannerghatta','Bannerghatta Rd','Bannerghatta Road','Basavanagudi','Basavangudi','Begur Koppa Road','Begur-Koppa Road','Bidaraguppe','Bilekahalli','Bommanahalli','BTM Layout','BTS Layout','Bull Temple Road','Chamrajpet Bazar','Chandrapura','Chikkalasandra','Davanagere','Davangere','Diagonal Road','Doddakallasandra','Doddamavalli','Doddathogur','Doddathogur village','Dommasandra','Ejipura','Electronics city','Electronics City','Gandhi Bazar','Gavipuram','Girinagar','Govindaraj Nagar','Halasuru','Handenahalli','Hanumanthanagar','Harapanahalli','Hebbagodi','Hongasandra','Hosakerehalli','Hosur Road','Hosur Road','Hsr Layout','Hulimavu','ISRO Layout','Ittamadu Layout','J P nagar','J. P. Nagar','J.P. Nagar','Jakkasandra Post','Jaya Nagar','Jayanagar','Jayanagar West','Jayangar East','Jayangar Iii block','Jigani','Journalist Colony','JP Nagar','Jp Nagar iii phase','K.R. Road','Kamanhalli','Kammanahalli','Kanakapura Road','Kathriguppe','Kempapura','Kendriya Sadan','Konanakunte','Kumaraswamy Layout','Kumbalgodu','Kumbaragundi','Lakkasandra','Lakshman Mudaliar Street','Lakshmipura','Madhavan Park','Madivala','Mayasandra','Mico Layout','Mount St joseph','Mudaliar Road','Muthanallur','Nayandahalli','Neelasandra','Neralur','O.T.C. Road','Off Sarjapur Road','Padmanabhanagar','Padmanabhnagar','R.V. Road','Raghavendra Nagar','Raja Rajeshwari Nagar','Rajpet','Ramanashree Nagar','Sarjapur','Sarjapur Road','Sarjapura','Shanti Nagar','Siddaiah Road','Singasandra','State Bank of mysore colony','Subramanyapura','Sunkalpet','Surya city','Tavarekere Road','Thyagarajanagar','Tilak Nagar','Tilaknagar','Uttarahalli','Uttrahlli','V.V.Puram','Vikramnagar','Vivek Nagar','Viveknagar','VV Puram','Walton Road','Wilson Garden','Yadavanahalli','Yediyur','Yelachenahalli','Anubhav Nagar','Avani Sringeri mutt','Bapuji Nagar','Bapujinagar','Basaveshwara Nagar','Basaveshwaranagar','Basaveshwarnagar','Basaveswaranagar Ii stage','Bhashyam Circle','Cambridge Layout','Chamarajpet','Chamrajpet','Chandra Lay out','Chandra Layout','Chikkabettahalli','Gandhi Nagar','Gaviopuram Extension','Gaviopuram Guttanahalli','Hegganahalli','K H b colony','Kamakshipalya','Kempe Gowda Road','Kengeri','Kengiri','KHB Colony','Laggere','Mahalakshmipuram','Mahalakshmipuram Layout','Mudalapalya','Mysore','Mysore Road','N. G. E. F Layout','Nagarbhavi','Narasimharaja Colony','Narasimjharaja Road','Nehru Main Rd','Rajaji Nagar','Rajajinagar','Rajajinagar I block','Rajajinagar Ivth block','Rajarajeshwarinagar','RPC Layout','Srinivas Nagar','Sunkadakatte','Tumkur Road','Ullal','Vidyaranyapura','Vijay Nagar','Vijayanagar','Vijayanagar East']
+	});
+
+</script>
+</body>
+
+</html>
