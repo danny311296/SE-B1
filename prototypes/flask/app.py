@@ -4,6 +4,7 @@ import psycopg2.extras
 from argon2 import PasswordHasher
 from collections import defaultdict
 import map
+import greencover
 
 app = Flask(__name__)
 
@@ -48,7 +49,8 @@ def listings_single():
         else:
             distances.append([])
     print(distances)
-    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances)
+    green = greencover.green_index(location["lat"],location["lng"])
+    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():
