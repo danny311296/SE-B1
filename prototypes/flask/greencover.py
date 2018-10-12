@@ -1,6 +1,5 @@
 import cv2
 from urllib.request import urlopen
-from PIL import Image
 import numpy as np
 from skimage import io
 ## Read
