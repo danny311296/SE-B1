@@ -360,8 +360,9 @@
 								</div>
 							</div>
 							<div class="listing_content">
-								<div class="listing_title"><a href="listings_single.html">House in West California</a></div>
-								<div class="listing_text">Donec ullamcorper nulla non metus auctor fringi lla. Curabitur blandit tempus porttitor.</div>
+								<div class="listing_title"><a href="listings_single.html?id={{item['pid']}}">{{item["title"]}}</a></div>
+								<div class="listing_text">{{item["short_description"]}}</div>
+                                <div class="listing_text">Locality: {{item["locality"]}}</div>
 								<div class="rooms">
 
 									<div class="room">
@@ -379,7 +380,13 @@
 											<span class="room_number">{{item["bathrooms"]}}</span>
 										</div>
 									</div>
-
+									<div class="room">
+										<span class="room_title">Patio</span>
+										<div class="room_content">
+											<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
+											<span class="room_number">{{item["patio"]}}</span>
+										</div>
+									</div>
 									<div class="room">
 										<span class="room_title">Area</span>
 										<div class="room_content">
@@ -391,7 +398,7 @@
 								</div>
 
 								<div class="room_tags">
-                                    {% for tag in item[9] %}
+                                    {% for tag in item[16] %}
 									<span class="room_tag"><a href="#">{{tag}}</a></span>
                                     {% endfor %}
 								</div>

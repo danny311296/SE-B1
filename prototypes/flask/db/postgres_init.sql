@@ -5,31 +5,30 @@ drop database forsale;
 create database forsale;
 \c forsale
 
-create table properties(pid int primary key, type varchar(10),status varchar(20), bedrooms int, bathrooms int, area float, cost float, locality varchar(20), address varchar(60) );
+create table properties(pid serial primary key, title varchar(30), locality varchar(30), type varchar(10), short_description varchar(100), description varchar(1000), bedrooms int, bathrooms int, patio int, address varchar(30), city varchar(20), pincode int, cost float, area float, latitude float, longitude float);
 
 create table users( username varchar(30) primary key, passwd varchar(1000), firstname varchar(30), lastname varchar(30), email varchar(30), phone varchar(20) );
 
-create table posts_ad(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid)
- , date posted_date);
+create table posts_ad(username varchar(30), pid int, posted_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table purchase(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid) , date purchased_date);
+create table purchase(username varchar(30), pid int, purchased_date date, primary key(pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table request(username varchar(30), pid int FOREIGN KEY REFERENCES properties(pid) , date requested_date);
+create table request(username varchar(30), pid int, requested_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
-create table property_images(prop_id int NOT NULL primary key ,image BLOB);
+create table property_images(pid int, image varchar(30), primary key(pid,image), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table tags(pid int NOT NULL , tag varchar(30), primary key(pid,tag));
+create table tags(pid int, tag varchar(30), primary key(pid,tag), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table property_analytics(p_id int NOT NULL primary key AUTO_INCREMENT , distance int);
+create table property_analytics(pid int NOT NULL primary key , distance int);
 
 /* Dummy values */
 
-insert into properties values(1,'Rent','Ready to Move',2,1,1230,1200300,'MurugeshPalya','S R Layout ');
-insert into properties values(2,'Buy','Ready to Move',1,2,314,43525245,'MurugeshPalya','Indiranagar ');
-insert into properties values(3,'Rent','Ready to Move',3,1,414,2131414,'Ittamadu','Banashankari ');
-insert into properties values(4,'Buy','Ready to Move',4,1,1445,4134145,'Hoskerehalli',' Banashankari');
-insert into properties values(5,'Rent','Ready to Move',2,2,34513,145531,'MurugeshPalya','R R Nagar');
-
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Green House','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Blue House','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',1,2,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('House for sale','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Villa in domlur','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Green Villa','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Green Bungalow','MurugeshPalya','Buy','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
 
 insert into users values('ram_raj','ram_123','ram','raj','ram.raj@gmail.com','9445245856');
 insert into users values('ram_roy','ram_roy','ram','roy','ram.roy@gmail.com','9446585856');
@@ -38,33 +37,31 @@ insert into users values('mani_m','mani_123','mani','m','mmani@gmail.com','94087
 insert into users values('rajath','rajath_123','rajath','r','raj.raj@gmail.com','9980155856');
 
 
-insert into posts_ad values('ram_raj',1,20-06-2000);
-insert into posts_ad values('ram_roy',2,10-07-2001);
-insert into posts_ad values('rajath',1,10-02-2003);
-insert into posts_ad values('mani_m',5,22-06-2007);
-insert into posts_ad values('sadvi_s',9,30-01-2012);
+insert into posts_ad values('ram_raj',1,'2000-02-01');
+insert into posts_ad values('ram_roy',2,'2001-02-03');
+insert into posts_ad values('rajath',1,'2001-02-03');
+insert into posts_ad values('mani_m',5,'2001-02-03');
+insert into posts_ad values('sadvi_s',3,'2001-02-03');
 
 
-insert into purchase values('ram_raj'1,22-07-2012);
-insert into purchase values('mani_m'2,23-05-2001);
-insert into purchase values('sadvi_s'6,24-06-2002);
-insert into purchase values('ram_raj'9,16-03-2007);
-insert into purchase values('ram_raj'2,17-04-2009);
+insert into purchase values('ram_raj',1,'2001-02-03');
+insert into purchase values('mani_m',2,'2001-02-03');
+insert into purchase values('sadvi_s',3,'2001-02-03');
+insert into purchase values('ram_raj',4,'2001-02-03');
+insert into purchase values('ram_raj',5,'2001-02-03');
 
 
-insert into request values('mani_m'1,15-07-2013);
-insert into request values('ram_raj'2,11-11-2016);
-insert into request values('sadvi_s'3,09-12-2009);
-insert into request values('rajath'4,23-06-2006);
-insert into request values('ram_raj'9,27-02-2005);
+insert into request values('mani_m',1,'2001-02-03');
+insert into request values('ram_raj',2,'2001-02-03');
+insert into request values('sadvi_s',3,'2001-02-03');
+insert into request values('rajath',4,'2001-02-03');
+insert into request values('ram_raj',3,'2001-02-03');
 
-
-
-insert into property_image values(5,'1.png');
-insert into property_image values(7,'2.png');
-insert into property_image values(9,'3.png');
-insert into property_image values(1,'4.png');
-insert into property_image values(2,'5.png');
+insert into property_images values(5,'1.png');
+insert into property_images values(3,'2.png');
+insert into property_images values(2,'3.png');
+insert into property_images values(1,'4.png');
+insert into property_images values(2,'5.png');
 
 insert into tags values(1,'Swimming Pool');
 insert into tags values(1,'Gym');

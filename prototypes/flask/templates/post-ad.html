@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 </head>
 
 <body>
@@ -167,6 +168,7 @@
                                 <input id="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required" data-error="phone number is required.">
                                 <input id="username" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required" data-error="username is required.">
 								<input id="password" class="estate_input_field estate_contact_form_name" type="password" placeholder="Additional Tags" required="required" data-error="password is required.">
+								<input type="file" class="filepond" name="myFile" multiple>
 								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">post ad</button>
 							</form>
 						</div>
@@ -176,6 +178,11 @@
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script>
+	FilePond.parse(document.body);
+</script>
 
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
