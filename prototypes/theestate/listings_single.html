@@ -23,10 +23,12 @@
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 500px;
+    width: 500px;
+    height: 100%;
 		margin: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    overflow: scroll;
 }
 .dropdown-content a {
     color: DarkSlateGray;
@@ -37,6 +39,40 @@
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 30%;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 </head>
 
@@ -356,90 +392,95 @@
 							<br>
                 <div class="dropdown">
 									<img src="images/hospital1.png" alt="hospital" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">Manipal Hospital 10 km</a>
 											<a href="#">Manipal Hospital 10 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/bank.png" alt="Banks" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">Karnataka Bank with ATM, Sarakki Layout Branch 7 km</a>
 											<a href="#">Canara Bank 8 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/bookstore.jpg" alt="Bookstore" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">book1</a>
 											<a href="#">book2</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/bus station.png" alt="Bus station" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">KR Market 10 km</a>
 											<a href="#">Churchstreet 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/school.png" alt="School" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">Vibgyor School 10 km</a>
 											<a href="#">DPS 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/train.png" alt="Train Station" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">KR Market 10 km</a>
 											<a href="#">Churchstreet 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/restaurant.png" alt="Restaurant" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">KR Market 10 km</a>
 											<a href="#">Churchstreet 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/gym.png" alt="Gym" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">Bodyholics 10 km</a>
 											<a href="#">Stayfit 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/gas station.png" alt="Gas Station" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="right:0;">
 											<a href="#">Indian Oil 10 km</a>
 											<a href="#">HP 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/doctor.png" alt="Doctor" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="right:0;">
 											<a href="#">Dr. Ashok 10 km</a>
 											<a href="#">Dr. Ram 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="images/electronics.png" alt="Electronics" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="right:0;">
 											<a href="#">Croma 10 km</a>
 											<a href="#">Reliance Digital 15 km</a>
 										</div>
                 </div>
 								<div class="dropdown">
-									<img src="images/religious.png" alt="Religious" width="100" height="80">
-										<div class="dropdown-content">
+									<img src="images/religious.png" alt="Religious" width="100" height="80" >
+										<div class="dropdown-content" style="right:0;">
 											<a href="#">Ganesh Temple 10 km</a>
 											<a href="#">Church 15 km</a>
 										</div>
                 </div>
             </li>
-            <li class="additional_detail"><span>traffic:</span> 23min average time </li>
+            <br>
+            <br>
+            <form action="">
+              <strong style="font-size:20px;margin:30px;color:black;">Traffic:</strong><input type="text" placeholder="search">
+              <input type="submit" placeholder="search" class="button" >
+            </form>
             <li class="additional_detail"><span>general complaints:</span> Garbage</li>
             <li class="additional_detail"><span>green cover:</span> 30%</li>
         </ul>
