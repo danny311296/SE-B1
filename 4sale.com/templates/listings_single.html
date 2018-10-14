@@ -13,7 +13,31 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/clistings_single_responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 500px;
+		margin: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: DarkSlateGray;
+		font-size: 17px;
+		font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+</style>
 </head>
 
 <body>
@@ -154,14 +178,12 @@
 					
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title">House in Murgeshpalya</div>
-						<p class="listing_text">2BK house in murugeshplaya filled with amazing features </p>
+						<div class="listing_title">{{data[0]["title"]}}</div>
+						<p class="listing_text">{{data[0]["short_description"]}}</p>
 						<div class="room_tags">
-							<span class="room_tag"><a href="#">Hottub</a></span>
-							<span class="room_tag"><a href="#">Swimming Pool</a></span>
-							<span class="room_tag"><a href="#">Garden</a></span>
-							<span class="room_tag"><a href="#">Patio</a></span>
-							<span class="room_tag"><a href="#">Hard Wood Floor</a></span>
+                            {% for tag in tags %}
+							<span class="room_tag"><a href="#">{{tag['tag']}}</a></span>
+                            {% endfor %}
 						</div>
 					</div>
 				</div>
@@ -171,8 +193,8 @@
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
 						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300">For Sale</div>
-							<div class="featured_card_price trans_300">₹540,000</div>
+							<div class="featured_card_price_title trans_300">{{data[0]["type"]}}</div>
+							<div class="featured_card_price trans_300">₹ {{data[0]["cost"]}}</div>
 						</div>
 					</div>
 				</div>
@@ -234,15 +256,16 @@
 				<div class="col-lg-8 listing_col">
 
 					<div class="listing_details">
-						<div class="listing_subtitle">Extra Facilities</div>
-						<p class="listing_details_text">Gym, ambient enviroment</p>
-						<div class="rooms">
+                        <div class="listing_subtitle">Address</div>
+						<p class="listing_details_text">{{data[0]["address"]}} {{data[0]["city"]}} - {{data[0]["pincode"]}}</p>
+						<div class="listing_subtitle" style="margin-top:20px;">Parameters</div>
+                        <div class="rooms">
 
 							<div class="room">
 								<span class="room_title">Bedrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
-									<span class="room_number">4</span>
+									<span class="room_number">{{data[0]["bedrooms"]}}</span>
 								</div>
 							</div>
 
@@ -250,7 +273,7 @@
 								<span class="room_title">Bathrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
-									<span class="room_number">3</span>
+									<span class="room_number">{{data[0]["bathrooms"]}}</span>
 								</div>
 							</div>
 
@@ -258,7 +281,7 @@
 								<span class="room_title">Area</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
-									<span class="room_number">7100 Sq Ft</span>
+									<span class="room_number">{{data[0]["area"]}} Sq Ft</span>
 								</div>
 							</div>
 
@@ -266,55 +289,25 @@
 								<span class="room_title">Patio</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
-									<span class="room_number">1</span>
+									<span class="room_number">{{data[0]["patio"]}}</span>
 								</div>
 							</div>
-
-							<div class="room">
-								<span class="room_title">Garage</span>
-								<div class="room_content">
-									<div class="room_image"><img src="{{url_for('static', filename='images/garage.png')}}" alt=""></div>
-									<span class="room_number">2</span>
-								</div>
-							</div>
-
 						</div>
-						
 					</div>
 					
 					<!-- Listing Description -->
 					<div class="listing_description">
 						<div class="listing_subtitle">Description</div>
-						<p class="listing_description_text">This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house. </p>
+						<p class="listing_description_text">{{data[0]["description"]}} </p>
 					</div>
 					
-					<!-- Listing Additional Details -->
-					<div class="listing_additional_details">
-						<div class="listing_subtitle">Additional Details</div>
-						<ul class="additional_details_list">
-							<li class="additional_detail"><span>bedroom features:</span> Main Floor Master Bedroom, Walk-In Closet</li>
-							<li class="additional_detail"><span>dining area:</span> Breakfast Counter/Bar, Living/Dining Combo</li>
-							<li class="additional_detail"><span>doors & windows:</span> Bay Window</li>
-							<li class="additional_detail"><span>entry location:</span> Mid Level</li>
-							<li class="additional_detail"><span>floors:</span> Raised Foundation, Vinyl Tile, Wall-to-Wall Carpet, Wood</li>
-						</ul>
-					</div>
-					
-					<!-- Listing Video -->
-					<div class="listing_video">
-						<div class="listing_subtitle">Property Video</div>
-						<div class="listing_video_link">
-							<a class="video" href="https://vimeo.com/99340873" title=""><img src="{{url_for('static', filename='images/listing_video.jpg')}}" alt="https://www.pexels.com/u/binyaminmellish/"></a>
-							<div class="video_play"><img src="{{url_for('static', filename='images/play.svg')}}" alt=""></div>
-						</div>
-					</div>
 
 					<!-- Listing Map -->
 					<div class="listing_map">
 						<div class="listing_subtitle">Property on map</div>
 						<div id="google_map">
 							<div class="map_container">
-								<div id="map"></div>
+								<div id="map">  </div>
 							</div>
 						</div>
 					</div>
@@ -324,63 +317,100 @@
 			</div>
 		</div>
     </div>
-    <!-- Generated Data about Property -->
+     <!-- Generated Data about Property -->
     <div class="listing_additional_details" style="margin-bottom:20px;">
         <div class="listing_subtitle"> Generated Analytics about Property </div>
         <ul class="additional_details_list">
-            <li class="additional_detail"><span>proximity :</span> 
-                <div> Hospitals 
-                    <span> Manipal Hospital 10 km</span>  
-                    <span> Manipal Hospital 10 km</span>
+            <li class="additional_detail"><span>proximity :</span>
+							<br>
+                <div class="dropdown">
+									<img src="{{url_for('static', filename='images/hospital1.png')}}" alt="hospital" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[0][0][0]}} {{distances[0][0][0]}}</a>
+											<a href="#">{{proximity[0][1][0]}} {{distances[0][1][0]}}</a>
+										</div>
                 </div>
-                <div> Banks     
-                    <span> Karnataka Bank with ATM, Sarakki Layout Branch 7 km</span> 
-                    <span> Canara Bank 8 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bank.png')}}" alt="Banks" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[1][0][0]}} {{distances[1][0][0]}}</a>
+											<a href="#">{{proximity[1][1][0]}} {{distances[1][1][0]}}</a>
+										</div>
                 </div>
-                <div> Bookstore 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bookstore.jpg')}}" alt="Bookstore" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[2][0][0]}} {{distances[2][0][0]}}</a>
+											<a href="#">{{proximity[2][1][0]}} {{distances[2][1][0]}}</a>
+										</div>
                 </div>
-                <div> Bus Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bus station.png')}}" alt="Bus station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[3][0][0]}} {{distances[3][0][0]}}</a>
+											<a href="#">{{proximity[3][1][0]}} {{distances[3][1][0]}}</a>
+										</div>
                 </div>
-                <div> School 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/school.png')}}" alt="School" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[4][0][0]}} {{distances[4][0][0]}}</a>
+											<a href="#">{{proximity[4][1][0]}} {{distances[4][1][0]}}</a>
+										</div>
                 </div>
-                <div> Train Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/train.png')}}" alt="Train Station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[5]}} {{distances[5]}}</a>
+											<a href="#">{{proximity[5]}} {{distances[5]}}</a>
+										</div>
                 </div>
-                <div> Restaurant 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/restaurant.png')}}" alt="Restaurant" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[6][0][0]}} {{distances[6][0][0]}}</a>
+											<a href="#">{{proximity[6][1][0]}} {{distances[6][1][0]}}</a>
+										</div>
                 </div>
-                <div> Gym 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/gym.png')}}" alt="Gym" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[7][0][0]}} {{distances[7][0][0]}}</a>
+											<a href="#">{{proximity[7][1][0]}} {{distances[7][1][0]}}</a>
+										</div>
                 </div>
-                <div> Gas Station 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/gas station.png')}}" alt="Gas Station" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[8][0][0]}} {{distances[8][0][0]}}</a>
+											<a href="#">{{proximity[8][1][0]}} {{distances[8][1][0]}}</a>
+										</div>
                 </div>
-                <div> Doctor 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/doctor.png')}}" alt="Doctor" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[9][0][0]}} {{distances[9][0][0]}}</a>
+											<a href="#">{{proximity[9][1][0]}} {{distances[9][1][0]}}</a>
+										</div>
                 </div>
-                <div> Electronics Store 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/electronics.png')}}" alt="Electronics" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[10][0][0]}} {{distances[10][0][0]}}</a>
+											<a href="#">{{proximity[10][1][0]}} {{distances[10][1][0]}}</a>>
+										</div>
                 </div>
-                <div> Religious Places 
-                    <span> Manipal Hospital 10 km</span> 
-                    <span> Manipal Hospital 10 km</span>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/religious.png')}}" alt="Religious" width="100" height="80">
+										<div class="dropdown-content">
+											<a href="#">{{proximity[11][0][0]}} {{distances[11][0][0]}}</a>
+											<a href="#">{{proximity[11][1][0]}} {{distances[11][1][0]}}</a>
+										</div>
                 </div>
             </li>
             <li class="additional_detail"><span>traffic:</span> 23min average time </li>
             <li class="additional_detail"><span>general complaints:</span> Garbage</li>
-            <li class="additional_detail"><span>green cover:</span> 30%</li>
+            <li class="additional_detail"><span>green cover:</span> {{green}}%</li>
         </ul>
     </div>
 
@@ -392,9 +422,7 @@
 <script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="{{url_for('static', filename='js/listings_single_custom.js')}}"></script>
-    
 </body>
 
 </html>

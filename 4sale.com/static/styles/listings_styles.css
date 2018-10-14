@@ -933,7 +933,7 @@ section
 .room
 {
 	display: inline-block;
-	margin-right: 17px;
+	margin-right: 10px;
 	margin-bottom: 6px;
 }
 .room_title
@@ -959,7 +959,7 @@ section
 	font-size: 12px;
 	font-weight: 400;
 	color: #2e2e2e;
-	margin-left: 5px;
+	margin-left: 2px;
 }
 .room_tags
 {
