@@ -5,6 +5,8 @@ from argon2 import PasswordHasher
 from collections import defaultdict
 import map
 import greencover
+import cv2
+import os
 
 app = Flask(__name__)
 
@@ -50,7 +52,13 @@ def listings_single():
             distances.append([])
     print(distances)
     green = greencover.green_index(location["lat"],location["lng"])
-    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green)
+    if(not(os.path.isdir("static/images/properties/"+pid))):
+        os.mkdir("static/images/properties/"+pid)
+    cv2.imwrite("static/images/properties/"+pid+"/input.png",green[1])
+    cv2.imwrite("static/images/properties/"+pid+"/hsv.png",green[2])
+    cv2.imwrite("static/images/properties/"+pid+"/threshold.png",green[3])
+    cv2.imwrite("static/images/properties/"+pid+"/green.png",green[4])
+    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green[0],prop_id=pid)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():

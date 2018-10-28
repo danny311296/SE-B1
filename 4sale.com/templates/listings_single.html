@@ -410,7 +410,13 @@
             </li>
             <li class="additional_detail"><span>traffic:</span> 23min average time </li>
             <li class="additional_detail"><span>general complaints:</span> Garbage</li>
-            <li class="additional_detail"><span>green cover:</span> {{green}}%</li>
+            <li class="additional_detail">
+                <span>green cover:</span> {{green}}% <br/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/input.png')}}"/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/hsv.png')}}"/> <br/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/threshold.png')}}"/> 
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/green.png')}}"/> <br/>
+            </li>
         </ul>
     </div>
 

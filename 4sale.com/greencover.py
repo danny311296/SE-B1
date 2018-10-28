@@ -38,4 +38,4 @@ def green_index(lat,long):
     hsv = convert_to_hsv(img)
     mask = green_mask(hsv)
     greenareas = green_areas(img,mask)
-    return green_percent(mask)
+    return green_percent(mask), img, hsv, mask, greenareas
