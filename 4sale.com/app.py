@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import psycopg2
-import psycopg2.extras
+import db_utils
 from argon2 import PasswordHasher
 from collections import defaultdict
 import map
@@ -17,8 +16,7 @@ def home_page():
             data = request.form
             print(data)
             hashedPassword = ph.hash(data["password"])
-            cur.execute("insert into users values('" + data["username"] + "','" + hashedPassword + "','" + data["firstname"] + "','" + data["lastname"] + "','" + data["emailid"] + "','" + data["phone"] + "');")
-            conn.commit()
+            conn.insert('users',username=data["username"],passwd=hashedPassword,firstname=data["firstname"],lastname=data["lastname"],email=data["emailid"],phone=data["phone"])
     return render_template('index.html')
 
 @app.route('/about.html')
@@ -32,10 +30,9 @@ def contact_page():
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
-    cur.execute("select * from properties where pid = " + pid + ";")
-    data = cur.fetchall()
-    cur.execute("select * from tags where pid = " + pid + ";")
-    tags = cur.fetchall()
+    data = conn.query('properties',pid=pid)
+    tags = conn.query('tags',pid=pid)
+    print(data)
     print(tags)
     address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
     location = map.get_latitude_and_longitude(address)
@@ -77,11 +74,9 @@ def listings():
                 return redirect(url_for('login'))
         else:
             print('Failure: invalid username')
-    cur.execute('select * from properties')
-    data = cur.fetchall()
+    data = conn.query('properties')
     print(data)
-    cur.execute('select * from tags')
-    tags = cur.fetchall()
+    tags = conn.query('tags')
     print(type(tags[0]))
     d = defaultdict(list)
     for tag in tags:
@@ -104,8 +99,14 @@ def post_ad_page():
 def register_page():
     return render_template('register.html')
 
+@app.route('/process_post_ad.html', methods=['POST'])
+def process_post_ad():
+    data = request.form
+    print(data)
+    print(request.files.to_dict())
+    return redirect(url_for('listings'))
+    
 if __name__ == '__main__':
-    conn = psycopg2.connect(database="forsale", user="root", password="root", host="localhost")
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    conn = db_utils.dbconnection(database="forsale", user="root", password="root", host="localhost")
     ph = PasswordHasher()
     app.run()

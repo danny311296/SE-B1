@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='styles/awesomplete.css')}}" />
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 <script src="{{url_for('static', filename='js/awesomplete.js')}}"></script>
 
 </head>
@@ -160,18 +161,20 @@
 					<div class="estate_contact_form">
 						<div class="contact_title">advertisement details</div>
 						<div class="estate_contact_form_container">
-							<form id="estate_contact_form" class="estate_contact_form" action="post">
-                                <select class="dropdown_item_select">
+							<form id="estate_contact_form" class="estate_contact_form" method="post" action="process_post_ad.html">
+                                <select class="dropdown_item_select" name="type">
                                     <option> Buy  </option>
                                     <option> Rent </option>
                                 </select>
-                                <input id="propertyname" class="estate_input_field estate_contact_form_name" type="text" placeholder="Property Name" required="required" data-error="First Name is required.">
-                                <input id="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required" data-error="First Name is required.">
-                                <input id="lastname" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bedrooms" required="required" data-error="Last Name is required.">
-                                <input id="emailid" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bathrooms" required="required" data-error="email id is required.">
-                                <input id="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required" data-error="phone number is required.">
-                                <input id="username" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required" data-error="username is required.">
-								<input id="password" class="estate_input_field estate_contact_form_name" type="password" placeholder="Additional Tags" required="required" data-error="password is required.">
+                                <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required" data-error="First Name is required."><br/>
+                                <textarea name="description" name="description" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Description"></textarea><br/>
+                                <input id="lastname" name="bedrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bedrooms" required="required" data-error="Last Name is required.">
+                                <input id="emailid" name="bathrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bathrooms" required="required" data-error="email id is required.">
+                                <input id="emailid" name="patio" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of patio" required="required" data-error="email id is required.">
+                                <input id="phone" name="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required" data-error="phone number is required.">
+                                <input id="username" name="cost" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required" data-error="username is required.">
+								<input id="password" name="tags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Additional Tags" data-role="tagsinput" required="required" data-error="password is required.">
+                                <input type="file" class="filepond" name="myFile" multiple>
 								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">post ad</button>
 							</form>
 						</div>
@@ -181,7 +184,11 @@
         </div>
     </div>
 </div>
-
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script>
+	FilePond.parse(document.body);
+</script>
+    
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
