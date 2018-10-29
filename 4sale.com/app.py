@@ -77,12 +77,13 @@ def listings():
     data = conn.query('properties')
     print(data)
     tags = conn.query('tags')
-    print(type(tags[0]))
+    print(tags)
     d = defaultdict(list)
     for tag in tags:
         d[tag["pid"]].append(tag["tag"])
     print(d)
     for elem in data:
+        print(elem,' ',type(elem))
         elem.append(d[elem[0]])
     print(data)
     return render_template('listings.html', data = data)
@@ -103,7 +104,10 @@ def register_page():
 def process_post_ad():
     data = request.form
     print(data)
-    print(request.files.to_dict())
+    address_for_geocoding = ' '.join([data['address'],data['locality'],data['city'],data['pincode']])
+    location = map.get_latitude_and_longitude(address_for_geocoding)
+    lat,long = location['lat'], location['lng']
+    conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
     return redirect(url_for('listings'))
     
 if __name__ == '__main__':

@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='styles/awesomplete.css')}}" />
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="{{url_for('static', filename='styles/styles.imageuploader.css')}}" rel="stylesheet">
 <script src="{{url_for('static', filename='js/awesomplete.js')}}"></script>
 
 </head>
@@ -163,18 +163,29 @@
 						<div class="estate_contact_form_container">
 							<form id="estate_contact_form" class="estate_contact_form" method="post" action="process_post_ad.html">
                                 <select class="dropdown_item_select" name="type">
-                                    <option> Buy  </option>
+                                    <option> Sale  </option>
                                     <option> Rent </option>
                                 </select>
-                                <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required" data-error="First Name is required."><br/>
-                                <textarea name="description" name="description" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Description"></textarea><br/>
-                                <input id="lastname" name="bedrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bedrooms" required="required" data-error="Last Name is required.">
-                                <input id="emailid" name="bathrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bathrooms" required="required" data-error="email id is required.">
-                                <input id="emailid" name="patio" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of patio" required="required" data-error="email id is required.">
-                                <input id="phone" name="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required" data-error="phone number is required.">
-                                <input id="username" name="cost" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required" data-error="username is required.">
-								<input id="password" name="tags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Additional Tags" data-role="tagsinput" required="required" data-error="password is required.">
-                                <input type="file" class="filepond" name="myFile" multiple>
+                                <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required">
+                                <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required">
+                                <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required">
+                                <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
+                                <textarea name="short_description" name="short_description" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Description"></textarea><br/>
+                                <input id="bedrooms" name="bedrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bedrooms" required="required">
+                                <input id="bathrooms" name="bathrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bathrooms" required="required">
+                                <input id="patio" name="patio" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of patio" required="required">
+                                <input id="area" name="area" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required">
+                                <input id="cosr" name="cost" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required">
+								<input id="tags" name="tags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Additional Tags" data-role="tagsinput">
+                                <div class="uploader__box js-uploader__box l-center-box">
+                                    <!--<form action="your/nonjs/fallback/" method="POST">-->
+                                        <div class="uploader__contents">
+                                            <label class="button button--secondary" for="fileinput">Select Files</label>
+                                            <input id="fileinput" class="uploader__file-input" type="file" multiple value="Select Files" name="files">
+                                        </div>
+                                       <!-- <input class="button button--big-bottom" type="submit" value="Upload Selected Files">-->
+                                   <!-- </form>-->
+                                </div>
 								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">post ad</button>
 							</form>
 						</div>
@@ -184,11 +195,23 @@
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="{{url_for('static', filename='js/jquery.imageuploader.js')}}"></script>
 <script>
-	FilePond.parse(document.body);
+var options = {
+    submitButtonCopy: 'Upload Selected Files',
+    instructionsCopy: 'Drag and Drop, or',
+    furtherInstructionsCopy: 'Your can also drop more files, or',
+    selectButtonCopy: 'Select Files',
+    secondarySelectButtonCopy: 'Select More Files',
+    dropZone: $(this),
+    fileTypeWhiteList: ['jpg', 'png', 'jpeg'],
+    badFileTypeMessage: 'Sorry, we\'re unable to accept this type of file.',
+    ajaxUrl: '/process_post_ad.html',
+    testMode: false
+};
+$('.js-uploader__box').uploader(options);    
 </script>
-    
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
