@@ -6,8 +6,25 @@ import map
 import greencover
 import cv2
 import os
+from flask_dropzone import Dropzone
+
+#basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+
+app.config.update(
+    UPLOADED_PATH='static/images',
+    # Flask-Dropzone config:
+    DROPZONE_ALLOWED_FILE_TYPE='image',
+    DROPZONE_MAX_FILE_SIZE=3,
+    DROPZONE_MAX_FILES=30,
+    DROPZONE_IN_FORM=True,
+    DROPZONE_UPLOAD_ON_CLICK=True,
+    DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
+    DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
+)
+
+dropzone = Dropzone(app)
 
 @app.route('/')
 @app.route('/index.html', methods=['GET','POST'])
@@ -26,7 +43,7 @@ def about_page():
 @app.route('/contact.html')
 def contact_page():
     return render_template('contact.html')
-    
+
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
@@ -101,11 +118,18 @@ def login():
 def post_ad_page():
     return render_template('post-ad.html')
 
+@app.route('/upload', methods=['POST'])
+def handle_upload():
+    for key, f in request.files.items():
+        if key.startswith('file'):
+            f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+    return '', 204
+
 @app.route('/register.html')
 def register_page():
     return render_template('register.html')
 
-@app.route('/process_post_ad.html', methods=['POST'])
+@app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
     print(data)
@@ -114,7 +138,7 @@ def process_post_ad():
     lat,long = location['lat'], location['lng']
     conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
     return redirect(url_for('listings'))
-    
+
 if __name__ == '__main__':
     conn = db_utils.dbconnection(database="forsale", user="root", password="root", host="localhost")
     ph = PasswordHasher()
