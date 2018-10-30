@@ -16,8 +16,8 @@ class dbconnection:
     def get_cursor(self):
         return self.cursor
     
-    def query(self,table,**kwargs):
-        query = "select * from " + table 
+    def query(self,table,cols=['*'],**kwargs):
+        query = "select " + ",".join(cols) + " from " + table 
         if(len(kwargs)>0):
             query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in kwargs.items() ])
         print(query)

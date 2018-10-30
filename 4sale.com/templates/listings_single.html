@@ -409,7 +409,12 @@
                 </div>
             </li>
             <li class="additional_detail"><span>traffic:</span> 23min average time </li>
-            <li class="additional_detail"><span>general complaints:</span> Garbage</li>
+            <li class="additional_detail">
+                <span>general complaints: (Scraped from BBMP Website) </span> <br/>
+                {% for complaint in complaints %}
+                     <span class="additional_detail" style="font-weight:normal;">{{complaint}}</span> <br/>
+                {% endfor %}
+            </li>
             <li class="additional_detail">
                 <span>green cover:</span> {{green}}% <br/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/input.png')}}"/>

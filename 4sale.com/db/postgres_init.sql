@@ -21,9 +21,13 @@ create table tags(pid int, tag varchar(30), primary key(pid,tag), FOREIGN KEY(pi
 
 create table property_analytics(pid int NOT NULL primary key , distance int);
 
+create table complaints(ward varchar(30),complaint varchar(500));
+
+create table ward_mapping(locality varchar(60),ward varchar(60));
+
 /* Dummy values */
 
-insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Green House','MurugeshPalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
+insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Green House','Murugeshpalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Blue House','MurugeshPalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',1,2,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('House for sale','MurugeshPalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Villa in domlur','MurugeshPalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.955050,77.650510);
@@ -79,6 +83,10 @@ insert into property_analytics values(2,9);
 insert into property_analytics values(3,7);
 insert into property_analytics values(4,2);
 insert into property_analytics values(5,1);
+
+\copy complaints from '/Users/danielisaac/Desktop/SE-Project/prototypes/scrape/complaints_data/complaints3.csv' DELIMITER ',' CSV
+
+\copy ward_mapping from '/Users/danielisaac/Desktop/test.csv' DELIMITER ',' CSV
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO root;

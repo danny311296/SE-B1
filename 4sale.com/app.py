@@ -48,6 +48,11 @@ def listings_single():
         else:
             distances.append([])
     print(distances)
+    ward = conn.query('ward_mapping',locality=data[0]["locality"])[0][1]
+    print(ward)
+    complaints = conn.query('complaints',cols=['Complaint'],ward=ward)
+    complaints = [y for x in complaints for y in x]
+    print(complaints)
     green = greencover.green_index(location["lat"],location["lng"])
     if(not(os.path.isdir("static/images/properties/"+pid))):
         os.mkdir("static/images/properties/"+pid)
@@ -55,7 +60,7 @@ def listings_single():
     cv2.imwrite("static/images/properties/"+pid+"/hsv.png",green[2])
     cv2.imwrite("static/images/properties/"+pid+"/threshold.png",green[3])
     cv2.imwrite("static/images/properties/"+pid+"/green.png",green[4])
-    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green[0],prop_id=pid)
+    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green[0],prop_id=pid, complaints= complaints)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():
