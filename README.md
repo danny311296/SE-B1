@@ -10,6 +10,7 @@ pip install psycopg2
 pip install argon2_cffi
 pip install -U googlemaps
 pip install opencv-python
+pip install flask flask-uploads flask-dropzone
 ```
 
 ### Running
