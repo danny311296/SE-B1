@@ -13,14 +13,14 @@ from flask_dropzone import Dropzone
 app = Flask(__name__)
 
 app.config.update(
-    UPLOADED_PATH='static/images',
+    UPLOADED_PATH='static/images/properties',
     # Flask-Dropzone config:
     DROPZONE_ALLOWED_FILE_TYPE='image',
-    DROPZONE_MAX_FILE_SIZE=3,
+    DROPZONE_MAX_FILE_SIZE=5,
     DROPZONE_MAX_FILES=30,
     DROPZONE_IN_FORM=True,
     DROPZONE_UPLOAD_ON_CLICK=True,
-    DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
+    DROPZONE_UPLOAD_ACTION='process_post_ad',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
 
@@ -98,18 +98,18 @@ def listings():
         else:
             print('Failure: invalid username')
     data = conn.query('properties')
-    print(data)
+    #print(data)
     tags = conn.query('tags')
-    print(tags)
+    #print(tags)
     d = defaultdict(list)
     for tag in tags:
         d[tag["pid"]].append(tag["tag"])
-    print(d)
+    #print(d)
     for elem in data:
         print(elem,' ',type(elem))
         elem.append(d[elem[0]])
-    print(data)
-    return render_template('listings.html', data = data)
+    #print(data)
+    return render_template('listings.html', data = data[::-1])
 
 @app.route('/login.html')
 def login():
@@ -121,6 +121,7 @@ def post_ad_page():
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():
+    f = request.files.get('file')
     for key, f in request.files.items():
         if key.startswith('file'):
             f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
@@ -132,12 +133,21 @@ def register_page():
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
-    data = request.form
-    print(data)
-    address_for_geocoding = ' '.join([data['address'],data['locality'],data['city'],data['pincode']])
-    location = map.get_latitude_and_longitude(address_for_geocoding)
-    lat,long = location['lat'], location['lng']
-    conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
+    try: # For everything but the uploaded images data
+        data = request.form
+        print(data)
+        address_for_geocoding = ' '.join([data['address'],data['locality'],data['city'],data['pincode']])
+        location = map.get_latitude_and_longitude(address_for_geocoding)
+        lat,long = location['lat'], location['lng']
+        conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
+        print('yes')
+    except: # For uploaded images data
+        print('NNNNOOOOO')
+        pid = conn.query('properties',cols=['max(pid)'])[0][0]
+        os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid)))
+        for key, f in request.files.items():
+            if key.startswith('file'):
+                f.save(os.path.join(app.config['UPLOADED_PATH'],str(pid),f.filename))
     return redirect(url_for('listings'))
 
 if __name__ == '__main__':
