@@ -408,7 +408,14 @@
 										</div>
                 </div>
             </li>
-            <li class="additional_detail"><span>traffic:</span> 23min average time </li>
+            <li class="additional_detail">
+                <span>traffic:</span> <br/>
+                <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
+                <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
+                <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
+                <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
+                23min average time 
+            </li>
             <li class="additional_detail">
                 <span>general complaints: (Scraped from BBMP Website) </span> <br/>
                 {% for complaint in complaints %}

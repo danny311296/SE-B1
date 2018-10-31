@@ -65,9 +65,10 @@ def listings_single():
         else:
             distances.append([])
     print(distances)
-    ward = conn.query('ward_mapping',locality=data[0]["locality"])[0][1]
+    ward = conn.query('ward_mapping',cols=['ward'],locality=data[0]["locality"])[0][0]
     print(ward)
-    complaints = conn.query('complaints',cols=['Complaint'],ward=ward)
+    complaints = conn.query('complaints',cols=['complaint'],ward=ward)
+    print(complaints)
     complaints = [y for x in complaints for y in x]
     print(complaints)
     green = greencover.green_index(location["lat"],location["lng"])
