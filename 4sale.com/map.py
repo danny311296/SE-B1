@@ -1,7 +1,7 @@
 import googlemaps
 
 gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
-place_types =  ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','doctor','electronics_store','pharmacy',]#'beauty_salon','cafe','car_repair','church','train_station','dentist','hindu_temple','mosque','movie_theater','subway_station','supermarket','atm','bakery']
+place_types =  ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','doctor','electronics_store','pharmacy']#'beauty_salon','cafe','car_repair','church','train_station','dentist','hindu_temple','mosque','movie_theater','subway_station','supermarket','atm','bakery']
 
 def get_latitude_and_longitude(address):
 	geocode_result = gmaps.geocode(address)

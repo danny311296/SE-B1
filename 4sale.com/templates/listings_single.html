@@ -455,7 +455,7 @@ src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
                 {% endfor %}
             </li>
             <li class="additional_detail">
-                <span>green cover:</span> {{green}}% <br/>
+                <span>green cover:</span> {{places["green_cover"]}} % <br/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/input.png')}}"/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/hsv.png')}}"/> <br/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/threshold.png')}}"/>
