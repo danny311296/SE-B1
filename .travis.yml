@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - 2.7
+
+sudo: required 
+
+os: linux
+
+services:
+  - postgresql
+  
+before_install:
+  - psql -c "create user root with password 'root';" -U postgres
+  - psql -c "create database forsale; " -U postgres
+  - psql -U root -d forsale -a -f 4sale.com/db/postgres_init.sql
+  
+install: 
+  - pip install -r requirements.txt
+  - sudo apt-get update
+  
+script:
+  - echo "test"
