@@ -207,31 +207,14 @@
 
 					<div class="listing_slider_container">
 						<div class="owl-carousel owl-theme listing_slider">
-							
+                            {% for image in images %}
 							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
+                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image[0] %}
+                              {% set url = url_for('static',filename=filename) %}
+							  <div class="owl-item listing_slider_item">
+								<img  style="width: 100%; height: 100%; object-fit: contain;" src="{{url}}" alt="image">
+							  </div>
+                            {% endfor %}
 							
 						</div>
 

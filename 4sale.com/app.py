@@ -51,6 +51,7 @@ def listings_single():
     tags = conn.query('tags',pid=pid)
     #print(data)
     #print(tags)
+    images = conn.query('property_images',cols=['image'],pid=pid)
     address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
     location = map.get_latitude_and_longitude(address)
     print(location)
@@ -59,6 +60,7 @@ def listings_single():
         l.append(map.get_closest_places(location,place,num=2,radius=2000))
     #print(l)
     distances = []
+    print(l)
     for item in l:
         if item:
             distances.append([map.get_distance_and_time(location,item[0][1]),map.get_distance_and_time(location,item[1][1])])
@@ -78,7 +80,7 @@ def listings_single():
     cv2.imwrite("static/images/properties/"+pid+"/hsv.png",green[2])
     cv2.imwrite("static/images/properties/"+pid+"/threshold.png",green[3])
     cv2.imwrite("static/images/properties/"+pid+"/green.png",green[4])
-    return render_template('listings_single.html', data = data, tags = tags, proximity = l, distances = distances, green = green[0],prop_id=pid, complaints= complaints)
+    return render_template('listings_single.html', images = images, data = data, tags = tags, proximity = l, distances = distances, green = green[0],prop_id=pid, complaints= complaints)
 
 @app.route('/listings.html', methods=['GET','POST'])
 def listings():
