@@ -348,8 +348,12 @@
 						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
 							<div class="listing_image_container">
 								<div class="listing_image">
+                                    {% set pic_name = item[16][0] %}
+                                    {% set pid = item['pid'] %}
+                                    {% set filename = 'images/properties/' + pid|string + '/property_pics/' + pic_name %}
+                                    {% set url = url_for('static',filename=filename) %}
 									<!-- Image by: https://unsplash.com/@breather -->
-									<div class="listing_background" style="background-image:url({{url_for('static', filename='images/listing_1.jpg')}}"></div>
+                                    <div class="listing_background" style="background-image:url({{url}})"></div>
 								</div>
 								<div class="featured_card_box d-flex flex-row align-items-center trans_300">
 									<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">

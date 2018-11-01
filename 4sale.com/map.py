@@ -6,7 +6,7 @@ place_types =  ['hospital','bank','book_store','bus_station','school','train_sta
 def get_latitude_and_longitude(address):
 	geocode_result = gmaps.geocode(address)
 	location = geocode_result[0]['geometry']['location']
-	print(location)
+	#print(location)
 	return location
 
 def get_closest_places(location,place_type,num=2,radius=600):

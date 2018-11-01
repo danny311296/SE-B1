@@ -20,7 +20,7 @@ app.config.update(
     DROPZONE_MAX_FILES=30,
     DROPZONE_IN_FORM=True,
     DROPZONE_UPLOAD_ON_CLICK=True,
-    DROPZONE_UPLOAD_ACTION='process_post_ad',  # URL or endpoint
+    DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
 
@@ -31,7 +31,7 @@ dropzone = Dropzone(app)
 def home_page():
     if request.method == 'POST':
             data = request.form
-            print(data)
+            #print(data)
             hashedPassword = ph.hash(data["password"])
             conn.insert('users',username=data["username"],passwd=hashedPassword,firstname=data["firstname"],lastname=data["lastname"],email=data["emailid"],phone=data["phone"])
     return render_template('index.html')
@@ -49,28 +49,28 @@ def listings_single():
     pid = request.args.get('id')
     data = conn.query('properties',pid=pid)
     tags = conn.query('tags',pid=pid)
-    print(data)
-    print(tags)
+    #print(data)
+    #print(tags)
     address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
     location = map.get_latitude_and_longitude(address)
     print(location)
     l = []
     for place in map.place_types:
         l.append(map.get_closest_places(location,place,num=2,radius=2000))
-    print(l)
+    #print(l)
     distances = []
     for item in l:
         if item:
             distances.append([map.get_distance_and_time(location,item[0][1]),map.get_distance_and_time(location,item[1][1])])
         else:
             distances.append([])
-    print(distances)
+    #print(distances)
     ward = conn.query('ward_mapping',cols=['ward'],locality=data[0]["locality"])[0][0]
-    print(ward)
+    #print(ward)
     complaints = conn.query('complaints',cols=['complaint'],ward=ward)
-    print(complaints)
+    #print(complaints)
     complaints = [y for x in complaints for y in x]
-    print(complaints)
+    #print(complaints)
     green = greencover.green_index(location["lat"],location["lng"])
     if(not(os.path.isdir("static/images/properties/"+pid))):
         os.mkdir("static/images/properties/"+pid)
@@ -101,14 +101,20 @@ def listings():
     #print(data)
     tags = conn.query('tags')
     #print(tags)
+    images = conn.query('property_images')
     d = defaultdict(list)
     for tag in tags:
         d[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d[image["pid"]].append(image["image"])
+    print(images)
+    print(d)
     #print(d)
     for elem in data:
-        print(elem,' ',type(elem))
+        #print(elem,' ',type(elem))
         elem.append(d[elem[0]])
-    #print(data)
+    print(data)
+    
     return render_template('listings.html', data = data[::-1])
 
 @app.route('/login.html')
@@ -121,10 +127,18 @@ def post_ad_page():
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():
-    f = request.files.get('file')
+    pid = conn.query('properties',cols=['max(pid)'])
+    print(pid)
+    pid = 0 if pid[0][0]==None else pid[0][0]
+    if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1))))):
+        os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1)))
+    if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1),'property_pics')))):
+        os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1),'property_pics'))
     for key, f in request.files.items():
         if key.startswith('file'):
-            f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+            f.save(os.path.join(app.config['UPLOADED_PATH'],str(pid+1),"property_pics",f.filename))
+            conn.insert('property_images',pid=pid+1,image=f.filename)
+    print('NNNNOOOOO')
     return '', 204
 
 @app.route('/register.html')
@@ -133,21 +147,13 @@ def register_page():
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
-    try: # For everything but the uploaded images data
-        data = request.form
-        print(data)
-        address_for_geocoding = ' '.join([data['address'],data['locality'],data['city'],data['pincode']])
-        location = map.get_latitude_and_longitude(address_for_geocoding)
-        lat,long = location['lat'], location['lng']
-        conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
-        print('yes')
-    except: # For uploaded images data
-        print('NNNNOOOOO')
-        pid = conn.query('properties',cols=['max(pid)'])[0][0]
-        os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid)))
-        for key, f in request.files.items():
-            if key.startswith('file'):
-                f.save(os.path.join(app.config['UPLOADED_PATH'],str(pid),f.filename))
+    data = request.form
+    #print(data)
+    address_for_geocoding = ' '.join([data['address'],data['locality'],data['city'],data['pincode']])
+    location = map.get_latitude_and_longitude(address_for_geocoding)
+    lat,long = location['lat'], location['lng']
+    conn.insert('properties',title='Property for '+data['type']+' at ' + data['address'] ,type=data['type'],locality=data['locality'],city=data['city'],pincode=data['pincode'], address=data['address'],short_description=data['short_description'],bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']), patio=int(data['patio']),area=float(data['area']),cost=float(data['cost']),latitude=float(lat),longitude=float(long))
+    print('yes')
     return redirect(url_for('listings'))
 
 if __name__ == '__main__':
