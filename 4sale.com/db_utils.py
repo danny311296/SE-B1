@@ -36,3 +36,9 @@ class db:
         self.cursor.execute(query)
         self.connection.commit()
         
+    def insert_from_dict_and_kw(self,table,d,**kwargs):
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + "," + ",".join([column for column,_ in kwargs.items()]) +  ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in d.items()]) + "," + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in kwargs.items()]) + ")"
+        print(query)
+        self.cursor.execute(query)
+        self.connection.commit()
+        
