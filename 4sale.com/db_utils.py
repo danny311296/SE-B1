@@ -1,7 +1,7 @@
 import psycopg2
 import psycopg2.extras
 
-class dbconnection:
+class db:
     def __init__(self,host, database, user, password):
         self.host = host
         self.database = database
