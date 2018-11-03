@@ -4,7 +4,6 @@ from argon2 import PasswordHasher
 from collections import defaultdict
 import map
 import greencover 
-import cv2
 import os
 from flask_dropzone import Dropzone
 
