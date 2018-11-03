@@ -29,3 +29,10 @@ class db:
         #print(query)
         self.cursor.execute(query)
         self.connection.commit()
+        
+    def insert_from_dict(self,table,d):
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in d.items()]) + ")"
+        print(query)
+        self.cursor.execute(query)
+        self.connection.commit()
+        
