@@ -128,6 +128,36 @@ def handle_upload():
 def register_page():
     return render_template('register.html')
 
+@app.route('/news.html')
+def news():
+    return render_template('news.html')
+
+@app.route('/ques_ans.html')
+def ques_ans():
+    data = conn.query('question')
+    #print(data)
+    return render_template('ques_ans.html', data = data)
+
+@app.route('/process_ques', methods=['POST'])
+def process_ques():
+    data = request.form
+    conn.insert('posts',body=data['question_text'])
+    return render_template('ques_ans.html')
+
+
+@app.route('/reply.html')
+def reply():
+    quesid = request.args.get('id')
+    data_ques = conn.query('question',qid=quesid)
+    data_reply = conn.query('comments',qid=quesid)
+    data_reply = data_reply[::-1]
+    #print(data_ques)
+    #print(data_reply)
+    data = array()
+    data = data.append(data_ques)
+    data = data.append(data_reply)
+    return render_template('reply.html', data = data)
+
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
