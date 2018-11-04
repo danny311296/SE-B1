@@ -24,6 +24,10 @@ create table property_analytics(pid int NOT NULL primary key , hospital1 varchar
 create table complaints(ward varchar(30),complaint varchar(1000));
 
 create table ward_mapping(locality varchar(60),ward varchar(60));
+                                                            
+create table question(qid serial primary key, username varchar(30), body varchar(1000), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username));
+
+create table comments(cid serial primary key, username varchar(30), qid int, body varchar(1000), time timestamp, FOREIGN KEY(username) REFERENCES users(username), FOREIGN KEY(qid) REFERENCES question(qid));
 
 /* Dummy values */
 /*
