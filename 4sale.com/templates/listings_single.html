@@ -207,31 +207,14 @@
 
 					<div class="listing_slider_container">
 						<div class="owl-carousel owl-theme listing_slider">
-							
+                            {% for image in images %}
 							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
-
-							<!-- Listing Slider Item -->
-							<div class="owl-item listing_slider_item">
-								<img src="{{url_for('static', filename='images/listing_slider_1.jpg')}}" alt="https://unsplash.com/@astute">
-							</div>
+                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image[0] %}
+                              {% set url = url_for('static',filename=filename) %}
+							  <div class="owl-item listing_slider_item">
+								<img  style="width: 100%; height: 100%; object-fit: contain;" src="{{url}}" alt="image">
+							  </div>
+                            {% endfor %}
 							
 						</div>
 
@@ -326,89 +309,96 @@
                 <div class="dropdown">
 									<img src="{{url_for('static', filename='images/hospital1.png')}}" alt="hospital" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[0][0][0]}} {{distances[0][0][0]}}</a>
-											<a href="#">{{proximity[0][1][0]}} {{distances[0][1][0]}}</a>
+											<a href="#">{{places["hospital1"]}}</a>
+											<a href="#">{{places["hospital2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/bank.png')}}" alt="Banks" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[1][0][0]}} {{distances[1][0][0]}}</a>
-											<a href="#">{{proximity[1][1][0]}} {{distances[1][1][0]}}</a>
+											<a href="#">{{places["bank1"]}}</a>
+											<a href="#">{{places["bank2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/bookstore.jpg')}}" alt="Bookstore" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[2][0][0]}} {{distances[2][0][0]}}</a>
-											<a href="#">{{proximity[2][1][0]}} {{distances[2][1][0]}}</a>
+											<a href="#">{{places["book_store1"]}}</a>
+											<a href="#">{{places["book_store2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/bus station.png')}}" alt="Bus station" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[3][0][0]}} {{distances[3][0][0]}}</a>
-											<a href="#">{{proximity[3][1][0]}} {{distances[3][1][0]}}</a>
+											<a href="#">{{places["bus_station1"]}}</a>
+											<a href="#">{{places["bus_station2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/school.png')}}" alt="School" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[4][0][0]}} {{distances[4][0][0]}}</a>
-											<a href="#">{{proximity[4][1][0]}} {{distances[4][1][0]}}</a>
+											<a href="#">{{places["school1"]}}</a>
+											<a href="#">{{places["school2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/train.png')}}" alt="Train Station" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[5]}} {{distances[5]}}</a>
-											<a href="#">{{proximity[5]}} {{distances[5]}}</a>
+											<a href="#">{{places["clothing_store1"]}}</a>
+											<a href="#">{{places["clothing_store2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/restaurant.png')}}" alt="Restaurant" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[6][0][0]}} {{distances[6][0][0]}}</a>
-											<a href="#">{{proximity[6][1][0]}} {{distances[6][1][0]}}</a>
+											<a href="#">{{places["restaurant1"]}}</a>
+											<a href="#">{{places["restaurant2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/gym.png')}}" alt="Gym" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[7][0][0]}} {{distances[7][0][0]}}</a>
-											<a href="#">{{proximity[7][1][0]}} {{distances[7][1][0]}}</a>
+											<a href="#">{{places["gym1"]}}</a>
+											<a href="#">{{places["gym2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/gas station.png')}}" alt="Gas Station" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[8][0][0]}} {{distances[8][0][0]}}</a>
-											<a href="#">{{proximity[8][1][0]}} {{distances[8][1][0]}}</a>
+											<a href="#">{{places["gas_station1"]}}</a>
+											<a href="#">{{places["gas_station2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/doctor.png')}}" alt="Doctor" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[9][0][0]}} {{distances[9][0][0]}}</a>
-											<a href="#">{{proximity[9][1][0]}} {{distances[9][1][0]}}</a>
+											<a href="#">{{places["doctor1"]}}</a>
+											<a href="#">{{places["doctor2"]}}</a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/electronics.png')}}" alt="Electronics" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[10][0][0]}} {{distances[10][0][0]}}</a>
-											<a href="#">{{proximity[10][1][0]}} {{distances[10][1][0]}}</a>>
+											<a href="#">{{places["electronics_store1"]}}</a>
+											<a href="#">{{places["electronics_store2"]}}</a>>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/religious.png')}}" alt="Religious" width="100" height="80">
 										<div class="dropdown-content">
-											<a href="#">{{proximity[11][0][0]}} {{distances[11][0][0]}}</a>
-											<a href="#">{{proximity[11][1][0]}} {{distances[11][1][0]}}</a>
+											<a href="#">{{places["pharmacy1"]}}</a>
+											<a href="#">{{places["pharmacy2"]}}</a>
 										</div>
                 </div>
             </li>
-            <li class="additional_detail"><span>traffic:</span> 23min average time </li>
+            <li class="additional_detail">
+                <span>traffic:</span> <br/>
+                <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
+                <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
+                <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
+                <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
+                23min average time 
+            </li>
             <li class="additional_detail">
                 <span>general complaints: (Scraped from BBMP Website) </span> <br/>
                 {% for complaint in complaints %}
@@ -416,11 +406,11 @@
                 {% endfor %}
             </li>
             <li class="additional_detail">
-                <span>green cover:</span> {{green}}% <br/>
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/input.png')}}"/>
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/hsv.png')}}"/> <br/>
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/threshold.png')}}"/> 
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/green.png')}}"/> <br/>
+                <span>green cover:</span> {{places["green_cover"]}} % <br/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/input.png')}}"/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/hsv.png')}}"/> <br/>
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/mask.png')}}"/> 
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/green.png')}}"/> <br/>
             </li>
         </ul>
     </div>

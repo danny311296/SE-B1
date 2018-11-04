@@ -1,30 +1,35 @@
 import googlemaps
 
-gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
-place_types =  ['hospital','bank','book_store','bus_station','school','train_station','restaurant','gym','gas_station','doctor','electronics_store','pharmacy',]#'beauty_salon','cafe','car_repair','church','clothing_store','dentist','hindu_temple','mosque','movie_theater','subway_station','supermarket','atm','bakery']
-
-def get_latitude_and_longitude(address):
-	geocode_result = gmaps.geocode(address)
-	location = geocode_result[0]['geometry']['location']
-	print(location)
-	return location
-
-def get_closest_places(location,place_type,num=2,radius=600):
-	l = []
-	places_result=gmaps.places_nearby(location=(location['lat'], location['lng']),type=place_type,radius=radius)['results']
-	for i in range(min(num,len(places_result))):
-		l.append((places_result[i]['name'], places_result[i]['geometry']['location']))
-	return l
-
-def get_distance_and_time(origin,destination):
-	t = gmaps.distance_matrix([origin],[destination],mode='driving')['rows'][0]['elements'][0]
-	return t['distance']['text'], t['duration']['text']
-
-#for testing
-if __name__ == '__main__':
-	a = get_latitude_and_longitude('Wind Tunnel Road, Bangalore 560017')
-	b = get_closest_places(a,'atm',radius=1000)
-	c = get_distance_and_time(b[0][1],b[1][1])
-	print(a)
-	print(b)
-	print(c)
+class MapServices:
+    def __init__(self):
+        self.gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
+        self.place_types = ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','doctor','electronics_store','pharmacy']#'beauty_salon','cafe','car_repair','church','train_station','dentist','hindu_temple','mosque','movie_theater','subway_station','supermarket','atm','bakery']
+    
+    def geocode_address(self,address):
+        geocoding = self.gmaps.geocode(address)
+        location = geocoding[0]['geometry']['location']
+        self.lat = location['lat']
+        self.long = location['lng']
+        
+    def set_coordinates(self,lat,long):
+        self.lat = lat
+        self.long = long
+        
+    def get_distance_metrics(self,origin,destination):
+        distance_metrics = self.gmaps.distance_matrix([origin],[destination],mode='driving')['rows'][0]['elements'][0]
+        return distance_metrics['distance']['text'], distance_metrics['duration']['text']
+    
+    def generate_top_two_closest_places(self):
+        self.places = {}
+        for place in self.place_types:
+            places_result = self.gmaps.places_nearby(location=(self.lat,self.long),type=place,rank_by='distance')['results']
+            self.places[place] = { place+'1': {'name':places_result[0]['name'], 'location': places_result[0]['geometry']['location'] } , place+'2': {'name':places_result[1]['name'], 'location': places_result[1]['geometry']['location'] } }
+            
+    def generate_distances(self):
+        self.distances = {}
+        for place in self.places:
+            print(self.places[place][place+'1']['location'])
+            d1 = self.get_distance_metrics(self.places[place][place+'1']['location'],{'lat':self.lat,'lng':self.long})
+            d2 = self.get_distance_metrics(self.places[place][place+'2']['location'],{'lat':self.lat,'lng':self.long})
+            self.distances[place] = { place+'1': {'name':self.places[place][place+'1']['name'], 'distance': d1[0], 'time': d1[1] } , place+'2': {'name':self.places[place][place+'2']['name'], 'distance': d2[0], 'time': d2[1] } }
+            
