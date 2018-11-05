@@ -63,23 +63,27 @@ def listings_single():
     #print(complaints)
     return render_template('listings_single.html', images = images, data = data, tags = tags, places = places,prop_id=pid, complaints= complaints)
 
-@app.route('/listings.html', methods=['GET','POST'])
-def listings():
+@app.route('/process_login',methods=['POST'])
+def process_login():
     if request.method == 'POST':
         data = request.form
-        db.execute("select * from users where username = '" + data['username'] + "';")
-        if(db.rowcount == 1):
+        user = db.query('users',username=data['username'])
+        if(len(user) == 1):
             print('Success: valid username')
-            db.execute("select passwd from users where username = '" + data['username'] + "';")
-            passwordHash = db.fetchall()[0][0]
+            password = user[0]['passwd']
             try:
-                if(ph.verify(passwordHash,data['password'])):
+                if(ph.verify(password,data['password'])):
                     print('Success: valid password')
+                    return redirect(url_for('listings'))
             except:
                 print('Failure: invalid password')
                 return redirect(url_for('login'))
         else:
             print('Failure: invalid username')
+            return redirect(url_for('login'))
+            
+@app.route('/listings.html', methods=['GET','POST'])
+def listings():
     data = db.query('properties')
     #print(data)
     tags = db.query('tags')
@@ -134,14 +138,14 @@ def news():
 
 @app.route('/ques_ans.html')
 def ques_ans():
-    data = conn.query('question')
+    data = db.query('question')
     #print(data)
     return render_template('ques_ans.html', data = data)
 
 @app.route('/process_ques', methods=['POST'])
 def process_ques():
     data = request.form
-    conn.insert('posts',body=data['question_text'])
+    db.insert('posts',body=data['question_text'])
     return render_template('ques_ans.html')
 
 
@@ -169,6 +173,9 @@ def process_post_ad():
     map_services.generate_distances()
     img_processor = greencover.Image_Processor(map_services.lat,map_services.long)
     img_processor.store_images_for_pid(pid)
+    tags = data['tags'].split(',')
+    for tag in tags:
+        db.insert('tags',pid=pid,tag=tag)
     db.insert_from_dict_and_kw('property_analytics',generate_property_analytics_dict(map_services.places,map_services.distances),pid=pid,green_cover=img_processor.green_percent)
     return redirect(url_for('listings'))
 

@@ -41,4 +41,3 @@ class db:
         print(query)
         self.cursor.execute(query)
         self.connection.commit()
-        
