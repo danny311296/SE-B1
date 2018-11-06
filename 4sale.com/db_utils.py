@@ -8,7 +8,7 @@ class db:
         self.user = user
         self.password = password
         self.connection = psycopg2.connect(database=database, user=user, password=password, host=host)
-        self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         
     def get_connection(self):
         return self.connection

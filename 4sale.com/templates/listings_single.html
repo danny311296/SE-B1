@@ -178,8 +178,8 @@
 					
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title">{{data[0]["title"]}}</div>
-						<p class="listing_text">{{data[0]["short_description"]}}</p>
+						<div class="listing_title">{{data["title"]}}</div>
+						<p class="listing_text">{{data["short_description"]}}</p>
 						<div class="room_tags">
                             {% for tag in tags %}
 							<span class="room_tag"><a href="#">{{tag['tag']}}</a></span>
@@ -193,8 +193,8 @@
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
 						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300">{{data[0]["type"]}}</div>
-							<div class="featured_card_price trans_300">₹ {{data[0]["cost"]}}</div>
+							<div class="featured_card_price_title trans_300">{{data["type"]}}</div>
+							<div class="featured_card_price trans_300">₹ {{data["cost"]}}</div>
 						</div>
 					</div>
 				</div>
@@ -209,7 +209,7 @@
 						<div class="owl-carousel owl-theme listing_slider">
                             {% for image in images %}
 							<!-- Listing Slider Item -->
-                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image[0] %}
+                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image['image'] %}
                               {% set url = url_for('static',filename=filename) %}
 							  <div class="owl-item listing_slider_item">
 								<img  style="width: 100%; height: 100%; object-fit: contain;" src="{{url}}" alt="image">
@@ -240,7 +240,7 @@
 
 					<div class="listing_details">
                         <div class="listing_subtitle">Address</div>
-						<p class="listing_details_text">{{data[0]["address"]}} {{data[0]["city"]}} - {{data[0]["pincode"]}}</p>
+						<p class="listing_details_text">{{data["address"]}} {{data["city"]}} - {{data["pincode"]}}</p>
 						<div class="listing_subtitle" style="margin-top:20px;">Parameters</div>
                         <div class="rooms">
 
@@ -248,7 +248,7 @@
 								<span class="room_title">Bedrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["bedrooms"]}}</span>
+									<span class="room_number">{{data["bedrooms"]}}</span>
 								</div>
 							</div>
 
@@ -256,7 +256,7 @@
 								<span class="room_title">Bathrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["bathrooms"]}}</span>
+									<span class="room_number">{{data["bathrooms"]}}</span>
 								</div>
 							</div>
 
@@ -264,7 +264,7 @@
 								<span class="room_title">Area</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["area"]}} Sq Ft</span>
+									<span class="room_number">{{data["area"]}} Sq Ft</span>
 								</div>
 							</div>
 
@@ -272,7 +272,7 @@
 								<span class="room_title">Patio</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["patio"]}}</span>
+									<span class="room_number">{{data["patio"]}}</span>
 								</div>
 							</div>
 						</div>
@@ -281,7 +281,7 @@
 					<!-- Listing Description -->
 					<div class="listing_description">
 						<div class="listing_subtitle">Description</div>
-						<p class="listing_description_text">{{data[0]["description"]}} </p>
+						<p class="listing_description_text">{{data["description"]}} </p>
 					</div>
 					
 
@@ -404,7 +404,7 @@
             <li class="additional_detail">
                 <span>general complaints: (Scraped from BBMP Website) </span> <br/>
                 {% for complaint in complaints %}
-                     <span class="additional_detail" style="font-weight:normal;">{{complaint}}</span> <br/>
+                     <span class="additional_detail" style="font-weight:normal;">{{complaint['complaint']}}</span> <br/>
                 {% endfor %}
             </li>
             <li class="additional_detail">

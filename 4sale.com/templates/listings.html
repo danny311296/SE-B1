@@ -348,7 +348,7 @@
 						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
 							<div class="listing_image_container">
 								<div class="listing_image">
-                                    {% set pic_name = item[16][0] %}
+                                    {% set pic_name = item['images'][0] %}
                                     {% set pid = item['pid'] %}
                                     {% set filename = 'images/properties/' + pid|string + '/property_pics/' + pic_name %}
                                     {% set url = url_for('static',filename=filename) %}
@@ -402,7 +402,7 @@
 								</div>
 
 								<div class="room_tags">
-                                    {% for tag in item[16] %}
+                                    {% for tag in item['tags'] %}
 									<span class="room_tag"><a href="#">{{tag}}</a></span>
                                     {% endfor %}
 								</div>

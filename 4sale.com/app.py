@@ -47,20 +47,18 @@ def contact_page():
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
-    data = db.query('properties',pid=pid)
+    data = db.query('properties',pid=pid)[0]
     tags = db.query('tags',pid=pid)
     print(data)
     #print(tags)
     images = db.query('property_images',cols=['image'],pid=pid)
-    address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
+    address = " ".join([data["address"],data["city"],str(data["pincode"])])
     places = db.query('property_analytics',pid=pid)[0]
     #print(distances)
-    ward = db.query('ward_mapping',cols=['ward'],locality=data[0]["locality"])[0][0]
-    #print(ward)
+    ward = db.query('ward_mapping',cols=['ward'],locality=data["locality"])[0]['ward']
+    print(ward)
     complaints = db.query('complaints',cols=['complaint'],ward=ward)
-    #print(complaints)
-    complaints = [y for x in complaints for y in x]
-    #print(complaints)
+    print(complaints)
     return render_template('listings_single.html', images = images, data = data, tags = tags, places = places,prop_id=pid, complaints= complaints)
 
 @app.route('/process_login',methods=['POST'])
@@ -89,19 +87,18 @@ def listings():
     tags = db.query('tags')
     #print(tags)
     images = db.query('property_images')
-    d = defaultdict(list)
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
     for tag in tags:
-        d[tag["pid"]].append(tag["tag"])
+        d1[tag["pid"]].append(tag["tag"])
     for image in images:
-        d[image["pid"]].append(image["image"])
-    print(images)
-    print(d)
-    #print(d)
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
     for elem in data:
-        #print(elem,' ',type(elem))
-        elem.append(d[elem[0]])
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
     print(data)
-    
     return render_template('listings.html', data = data[::-1])
 
 @app.route('/login.html')
@@ -116,7 +113,7 @@ def post_ad_page():
 def handle_upload():
     pid = db.query('properties',cols=['max(pid)'])
     print(pid)
-    pid = 0 if pid[0][0]==None else pid[0][0]
+    pid = 0 if pid[0]['max']==None else pid[0]['max']
     if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1))))):
         os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1)))
     if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1),'property_pics')))):
@@ -168,7 +165,8 @@ def process_post_ad():
     map_services = map.MapServices()
     map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
     db.insert_from_dict('properties',generate_property_dict(data,map_services.lat,map_services.long))
-    pid = db.query('properties',cols=['max(pid)'])[0][0]
+    pid = db.query('properties',cols=['max(pid)'])[0]['max']
+    print(pid)
     map_services.generate_top_two_closest_places()
     map_services.generate_distances()
     img_processor = greencover.Image_Processor(map_services.lat,map_services.long)
