@@ -20,7 +20,7 @@ class db:
         query = "select " + ",".join(cols) + " from " + table 
         if(len(kwargs)>0):
             query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in kwargs.items() ])
-        #print(query)
+        print(query)
         self.cursor.execute(query)
         return self.cursor.fetchall()
     

@@ -80,7 +80,7 @@ def process_login():
             print('Failure: invalid username')
             return redirect(url_for('login'))
             
-@app.route('/listings.html', methods=['GET','POST'])
+@app.route('/listings.html')
 def listings():
     data = db.query('properties')
     #print(data)
@@ -176,6 +176,30 @@ def process_post_ad():
         db.insert('tags',pid=pid,tag=tag)
     db.insert_from_dict_and_kw('property_analytics',generate_property_analytics_dict(map_services.places,map_services.distances),pid=pid,green_cover=img_processor.green_percent)
     return redirect(url_for('listings'))
+
+@app.route('/filtering_properties',methods=['POST'])
+def filtering_properties():
+    data = request.form
+    print(data)
+    properties = db.query('properties',locality=data['locality'],area=float(data['area']),bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']))
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    for elem in properties:
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    
+    return render_template('listings.html', data = properties[::-1])
+
 
 if __name__ == '__main__':
     db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
