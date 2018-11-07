@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, g
 import db_utils
 from argon2 import PasswordHasher
 from collections import defaultdict
@@ -7,9 +7,9 @@ import greencover
 import os
 from flask_dropzone import Dropzone
 from utils import *
+import flask_sijax
 
 #basedir = os.path.abspath(os.path.dirname(__file__))
-
 app = Flask(__name__)
 
 app.config.update(
@@ -23,6 +23,8 @@ app.config.update(
     DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
+
+app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 dropzone = Dropzone(app)
 
@@ -44,7 +46,7 @@ def about_page():
 def contact_page():
     return render_template('contact.html')
 
-@app.route('/listings_single.html')
+@flask_sijax.route(app,'/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
     data = db.query('properties',pid=pid)[0]
@@ -69,13 +71,16 @@ def process_login():
         if(len(user) == 1):
             print('Success: valid username')
             password = user[0]['passwd']
-            try:
-                if(ph.verify(password,data['password'])):
-                    print('Success: valid password')
-                    return redirect(url_for('listings'))
-            except:
-                print('Failure: invalid password')
-                return redirect(url_for('login'))
+            #try:
+            if(ph.verify(password,data['password'])):
+                print('Success: valid password')
+                print(user[0]['username'])
+                session['username'] = user[0]['username']
+                print(session['username'])
+                return redirect(url_for('listings'))
+            #except:
+             #   print('Failure: invalid password')
+              #  return redirect(url_for('login'))
         else:
             print('Failure: invalid username')
             return redirect(url_for('login'))
@@ -200,6 +205,12 @@ def filtering_properties():
     
     return render_template('listings.html', data = properties[::-1])
 
+@app.route('/traffic',methods=['POST'])
+def get_traffic_details():
+    data = request.form
+    m = map.MapServices()
+    traffic_details = m.get_distance_metrics(data['origin'],data['destination'])
+    return ' '.join(traffic_details)
 
 if __name__ == '__main__':
     db = db_utils.db(database="forsale", user="root", password="root", host="localhost")

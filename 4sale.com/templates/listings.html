@@ -143,7 +143,11 @@
 		</div>
 
 	</header>
-
+    {% if session['username'] %}
+    <div>
+        Welcome {{session['username']}}
+    </div>
+    {% endif %}
 	<!-- Listings -->
 
 	<div class="listings">
@@ -337,7 +341,6 @@
 						</div>	
 					</div>
 				</div>
-
 				<!-- Listings -->
 
 				<div class="col-lg-8 listings_col">

@@ -38,6 +38,7 @@
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 </style>
+<script type="text/javascript" src="/static/js/sijax.js"></script>
 </head>
 
 <body>
@@ -399,7 +400,8 @@
                 <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
                 <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
                 <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
-                23min average time 
+                <div id="result"></div>
+                <button id="traffic"> Compute Time </button>
             </li>
             <li class="additional_detail">
                 <span>general complaints: (Scraped from BBMP Website) </span> <br/>
@@ -418,7 +420,23 @@
     </div>
 
 </div>
-
+<script>
+function runPyScript(origin,destination){
+    var jqXHR = $.ajax({
+        type: "POST",
+        url: "/traffic",
+        async: false,
+        data: { origin: origin , destination: destination }
+    });
+    return jqXHR.responseText;
+}
+document.getElementById('traffic').onclick = function() {
+    var destination = document.getElementById('address').value + " " + document.getElementById("locality").value + " " + document.getElementById("city").value + " " + document.getElementById("pincode").value;
+    console.log(destination)
+    result = runPyScript(document.getElementsByClassName('listing_details_text')[0].innerHTML,destination);
+    document.getElementById('result').innerHTML = result;
+}    
+</script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
