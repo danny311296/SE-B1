@@ -175,14 +175,14 @@
 </div>	
 <script>
 var check = function() {
-  if (document.getElementById('password').value == document.getElementById('password2').value) {
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'Passwords match!';
-  } else {
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'Passwords do not matching';
-  }
-}    
+        if (document.getElementById('password').value == document.getElementById('password2').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Passwords match!';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords do not matching';
+        }     
+    }
 </script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>

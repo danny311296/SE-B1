@@ -102,18 +102,24 @@
 						</nav>
 						
 						<!-- Log in/Register -->
-
-						<a style="margin-right:10px;" href="login.html">
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
                             <div class="phone_home text-center">
 							     <span>SIGN IN</span>
 						    </div>
                         </a>
-                        
                         <a href="register.html">
                             <div class="phone_home text-center">
 							     <span>REGISTER</span>
 						    </div>
                         </a>
+                        {% endif %}
 						
 						<!-- Hamburger -->
 
