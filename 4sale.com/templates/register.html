@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
 </head>
 
-<body>
+<body onload="myFunction()">
 
 <div class="super_container">
 	
@@ -159,8 +159,8 @@
                                 <input id="firstname" name="firstname" class="estate_input_field estate_contact_form_name" type="text" placeholder="First Name" required="required" data-error="First Name is required.">
                                 <input id="lastname" name="lastname" class="estate_input_field estate_contact_form_name" type="text" placeholder="Last Name" required="required" data-error="Last Name is required.">
                                 <input id="emailid" name="emailid" class="estate_input_field estate_contact_form_name" type="email" placeholder="Email ID" required="required" data-error="email id is required.">
-                                <input id="phone" name="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Phone number" required="required" data-error="phone number is required.">
-                                <input id="username" name="username" class="estate_input_field estate_contact_form_name" type="text" placeholder="Username" required="required" data-error="username is required." >
+                                <input id="phone" name="phone" class="estate_input_field estate_contact_form_name" type="text" placeholder="Phone number" required="required" data-error="phone number is required." >
+                                <input id="username" name="username" class="estate_input_field estate_contact_form_name" type="text" placeholder="Username" required="required" data-error="username is required.">
 								<input id="password" name="password" class="estate_input_field estate_contact_form_name" type="password" placeholder="Password" required="required" data-error="password is required." onkeyup="check()">
 								<input id="password2" name="password2" class="estate_input_field estate_contact_form_email" type="password" placeholder="Re enter Password" required="required" data-error="password is required." onkeyup="check()">
                                 <div id = "message"></div> 
@@ -175,14 +175,22 @@
 </div>	
 <script>
 var check = function() {
+
         if (document.getElementById('password').value == document.getElementById('password2').value) {
             document.getElementById('message').style.color = 'green';
             document.getElementById('message').innerHTML = 'Passwords match!';
+            if(document.getElementById('firstname').length >1 && document.getElementById('lastname').length >1 && document.getElementById('phone').length>1 && document.getElementById('emailid').length >1 && document.getElementById('username')>1)
+ 			{document.getElementById("estate_contact_send_btn").disabled = false;}
         } else {
             document.getElementById('message').style.color = 'red';
             document.getElementById('message').innerHTML = 'Passwords do not matching';
-        }     
+        }    
+        
     }
+
+function myFunction() {
+    document.getElementById("estate_contact_send_btn").disabled = true;
+}
 </script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
