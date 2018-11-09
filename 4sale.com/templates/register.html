@@ -179,8 +179,7 @@ var check = function() {
         if (document.getElementById('password').value == document.getElementById('password2').value) {
             document.getElementById('message').style.color = 'green';
             document.getElementById('message').innerHTML = 'Passwords match!';
-            if(document.getElementById('firstname').length >1 && document.getElementById('lastname').length >1 && document.getElementById('phone').length>1 && document.getElementById('emailid').length >1 && document.getElementById('username')>1)
- 			{document.getElementById("estate_contact_send_btn").disabled = false;}
+ 			document.getElementById("estate_contact_send_btn").disabled = false;
         } else {
             document.getElementById('message').style.color = 'red';
             document.getElementById('message').innerHTML = 'Passwords do not matching';
