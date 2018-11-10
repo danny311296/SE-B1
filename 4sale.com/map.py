@@ -3,7 +3,7 @@ import googlemaps
 class MapServices:
     def __init__(self):
         self.gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
-        self.place_types = ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','doctor','electronics_store','pharmacy']#'beauty_salon','cafe','car_repair','church','train_station','dentist','hindu_temple','mosque','movie_theater','subway_station','supermarket','atm','bakery']
+        self.place_types = ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','electronics_store','supermarket','beauty_salon','car_repair','cafe','bakery','dentist','hindu_temple','atm']
     
     def geocode_address(self,address):
         geocoding = self.gmaps.geocode(address)
@@ -17,7 +17,7 @@ class MapServices:
         
     def get_distance_metrics(self,origin,destination):
         distance_metrics = self.gmaps.distance_matrix([origin],[destination],mode='driving')['rows'][0]['elements'][0]
-        return distance_metrics['distance']['text'], distance_metrics['duration']['text']
+        return distance_metrics['distance']['text'], distance_metrics['duration']['text'], distance_metrics['distance']['value'], distance_metrics['duration']['value']
     
     def generate_top_two_closest_places(self):
         self.places = {}
@@ -28,8 +28,7 @@ class MapServices:
     def generate_distances(self):
         self.distances = {}
         for place in self.places:
-            print(self.places[place][place+'1']['location'])
             d1 = self.get_distance_metrics(self.places[place][place+'1']['location'],{'lat':self.lat,'lng':self.long})
             d2 = self.get_distance_metrics(self.places[place][place+'2']['location'],{'lat':self.lat,'lng':self.long})
-            self.distances[place] = { place+'1': {'name':self.places[place][place+'1']['name'], 'distance': d1[0], 'time': d1[1] } , place+'2': {'name':self.places[place][place+'2']['name'], 'distance': d2[0], 'time': d2[1] } }
+            self.distances[place] = { place+'1': {'name':self.places[place][place+'1']['name'], 'distance': d1[2], 'time': d1[3], 'message': ' '.join([d1[0],d1[1]]) } , place+'2': {'name':self.places[place][place+'2']['name'], 'distance': d2[2], 'time': d2[3], 'message': ' '.join([d2[0],d2[1]]) } }
             
