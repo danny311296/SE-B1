@@ -21,8 +21,10 @@ def generate_property_analytics_dict(dict1,dict2):
         d[place+'1'] = dict1[place][place+'1']['name']
         d[place+'2'] = dict1[place][place+'2']['name']
     for place in dict2:
-        d['distance_'+place+'1'] = float(dict2[place][place+'1']['distance'].split()[0])
-        d['distance_'+place+'2'] = float(dict2[place][place+'2']['distance'].split()[0])
-        d['time_'+place+'1'] = dict2[place][place+'1']['time'].split()[0]
-        d['time_'+place+'1'] = dict2[place][place+'2']['time'].split()[0]
+        d['distance_'+place+'1'] = dict2[place][place+'1']['distance']
+        d['distance_'+place+'2'] = dict2[place][place+'2']['distance']
+        d['time_'+place+'1'] = dict2[place][place+'1']['time']
+        d['time_'+place+'1'] = dict2[place][place+'2']['time']
+        d['message_'+place+'1'] = dict2[place][place+'1']['message']
+        d['message_'+place+'2'] = dict2[place][place+'2']['message']
     return d
