@@ -11,17 +11,18 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_responsive.css')}}">
 
+
 </head>
 
-<body>
+<body >
 
 <div class="super_container">
-	
+
 	<!-- Home -->
 	<div class="home">
 		<!-- Image by: https://unsplash.com/@jbriscoe -->
 		<div class="home_background" style="background-image:url({{url_for('static', filename='images/listings.jpg')}})"></div>
-		
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -58,25 +59,39 @@
 								</div>
 							</a>
 						</div>
-						
+
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="index.html">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
-								<li class="main_nav_item"><a href="#">listings</a></li>
-								<li class="main_nav_item"><a href="news.html">news</a></li>
-								<li class="main_nav_item"><a href="contact.html">contact</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
+								<li class="main_nav_item"><a href="news.html">Forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
-						
-						<!-- Phone Home -->
 
-						<div class="phone_home text-center">
-							<span>+0080 234 567 84441</span>
-						</div>
-						
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
+                            <div class="phone_home text-center">
+							     <span>SIGN IN</span>
+						    </div>
+                        </a>
+                        <a href="register.html">
+                            <div class="phone_home text-center">
+							     <span>REGISTER</span>
+						    </div>
+                        </a>
+                        {% endif %}
+
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -89,7 +104,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Menu -->
 
 		<div class="menu menu_mm">
@@ -143,13 +157,17 @@
 		</div>
 
 	</header>
-
+    {% if session['username'] %}
+    <div>
+        Welcome {{session['username']}}
+    </div>
+    {% endif %}
 	<!-- Listings -->
 
 	<div class="listings">
 		<div class="container">
 			<div class="row">
-				
+
 				<!-- Search Sidebar -->
 
 				<div class="col-lg-4 sidebar_col">
@@ -168,96 +186,58 @@
 							</div>
 
 							<!-- Search Form -->
-							<form class="search_form" action="#">
+							<form class="search_form" action="filtering_properties" method="POST">
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
-										<li class="dropdown_item">
-											<div class="dropdown_item_title">Keywords</div>
-											<select name="keywords" id="keywords" class="dropdown_item_select">
-												<option>Any</option>
-												<option>Keyword 1</option>
-												<option>Keyword 2</option>
-											</select>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Locality</div>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
 										</li>
-										<li class="dropdown_item">
-											<div class="dropdown_item_title">Property ID</div>
-											<select name="property_ID" id="property_ID" class="dropdown_item_select">
-												<option>Any</option>
-												<option>ID 1</option>
-												<option>ID 2</option>
-											</select>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Area (in sqft)</div>
+                                            <input type="text" id="area" name="area"/>
 										</li>
-										<li class="dropdown_item">
-											<div class="dropdown_item_title">Property Status</div>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
 											<select name="property_status" id="property_status" class="dropdown_item_select">
 												<option>Any</option>
-												<option>Status 1</option>
-												<option>Status 2</option>
+												<option>Buy</option>
+												<option>Rent</option>
 											</select>
 										</li>
-										<li class="dropdown_item">
-											<div class="dropdown_item_title">Location</div>
-											<select name="property_location" id="property_location" class="dropdown_item_select">
-												<option>Any</option>
-												<option>Location 1</option>
-												<option>Location 2</option>
-											</select>
-										</li>
-										<li class="dropdown_item">
-											<div class="dropdown_item_title">Property Type</div>
-											<select name="property_type" id="property_type" class="dropdown_item_select">
-												<option>Any</option>
-												<option>Type 1</option>
-												<option>Type 2</option>
-											</select>
-										</li>
-										<li class="dropdown_item dropdown_item_half">
+                                        <li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bedrooms no</div>
-											<select name="bedrooms_no" id="bedrooms_no" class="dropdown_item_select">
-												<option>Any</option>
-												<option>1</option>
-												<option>2</option>
-											</select>
+                                            <input type="text" name="bedrooms"/>
 										</li>
-										<li class="dropdown_item dropdown_item_half">
+										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bathrooms no</div>
-											<select name="bathrooms_no" id="bathrooms_no" class="dropdown_item_select">
-												<option>Any</option>
-												<option>1</option>
-												<option>2</option>
-											</select>
+                                            <input type="text" name="bathrooms"/>
 										</li>
-										<li class="dropdown_item dropdown_item_half">
+									</ul>
+								</div>
+
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
 											<div class="dropdown_item_title">Min Price</div>
-											<select name="min_price" id="min_price" class="dropdown_item_select">
-												<option>Any</option>
-												<option>$10000</option>
-												<option>$20000</option>
-											</select>
+                                            <input type="text"/>
 										</li>
-										<li class="dropdown_item dropdown_item_half">
+										<li class="dropdown_item dropdown_item_4">
 											<div class="dropdown_item_title">Max Price</div>
-											<select name="max_price" id="max_price" class="dropdown_item_select">
-												<option>Any</option>
-												<option>$1000000</option>
-												<option>$2000000</option>
-											</select>
+                                            <input type="text"/>
 										</li>
-										<li class="dropdown_item dropdown_item_half">
-											<div class="dropdown_item_title">Min Sq Ft</div>
-											<select name="min_sq_ft" id="min_sq_ft" class="dropdown_item_select">
-												<option>Any</option>
-												<option>Any</option>
-												<option>Any</option>
-											</select>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text"/>
 										</li>
-										<li class="dropdown_item dropdown_item_half">
-											<div class="dropdown_item_title">Max Sq Ft</div>
-											<select name="max_sq_ft" id="max_sq_ft" class="dropdown_item_select">
-												<option>Any</option>
-												<option>Any</option>
-												<option>Any</option>
-											</select>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text"/>
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
 										</li>
 									</ul>
 								</div>
@@ -270,74 +250,73 @@
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_1" class="search_features_cb">
-												<label for="search_features_1">Feature 1</label>
-											</div>	
+												<label for="search_features_1">Swimming Pool</label>
+											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_2" class="search_features_cb">
-												<label for="search_features_2">Feature 2</label>
+												<label for="search_features_2">Gym</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_3" class="search_features_cb">
-												<label for="search_features_3">Feature 3</label>
+												<label for="search_features_3">kitchen</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_4" class="search_features_cb">
-												<label for="search_features_4">Feature 4</label>
+												<label for="search_features_4">garden</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_5" class="search_features_cb">
-												<label for="search_features_5">Feature 5</label>
+												<label for="search_features_5">parking</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_6" class="search_features_cb">
-												<label for="search_features_6">Feature 6</label>
+												<label for="search_features_6">balcony</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_7" class="search_features_cb">
-												<label for="search_features_7">Feature 7</label>
+												<label for="search_features_7">terrace</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_8" class="search_features_cb">
-												<label for="search_features_8">Feature 8</label>
+												<label for="search_features_8">home theatre</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_9" class="search_features_cb">
-												<label for="search_features_9">Feature 9</label>
+												<label for="search_features_9">aquarium</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_10" class="search_features_cb">
-												<label for="search_features_10">Feature 10</label>
+												<label for="search_features_10">playground</label>
 											</div>
 										</li>
 									</ul>
-
-									<div class="search_button">
-										<input value="search" type="submit" class="search_submit_button">
-									</div>
 								</div>
 							</form>
-						</div>	
+						</div>
 					</div>
-				</div>
 
+				</div>
+			</div>
+		</div>
+	</div>
 				<!-- Listings -->
 
 				<div class="col-lg-8 listings_col">
@@ -348,7 +327,7 @@
 						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
 							<div class="listing_image_container">
 								<div class="listing_image">
-                                    {% set pic_name = item[16][0] %}
+                                    {% set pic_name = item['images'][0] %}
                                     {% set pid = item['pid'] %}
                                     {% set filename = 'images/properties/' + pid|string + '/property_pics/' + pic_name %}
                                     {% set url = url_for('static',filename=filename) %}
@@ -402,7 +381,7 @@
 								</div>
 
 								<div class="room_tags">
-                                    {% for tag in item[16] %}
+                                    {% for tag in item['tags'] %}
 									<span class="room_tag"><a href="#">{{tag}}</a></span>
                                     {% endfor %}
 								</div>

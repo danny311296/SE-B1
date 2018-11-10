@@ -8,7 +8,7 @@ class db:
         self.user = user
         self.password = password
         self.connection = psycopg2.connect(database=database, user=user, password=password, host=host)
-        self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         
     def get_connection(self):
         return self.connection
@@ -20,7 +20,7 @@ class db:
         query = "select " + ",".join(cols) + " from " + table 
         if(len(kwargs)>0):
             query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in kwargs.items() ])
-        #print(query)
+        print(query)
         self.cursor.execute(query)
         return self.cursor.fetchall()
     
@@ -41,4 +41,3 @@ class db:
         print(query)
         self.cursor.execute(query)
         self.connection.commit()
-        

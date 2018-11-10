@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import db_utils
 from argon2 import PasswordHasher
 from collections import defaultdict
@@ -9,7 +9,6 @@ from flask_dropzone import Dropzone
 from utils import *
 
 #basedir = os.path.abspath(os.path.dirname(__file__))
-
 app = Flask(__name__)
 
 app.config.update(
@@ -23,6 +22,8 @@ app.config.update(
     DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
+
+app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 dropzone = Dropzone(app)
 
@@ -47,57 +48,61 @@ def contact_page():
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
-    data = db.query('properties',pid=pid)
+    data = db.query('properties',pid=pid)[0]
     tags = db.query('tags',pid=pid)
     print(data)
     #print(tags)
     images = db.query('property_images',cols=['image'],pid=pid)
-    address = " ".join([data[0]["address"],data[0]["city"],str(data[0]["pincode"])])
+    address = " ".join([data["address"],data["city"],str(data["pincode"])])
     places = db.query('property_analytics',pid=pid)[0]
     #print(distances)
-    ward = db.query('ward_mapping',cols=['ward'],locality=data[0]["locality"])[0][0]
-    #print(ward)
+    ward = db.query('ward_mapping',cols=['ward'],locality=data["locality"])[0]['ward']
+    print(ward)
     complaints = db.query('complaints',cols=['complaint'],ward=ward)
-    #print(complaints)
-    complaints = [y for x in complaints for y in x]
-    #print(complaints)
+    print(complaints)
     return render_template('listings_single.html', images = images, data = data, tags = tags, places = places,prop_id=pid, complaints= complaints)
 
-@app.route('/listings.html', methods=['GET','POST'])
-def listings():
+@app.route('/process_login',methods=['POST'])
+def process_login():
     if request.method == 'POST':
         data = request.form
-        db.execute("select * from users where username = '" + data['username'] + "';")
-        if(db.rowcount == 1):
+        user = db.query('users',username=data['username'])
+        if(len(user) == 1):
             print('Success: valid username')
-            db.execute("select passwd from users where username = '" + data['username'] + "';")
-            passwordHash = db.fetchall()[0][0]
+            password = user[0]['passwd']
             try:
-                if(ph.verify(passwordHash,data['password'])):
+                if(ph.verify(password,data['password'])):
                     print('Success: valid password')
+                    print(user[0]['username'])
+                    session['username'] = user[0]['username']
+                    print(session['username'])
+                    return redirect(url_for('listings'))
             except:
                 print('Failure: invalid password')
                 return redirect(url_for('login'))
         else:
             print('Failure: invalid username')
+            return redirect(url_for('login'))
+            
+@app.route('/listings.html')
+def listings():
     data = db.query('properties')
     #print(data)
     tags = db.query('tags')
     #print(tags)
     images = db.query('property_images')
-    d = defaultdict(list)
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
     for tag in tags:
-        d[tag["pid"]].append(tag["tag"])
+        d1[tag["pid"]].append(tag["tag"])
     for image in images:
-        d[image["pid"]].append(image["image"])
-    print(images)
-    print(d)
-    #print(d)
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
     for elem in data:
-        #print(elem,' ',type(elem))
-        elem.append(d[elem[0]])
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
     print(data)
-    
     return render_template('listings.html', data = data[::-1])
 
 @app.route('/login.html')
@@ -112,7 +117,7 @@ def post_ad_page():
 def handle_upload():
     pid = db.query('properties',cols=['max(pid)'])
     print(pid)
-    pid = 0 if pid[0][0]==None else pid[0][0]
+    pid = 0 if pid[0]['max']==None else pid[0]['max']
     if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1))))):
         os.mkdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1)))
     if(not(os.path.isdir(os.path.join(app.config['UPLOADED_PATH'],str(pid+1),'property_pics')))):
@@ -134,14 +139,14 @@ def news():
 
 @app.route('/ques_ans.html')
 def ques_ans():
-    data = conn.query('question')
+    data = db.query('question')
     #print(data)
     return render_template('ques_ans.html', data = data)
 
 @app.route('/process_ques', methods=['POST'])
 def process_ques():
     data = request.form
-    conn.insert('posts',body=data['question_text'])
+    db.insert('posts',body=data['question_text'])
     return render_template('ques_ans.html')
 
 
@@ -164,13 +169,52 @@ def process_post_ad():
     map_services = map.MapServices()
     map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
     db.insert_from_dict('properties',generate_property_dict(data,map_services.lat,map_services.long))
-    pid = db.query('properties',cols=['max(pid)'])[0][0]
+    pid = db.query('properties',cols=['max(pid)'])[0]['max']
+    print(pid)
     map_services.generate_top_two_closest_places()
     map_services.generate_distances()
     img_processor = greencover.Image_Processor(map_services.lat,map_services.long)
     img_processor.store_images_for_pid(pid)
+    tags = data['tags'].split(',')
+    for tag in tags:
+        db.insert('tags',pid=pid,tag=tag)
     db.insert_from_dict_and_kw('property_analytics',generate_property_analytics_dict(map_services.places,map_services.distances),pid=pid,green_cover=img_processor.green_percent)
     return redirect(url_for('listings'))
+
+@app.route('/filtering_properties',methods=['POST'])
+def filtering_properties():
+    data = request.form
+    print(data)
+    properties = db.query('properties',locality=data['locality'],area=float(data['area']),bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']))
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    for elem in properties:
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    
+    return render_template('listings.html', data = properties[::-1])
+
+@app.route('/traffic',methods=['POST'])
+def get_traffic_details():
+    data = request.form
+    m = map.MapServices()
+    traffic_details = m.get_distance_metrics(data['origin'],data['destination'])
+    return ' '.join(traffic_details)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('home_page'))
 
 if __name__ == '__main__':
     db = db_utils.db(database="forsale", user="root", password="root", host="localhost")

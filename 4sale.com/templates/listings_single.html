@@ -14,6 +14,9 @@
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+</script>
 <style>
 .dropdown {
     position: relative;
@@ -43,12 +46,12 @@
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Home -->
 	<div class="home">
 		<!-- Image by: https://unsplash.com/@jbriscoe -->
 		<div class="home_background" style="background-image:url({{url_for('static', filename='images/listings_single.jpg')}})"></div>
-		
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -83,7 +86,7 @@
 								</div>
 							</a>
 						</div>
-						
+
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
@@ -95,13 +98,13 @@
 								<li class="main_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
 						</nav>
-						
+
 						<!-- Phone Home -->
 
 						<div class="phone_home text-center">
 							<span>+0080 234 567 84441</span>
 						</div>
-						
+
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -175,11 +178,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					
+
 					<!-- Listing Title -->
 					<div class="listing_title_container">
-						<div class="listing_title">{{data[0]["title"]}}</div>
-						<p class="listing_text">{{data[0]["short_description"]}}</p>
+						<div class="listing_title">{{data["title"]}}</div>
+						<p class="listing_text">{{data["short_description"]}}</p>
 						<div class="room_tags">
                             {% for tag in tags %}
 							<span class="room_tag"><a href="#">{{tag['tag']}}</a></span>
@@ -187,14 +190,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- Listing Price -->
 				<div class="col-lg-4 listing_price_col clearfix">
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
 						<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
 						<div class="featured_card_box_content">
-							<div class="featured_card_price_title trans_300">{{data[0]["type"]}}</div>
-							<div class="featured_card_price trans_300">₹ {{data[0]["cost"]}}</div>
+							<div class="featured_card_price_title trans_300">{{data["type"]}}</div>
+							<div class="featured_card_price trans_300">₹ {{data["cost"]}}</div>
 						</div>
 					</div>
 				</div>
@@ -202,20 +205,20 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					
+
 					<!-- Listing Image Slider -->
 
 					<div class="listing_slider_container">
 						<div class="owl-carousel owl-theme listing_slider">
                             {% for image in images %}
 							<!-- Listing Slider Item -->
-                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image[0] %}
+                              {% set filename = 'images/properties/' + prop_id + '/property_pics/' + image['image'] %}
                               {% set url = url_for('static',filename=filename) %}
 							  <div class="owl-item listing_slider_item">
 								<img  style="width: 100%; height: 100%; object-fit: contain;" src="{{url}}" alt="image">
 							  </div>
                             {% endfor %}
-							
+
 						</div>
 
 						<div class="listing_slider_nav listing_slider_prev d-flex flex-row align-items-center justify-content-center trans_200">
@@ -230,7 +233,7 @@
 
 				</div>
 			</div>
-					
+
 
 			<div class="row listing_content_row">
 
@@ -240,7 +243,7 @@
 
 					<div class="listing_details">
                         <div class="listing_subtitle">Address</div>
-						<p class="listing_details_text">{{data[0]["address"]}} {{data[0]["city"]}} - {{data[0]["pincode"]}}</p>
+						<p class="listing_details_text">{{data["address"]}} {{data["city"]}} - {{data["pincode"]}}</p>
 						<div class="listing_subtitle" style="margin-top:20px;">Parameters</div>
                         <div class="rooms">
 
@@ -248,7 +251,7 @@
 								<span class="room_title">Bedrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["bedrooms"]}}</span>
+									<span class="room_number">{{data["bedrooms"]}}</span>
 								</div>
 							</div>
 
@@ -256,7 +259,7 @@
 								<span class="room_title">Bathrooms</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["bathrooms"]}}</span>
+									<span class="room_number">{{data["bathrooms"]}}</span>
 								</div>
 							</div>
 
@@ -264,7 +267,7 @@
 								<span class="room_title">Area</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["area"]}} Sq Ft</span>
+									<span class="room_number">{{data["area"]}} Sq Ft</span>
 								</div>
 							</div>
 
@@ -272,18 +275,18 @@
 								<span class="room_title">Patio</span>
 								<div class="room_content">
 									<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
-									<span class="room_number">{{data[0]["patio"]}}</span>
+									<span class="room_number">{{data["patio"]}}</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Listing Description -->
 					<div class="listing_description">
 						<div class="listing_subtitle">Description</div>
-						<p class="listing_description_text">{{data[0]["description"]}} </p>
+						<p class="listing_description_text">{{data["description"]}} </p>
 					</div>
-					
+
 
 					<!-- Listing Map -->
 					<div class="listing_map">
@@ -306,117 +309,180 @@
         <ul class="additional_details_list">
             <li class="additional_detail"><span>proximity :</span>
 							<br>
-                <div class="dropdown">
-									<img src="{{url_for('static', filename='images/hospital1.png')}}" alt="hospital" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["hospital1"]}}</a>
-											<a href="#">{{places["hospital2"]}}</a>
-										</div>
-                </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/bank.png')}}" alt="Banks" width="100" height="80">
-										<div class="dropdown-content">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#">{{places["hospital1"]}} {{places["distance_hospital1"]}} km {{places["time_hospital1"]}} min</a>
+											<a href="#">{{places["hospital2"]}} {{places["distance_hospital2"]}} km {{places["time_hospital1"]}} min</a>
+										</div>
+                                </div>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bookstore.jpg')}}" alt="Bookstore" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">{{places["bank1"]}}</a>
 											<a href="#">{{places["bank2"]}}</a>
 										</div>
-                </div>
+                                </div>
 								<div class="dropdown">
-									<img src="{{url_for('static', filename='images/bookstore.jpg')}}" alt="Bookstore" width="100" height="80">
-										<div class="dropdown-content">
+									<img src="{{url_for('static', filename='images/bus station.png')}}" alt="Bus station" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
 											<a href="#">{{places["book_store1"]}}</a>
 											<a href="#">{{places["book_store2"]}}</a>
 										</div>
                 </div>
-								<div class="dropdown">
-									<img src="{{url_for('static', filename='images/bus station.png')}}" alt="Bus station" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["bus_station1"]}}</a>
-											<a href="#">{{places["bus_station2"]}}</a>
-										</div>
+                <div class="dropdown">
+                  <img src="{{url_for('static', filename='images/hospital1.png')}}" alt="hospital" width="100" height="80">
+                    <div class="dropdown-content" style="left:0;">
+                      <a href="#">{{places["bus_station1"]}}</a>
+                      <a href="#">{{places["bus_station1"]}}</a>
+                    </div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/school.png')}}" alt="School" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["school1"]}}</a>
-											<a href="#">{{places["school2"]}}</a>
-										</div>
-                </div>
-								<div class="dropdown">
-									<img src="{{url_for('static', filename='images/train.png')}}" alt="Train Station" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["clothing_store1"]}}</a>
-											<a href="#">{{places["clothing_store2"]}}</a>
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/restaurant.png')}}" alt="Restaurant" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["restaurant1"]}}</a>
-											<a href="#">{{places["restaurant2"]}}</a>
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/gym.png')}}" alt="Gym" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["gym1"]}}</a>
-											<a href="#">{{places["gym2"]}}</a>
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/gas station.png')}}" alt="Gas Station" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["gas_station1"]}}</a>
-											<a href="#">{{places["gas_station2"]}}</a>
-										</div>
-                </div>
-								<div class="dropdown">
-									<img src="{{url_for('static', filename='images/doctor.png')}}" alt="Doctor" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["doctor1"]}}</a>
-											<a href="#">{{places["doctor2"]}}</a>
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/electronics.png')}}" alt="Electronics" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["electronics_store1"]}}</a>
-											<a href="#">{{places["electronics_store2"]}}</a>>
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>>
+										</div>
+                </div>
+                </li>
+                <br>
+                <li class="additional_detail">
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/religious.png')}}" alt="Religious" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+                <div class="dropdown">
+									<img src="{{url_for('static', filename='images/supermarket.jpg')}}" alt="supermarket" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+                <div class="dropdown">
+									<img src="{{url_for('static', filename='images/beauty_salon.jpg')}}" alt="beauty_salon" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+                <div class="dropdown">
+									<img src="{{url_for('static', filename='images/atm.png')}}" alt="atm" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
 								<div class="dropdown">
-									<img src="{{url_for('static', filename='images/religious.png')}}" alt="Religious" width="100" height="80">
-										<div class="dropdown-content">
-											<a href="#">{{places["pharmacy1"]}}</a>
-											<a href="#">{{places["pharmacy2"]}}</a>
+									<img src="{{url_for('static', filename='images/clothing_store.jpg')}}" alt="clothing_store" width="100" height="80">
+										<div class="dropdown-content" style="left:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/car_rapair.png')}}" alt="car_rapair" width="100" height="80">
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/cafe.jpg')}}" alt="cafe" width="100" height="80">
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/bakery.jpg')}}" alt="bakery" width="100" height="80">
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
+										</div>
+                </div>
+								<div class="dropdown">
+									<img src="{{url_for('static', filename='images/dentist.png')}}" alt="dentist" width="100" height="80">
+										<div class="dropdown-content" style="right:0;">
+											<a href="#"></a>
+											<a href="#"></a>
 										</div>
                 </div>
             </li>
+            <br>
             <li class="additional_detail">
                 <span>traffic:</span> <br/>
                 <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
                 <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
                 <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
                 <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
-                23min average time 
+                <div id="result"></div>
+                <button id="traffic"> Compute Time </button>
             </li>
             <li class="additional_detail">
                 <span>general complaints: (Scraped from BBMP Website) </span> <br/>
                 {% for complaint in complaints %}
-                     <span class="additional_detail" style="font-weight:normal;">{{complaint}}</span> <br/>
+                     <span class="additional_detail" style="font-weight:normal;">{{complaint['complaint']}}</span> <br/>
                 {% endfor %}
             </li>
             <li class="additional_detail">
                 <span>green cover:</span> {{places["green_cover"]}} % <br/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/input.png')}}"/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/hsv.png')}}"/> <br/>
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/mask.png')}}"/> 
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/mask.png')}}"/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/green.png')}}"/> <br/>
             </li>
         </ul>
     </div>
 
 </div>
-
+<script>
+function runPyScript(origin,destination){
+    var jqXHR = $.ajax({
+        type: "POST",
+        url: "/traffic",
+        async: false,
+        data: { origin: origin , destination: destination }
+    });
+    return jqXHR.responseText;
+}
+document.getElementById('traffic').onclick = function() {
+    var destination = document.getElementById('address').value + " " + document.getElementById("locality").value + " " + document.getElementById("city").value + " " + document.getElementById("pincode").value;
+    console.log(destination)
+    result = runPyScript(document.getElementsByClassName('listing_details_text')[0].innerHTML,destination);
+    document.getElementById('result').innerHTML = result;
+}
+</script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
@@ -426,4 +492,4 @@
 <script src="{{url_for('static', filename='js/listings_single_custom.js')}}"></script>
 </body>
 
-</html>
+</html
