@@ -14,6 +14,9 @@
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
+</script>
 <style>
 .dropdown {
     position: relative;
@@ -44,12 +47,12 @@
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Home -->
 	<div class="home">
 		<!-- Image by: https://unsplash.com/@jbriscoe -->
 		<div class="home_background" style="background-image:url({{url_for('static', filename='images/listings_single.jpg')}})"></div>
-		
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -84,7 +87,7 @@
 								</div>
 							</a>
 						</div>
-						
+
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
@@ -96,13 +99,13 @@
 								<li class="main_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
 						</nav>
-						
+
 						<!-- Phone Home -->
 
 						<div class="phone_home text-center">
 							<span>+0080 234 567 84441</span>
 						</div>
-						
+
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -176,7 +179,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					
+
 					<!-- Listing Title -->
 					<div class="listing_title_container">
 						<div class="listing_title">{{data["title"]}}</div>
@@ -188,7 +191,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<!-- Listing Price -->
 				<div class="col-lg-4 listing_price_col clearfix">
 					<div class="featured_card_box d-flex flex-row align-items-center trans_300 float-lg-right">
@@ -203,7 +206,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					
+
 					<!-- Listing Image Slider -->
 
 					<div class="listing_slider_container">
@@ -216,7 +219,7 @@
 								<img  style="width: 100%; height: 100%; object-fit: contain;" src="{{url}}" alt="image">
 							  </div>
                             {% endfor %}
-							
+
 						</div>
 
 						<div class="listing_slider_nav listing_slider_prev d-flex flex-row align-items-center justify-content-center trans_200">
@@ -231,7 +234,7 @@
 
 				</div>
 			</div>
-					
+
 
 			<div class="row listing_content_row">
 
@@ -278,13 +281,13 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Listing Description -->
 					<div class="listing_description">
 						<div class="listing_subtitle">Description</div>
 						<p class="listing_description_text">{{data["description"]}} </p>
 					</div>
-					
+
 
 					<!-- Listing Map -->
 					<div class="listing_map">
@@ -379,6 +382,9 @@
 											<a href="#">{{places["doctor2"]}}</a>
 										</div>
                 </div>
+                </li>
+                <br>
+                <li class="additional_detail">
 								<div class="dropdown">
 									<img src="{{url_for('static', filename='images/electronics.png')}}" alt="Electronics" width="100" height="80">
 										<div class="dropdown-content">
@@ -394,6 +400,7 @@
 										</div>
                 </div>
             </li>
+            <br>
             <li class="additional_detail">
                 <span>traffic:</span> <br/>
                 <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
@@ -413,7 +420,7 @@
                 <span>green cover:</span> {{places["green_cover"]}} % <br/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/input.png')}}"/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/hsv.png')}}"/> <br/>
-                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/mask.png')}}"/> 
+                <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/mask.png')}}"/>
                 <img src="{{url_for('static', filename='images/properties/'+prop_id+'/greencover/green.png')}}"/> <br/>
             </li>
         </ul>
@@ -435,7 +442,7 @@ document.getElementById('traffic').onclick = function() {
     console.log(destination)
     result = runPyScript(document.getElementsByClassName('listing_details_text')[0].innerHTML,destination);
     document.getElementById('result').innerHTML = result;
-}    
+}
 </script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
 <link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
@@ -19,10 +19,10 @@
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Home -->
 	<div class="home">
-		
+
 		<!-- Home Slider -->
 		<div class="home_slider_container">
 			<div class="owl-carousel owl-theme home_slider">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Home Slider Nav -->
 			<div class="home_slider_nav_left home_slider_nav d-flex flex-row align-items-center justify-content-end">
 				<img src="{{url_for('static', filename='images/nav_left.png')}}" alt="">
@@ -88,7 +88,7 @@
 								</div>
 							</a>
 						</div>
-						
+
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
@@ -100,7 +100,7 @@
 								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
-						
+
 						<!-- Log in/Register -->
                         {% if session['username'] %}
 						<a style="margin-right:10px;" href="logout">
@@ -120,7 +120,7 @@
 						    </div>
                         </a>
                         {% endif %}
-						
+
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -187,10 +187,10 @@
 		</div>
 
 	</header>
-	
+
 	<!-- Search Box -->
 
-    
+
 	<div class="search_box">
 		<div class="container">
 			<div class="row">
@@ -257,11 +257,11 @@
                                             <input type="text"/>
 										</li>
 										<li class="dropdown_item dropdown_item_4">
-											<div class="dropdown_item_title">Min Sq Ft</div>
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
                                             <input type="text"/>
 										</li>
 										<li class="dropdown_item dropdown_item_4">
-											<div class="dropdown_item_title">Max Sq Ft</div>
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
                                             <input type="text"/>
 										</li>
 										<li class="dropdown_item">
@@ -281,7 +281,7 @@
 											<div>
 												<input type="checkbox" id="search_features_1" class="search_features_cb">
 												<label for="search_features_1">Swimming Pool</label>
-											</div>	
+											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
@@ -292,49 +292,49 @@
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_3" class="search_features_cb">
-												<label for="search_features_3">Feature 3</label>
+												<label for="search_features_3">kitchen</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_4" class="search_features_cb">
-												<label for="search_features_4">Feature 4</label>
+												<label for="search_features_4">garden</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_5" class="search_features_cb">
-												<label for="search_features_5">Feature 5</label>
+												<label for="search_features_5">parking</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_6" class="search_features_cb">
-												<label for="search_features_6">Feature 6</label>
+												<label for="search_features_6">balcony</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_7" class="search_features_cb">
-												<label for="search_features_7">Feature 7</label>
+												<label for="search_features_7">terrace</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_8" class="search_features_cb">
-												<label for="search_features_7">Feature 8</label>
+												<label for="search_features_8">home theatre</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_9" class="search_features_cb">
-												<label for="search_features_7">Feature 9</label>
+												<label for="search_features_9">aquarium</label>
 											</div>
 										</li>
 										<li class="search_features_item">
 											<div>
 												<input type="checkbox" id="search_features_10" class="search_features_cb">
-												<label for="search_features_7">Feature 10</label>
+												<label for="search_features_10">playground</label>
 											</div>
 										</li>
 									</ul>
@@ -345,7 +345,7 @@
 
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<!-- Featured Properties -->
@@ -593,7 +593,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Workflow -->
 
 	<div class="workflow">
@@ -622,11 +622,11 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_1.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Choose a Locality</div>
-							<p class="workflow_text">Choose any locatity in Bangalore. 
+							<p class="workflow_text">Choose any locatity in Bangalore.
                             </p>
 						</div>
 					</div>
@@ -644,7 +644,7 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_2.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Find the Perfect Home</div>
@@ -665,7 +665,7 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_3.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Book Meeting and buy property</div>
@@ -685,26 +685,26 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					
+
 					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
 						<h3 class="cta_1_text text-lg-left text-center">Do you want any <span>real estate advice?</span></h3>
 						<a href="#" class="cta_1_phone">
                             <div> Get Advice!</div>
                         </a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
+
 	<!-- Footer -->
 
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
-				
+
 				<!-- Footer About -->
 
 				<div class="col-lg-3 footer_col">
@@ -731,7 +731,7 @@
 						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
 					</div>
 				</div>
-				
+
 				<!-- Footer Useful Links -->
 
 				<div class="col-lg-3 footer_col">
@@ -790,7 +790,7 @@
 	</footer>
 
 
-</div>   
+</div>
 
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
