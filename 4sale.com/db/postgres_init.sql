@@ -19,11 +19,15 @@ create table property_images(pid int, image varchar(30), primary key(pid,image))
 
 create table tags(pid int, tag varchar(30), primary key(pid,tag), FOREIGN KEY(pid) REFERENCES properties(pid));
 
-create table property_analytics(pid int NOT NULL primary key , hospital1 varchar(100), hospital2 varchar(100), bank1  varchar(100), bank2  varchar(100), book_store1 varchar(100), book_store2  varchar(100), bus_station1 varchar(100), bus_station2 varchar(100), school1 varchar(100), school2 varchar(100), clothing_store1 varchar(100), clothing_store2 varchar(100), restaurant1 varchar(100), restaurant2 varchar(100), gym1 varchar(100), gym2 varchar(100), gas_station1 varchar(100), gas_station2 varchar(100), doctor1 varchar(100), doctor2 varchar(100), electronics_store1 varchar(100), electronics_store2 varchar(100), pharmacy1 varchar(100), pharmacy2 varchar(100), green_cover float);
+create table property_analytics(pid int NOT NULL primary key , hospital1 varchar(100), hospital2 varchar(100), bank1  varchar(100), bank2  varchar(100), book_store1 varchar(100), book_store2  varchar(100), bus_station1 varchar(100), bus_station2 varchar(100), school1 varchar(100), school2 varchar(100), clothing_store1 varchar(100), clothing_store2 varchar(100), restaurant1 varchar(100), restaurant2 varchar(100), gym1 varchar(100), gym2 varchar(100), gas_station1 varchar(100), gas_station2 varchar(100), doctor1 varchar(100), doctor2 varchar(100), electronics_store1 varchar(100), electronics_store2 varchar(100), pharmacy1 varchar(100), pharmacy2 varchar(100),  distance_hospital1 float, distance_hospital2 float, distance_bank1  float, distance_bank2  float, distance_book_store1 float, distance_book_store2  float, distance_bus_station1 float, distance_bus_station2 float, distance_school1 float, distance_school2 float, distance_clothing_store1 float, distance_clothing_store2 float, distance_restaurant1 float, distance_restaurant2 float, distance_gym1 float, distance_gym2 float, distance_gas_station1 float, distance_gas_station2 float, distance_doctor1 float, distance_doctor2 float, distance_electronics_store1 float, distance_electronics_store2 float, distance_pharmacy1 float, distance_pharmacy2 float,time_hospital1 float, time_hospital2 float, time_bank1  float, time_bank2  float, time_book_store1 float, time_book_store2  float, time_bus_station1 float, time_bus_station2 float, time_school1 float, time_school2 float, time_clothing_store1 float, time_clothing_store2 float, time_restaurant1 float, time_restaurant2 float, time_gym1 float, time_gym2 float, time_gas_station1 float, time_gas_station2 float, time_doctor1 float, time_doctor2 float, time_electronics_store1 float, time_electronics_store2 float, time_pharmacy1 float, time_pharmacy2 float, green_cover float);
 
 create table complaints(ward varchar(30),complaint varchar(1000));
 
 create table ward_mapping(locality varchar(60),ward varchar(60));
+
+create table question(qid serial primary key, username varchar(30), body varchar(1000), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username));
+
+create table comments(cid serial primary key, username varchar(30), qid int, body varchar(1000), time timestamp, FOREIGN KEY(username) REFERENCES users(username), FOREIGN KEY(qid) REFERENCES question(qid));
 
 /* Dummy values */
 /*
@@ -33,40 +37,31 @@ insert into properties(title, locality, type, short_description, description, be
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Villa in domlur','Murugeshpalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.95100100,77.6100510);
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Green Villa','Murugeshpalya','Rent','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.95100100,77.6100510);
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Green Bungalow','Murugeshpalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.95100100,77.6100510);
-
 insert into users values('ram_raj','ram_123','ram','raj','ram.raj@gmail.com','9445245856');
 insert into users values('ram_roy','ram_roy','ram','roy','ram.roy@gmail.com','9446585856');
 insert into users values('sadvi_s','ssadvi','sadvi','s','sadvis@gmail.com','9427955856');
 insert into users values('mani_m','mani_123','mani','m','mmani@gmail.com','9408715856');
 insert into users values('rajath','rajath_123','rajath','r','raj.raj@gmail.com','9980155856');
-
-
 insert into posts_ad values('ram_raj',1,'2000-02-01');
 insert into posts_ad values('ram_roy',2,'2001-02-03');
 insert into posts_ad values('rajath',1,'2001-02-03');
 insert into posts_ad values('mani_m',5,'2001-02-03');
 insert into posts_ad values('sadvi_s',3,'2001-02-03');
-
-
 insert into purchase values('ram_raj',1,'2001-02-03');
 insert into purchase values('mani_m',2,'2001-02-03');
 insert into purchase values('sadvi_s',3,'2001-02-03');
 insert into purchase values('ram_raj',4,'2001-02-03');
 insert into purchase values('ram_raj',5,'2001-02-03');
-
-
 insert into request values('mani_m',1,'2001-02-03');
 insert into request values('ram_raj',2,'2001-02-03');
 insert into request values('sadvi_s',3,'2001-02-03');
 insert into request values('rajath',4,'2001-02-03');
 insert into request values('ram_raj',3,'2001-02-03');
-
 insert into property_images values(5,'1.png');
 insert into property_images values(3,'2.png');
 insert into property_images values(2,'3.png');
 insert into property_images values(1,'4.png');
 insert into property_images values(2,'5.png');
-
 insert into tags values(1,'Swimming Pool');
 insert into tags values(1,'Gym');
 insert into tags values(2,'Restaurant');
@@ -76,8 +71,6 @@ insert into tags values(3,'Gym');
 insert into tags values(4,'Lounge');
 insert into tags values(4,'Swimming Pool');
 insert into tags values(5,'Gym');
-
-
 insert into property_analytics values(1,4);
 insert into property_analytics values(2,9);
 insert into property_analytics values(3,7);

@@ -9,6 +9,7 @@
 {{ dropzone.load_css() }}
 {{ dropzone.style('border: 2px dashed #0087F7; margin: 10px 0 10px; min-height: 100px; width: 200px') }}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/tagsinput.css')}}">
 <link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
@@ -18,7 +19,6 @@
 <link rel="stylesheet" href="{{url_for('static', filename='styles/awesomplete.css')}}" />
 <link href="{{url_for('static', filename='styles/styles.imageuploader.css')}}" rel="stylesheet">
 <script src="{{url_for('static', filename='js/awesomplete.js')}}"></script>
-
 </head>
 
 <body>
@@ -74,18 +74,31 @@
 								<li class="main_nav_item"><a href="index.html">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
 								<li class="main_nav_item"><a href="listings.html">listings</a></li>
-								<li class="main_nav_item"><a href="news.html">forums</a></li>
-								<li class="main_nav_item"><a href="#">contact</a></li>
+								<li class="main_nav_item"><a href="news.html">forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
 
-						<!-- Phone Home -->
-                        <a href="login.html">
-						  <div class="phone_home text-center">
-							<span>Log In</span>
-						  </div>
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
                         </a>
-
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
+                            <div class="phone_home text-center">
+							     <span>SIGN IN</span>
+						    </div>
+                        </a>
+                        <a href="register.html">
+                            <div class="phone_home text-center">
+							     <span>REGISTER</span>
+						    </div>
+                        </a>
+                        {% endif %}
+						
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -178,7 +191,7 @@
                                 <input id="patio" name="patio" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of patio" required="required">
                                 <input id="area" name="area" class="estate_input_field estate_contact_form_name" type="text" placeholder="Area (in sqft)" required="required">
                                 <input id="cost" name="cost" class="estate_input_field estate_contact_form_name" type="text" placeholder="Cost (in INR)" required="required">
-								<input id="tags" name="tags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Additional Tags" data-role="tagsinput">
+								<input id="tags" name="tags" class="estate_input_field estate_contact_form_name" type="text" placeholder="Additional Tags" data-role="tagsinput" />
 								{{ dropzone.create() }}
 								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">post ad</button>
 							</form>
@@ -211,6 +224,7 @@ $('.js-uploader__box').uploader(options);
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/tagsinput.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>

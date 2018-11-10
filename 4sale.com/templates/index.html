@@ -93,27 +93,33 @@
 
 						<nav class="main_nav">
 							<ul class="main_nav_list">
-								<li class="main_nav_item"><a href="#">home</a></li>
-								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="about.html">about</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
 								<li class="main_nav_item"><a href="listings.html">listings</a></li>
-								<li class="main_nav_item"><a href="news.html">forums</a></li>
-								<li class="main_nav_item"><a href="contact.html">contact</a></li>
+								<li class="main_nav_item"><a href="news.html">forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
 						
 						<!-- Log in/Register -->
-
-						<a style="margin-right:10px;" href="login.html">
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
                             <div class="phone_home text-center">
 							     <span>SIGN IN</span>
 						    </div>
                         </a>
-                        
                         <a href="register.html">
                             <div class="phone_home text-center">
 							     <span>REGISTER</span>
 						    </div>
                         </a>
+                        {% endif %}
 						
 						<!-- Hamburger -->
 
@@ -210,16 +216,16 @@
 							</div>
 
 							<!-- Search Form -->
-							<form class="search_form" action="#">
+							<form class="search_form" action="filtering_properties" method="POST">
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Locality</div>
-                                            <input type="text" class="row1" id="locality"/>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Area (in sqft)</div>
-                                            <input type="text" id="area"/>
+                                            <input type="text" id="area" name="area"/>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Property Type</div>
@@ -231,11 +237,11 @@
 										</li>
                                         <li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bedrooms no</div>
-                                            <input type="text"/>
+                                            <input type="text" name="bedrooms"/>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bathrooms no</div>
-                                            <input type="text"/>
+                                            <input type="text" name="bathrooms"/>
 										</li>
 									</ul>
 								</div>
@@ -746,7 +752,7 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_col_title">feedback form</div>
 					<div class="footer_contact_form_container">
-						<form id="footer_contact_form" class="footer_contact_form" action="post">
+						<form id="footer_contact_form" class="footer_contact_form" method="post">
 							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
 							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
 							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
