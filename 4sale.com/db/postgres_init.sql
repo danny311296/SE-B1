@@ -99,9 +99,9 @@ create table complaints(ward varchar(30),complaint varchar(1000));
 
 create table ward_mapping(locality varchar(60),ward varchar(60));
 
-create table question(qid serial primary key, username varchar(30), body varchar(1000), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username));
+create table questions(qid serial primary key, username varchar(30), title varchar(100), body varchar(1000), category varchar(30), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username));
 
-create table comments(cid serial primary key, username varchar(30), qid int, body varchar(1000), time timestamp, FOREIGN KEY(username) REFERENCES users(username), FOREIGN KEY(qid) REFERENCES question(qid));
+create table comments(cid serial primary key, username varchar(30), qid int, body varchar(1000), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username), FOREIGN KEY(qid) REFERENCES questions(qid));
 
 /* Dummy values */
 /*
