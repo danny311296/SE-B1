@@ -135,33 +135,19 @@ def register_page():
 
 @app.route('/news.html')
 def news():
-    return render_template('news.html')
+    questions = db.query('questions')
+    return render_template('news.html',questions=questions)
 
-@app.route('/ques_ans.html')
-def ques_ans():
-    data = db.query('question')
-    #print(data)
-    return render_template('ques_ans.html', data = data)
+@app.route('/question.html')
+def question_page():
+    return render_template('question.html')
 
-@app.route('/process_ques', methods=['POST'])
-def process_ques():
+@app.route('/process_question',methods=['POST'])
+def process_question():
     data = request.form
-    db.insert('posts',body=data['question_text'])
-    return render_template('ques_ans.html')
+    db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
+    return redirect(url_for('question_page'))
 
-
-@app.route('/reply.html')
-def reply():
-    quesid = request.args.get('id')
-    data_ques = conn.query('question',qid=quesid)
-    data_reply = conn.query('comments',qid=quesid)
-    data_reply = data_reply[::-1]
-    #print(data_ques)
-    #print(data_reply)
-    data = array()
-    data = data.append(data_ques)
-    data = data.append(data_reply)
-    return render_template('reply.html', data = data)
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
