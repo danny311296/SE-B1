@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The Estate - Contact</title>
+<title>The Estate - News</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{ dropzone.load_css() }}
-{{ dropzone.style('border: 2px dashed #0087F7; margin: 10px 0 10px; min-height: 100px; width: 200px') }}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/tagsinput.css')}}">
-<link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{url_for('static', filename='plugins/colorbox/colorbox.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/news_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/news_responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='styles/awesomplete.css')}}" />
-<link href="{{url_for('static', filename='styles/styles.imageuploader.css')}}" rel="stylesheet">
-<script src="{{url_for('static', filename='js/awesomplete.js')}}"></script>
 </head>
 
 <body>
 
-
-
 <div class="super_container">
-
+	
 	<!-- Home -->
 	<div class="home">
-		<!-- Image by: https://unsplash.com/@breather -->
-		<div class="home_background" style="background-image:url({{url_for('static', filename='images/contact.jpg')}})"></div>
-
+		<!-- Image by: https://unsplash.com/@jbriscoe -->
+		<div class="home_background" style="background-image:url({{url_for('static', filename='images/news.jpg')}})"></div>
+		
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<div class="home_content">
 						<div class="home_title">
-							<h2>Post an Ad</h2>
+							<h2>listings</h2>
 						</div>
 						<div class="breadcrumbs">
-							<span> Post an advertisement of your property and get in contact with buyers today </span>
+							<span><a href="index.html">Home</a></span>
+							<span><a href="#"> News</a></span>
 						</div>
 					</div>
 				</div>
@@ -66,19 +59,19 @@
 								</div>
 							</a>
 						</div>
-
+						
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
 							<ul class="main_nav_list">
 								<li class="main_nav_item"><a href="index.html">home</a></li>
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
 								<li class="main_nav_item"><a href="listings.html">listings</a></li>
-								<li class="main_nav_item"><a href="news.html">forum</a></li>
 								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
-
+						
 						<!-- Log in/Register -->
                         {% if session['username'] %}
 						<a style="margin-right:10px;" href="logout">
@@ -147,7 +140,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="news.html">forums</a>
+								<a href="#">news</a>
 							</div>
 						</div>
 					</div>
@@ -156,7 +149,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col">
-								<a href="#">contact</a>
+								<a href="contact.html">contact</a>
 							</div>
 						</div>
 					</div>
@@ -165,44 +158,79 @@
 		</div>
 
 	</header>
-
-	<!-- Contact -->
-
-	<div class="contact">
+    
+<div class="news">
 		<div class="container">
 			<div class="row">
 
-				<div class="col-lg-6 contact_col" style="margin: auto auto">
-					<div class="estate_contact_form">
-						<div class="contact_title">Enter your Question here</div>
-						<div class="estate_contact_form_container">
-							<form id="estate_contact_form" class="estate_contact_form" method="POST" action="process_question">
-                                <input id="title" name="title" class="estate_input_field estate_contact_form_name" type="text" placeholder="Title of your Question" required="required">
-                                <textarea name="description" name="description" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Description" required></textarea><br/>
-                                <select class="dropdown_item_select" name="category">
-                                    <option> Events  </option>
-                                    <option> Real Estate Tips </option>
-                                    <option> Useful Information </option>
-                                    <option> Support </option>
-                                </select>
-								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">Post Question</button>
-							</form>
+				<div class="col-lg-8 news_content_col">
+
+					<!-- News Post -->
+                    
+					<div class="news_post">
+						<div class="news_post_date">{{question["time"]}}</div>
+						<div class="news_post_title"><a href="discuss.html?qid={question['qid']}}">{{question["title"]}}</a></div>
+						<div class="news_post_meta">
+							<ul>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/profile.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">{{question["username"]}}</a></span>
+								</li>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/favorite.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">{{question["category"]}}</a></span>
+								</li>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/speech-bubble.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">3 Comments</a></span>
+								</li>
+							</ul>
+						</div>
+						<div class="news_post_text">
+							<p> {{question["body"]}} </p>
 						</div>
 					</div>
-				</div>
-            </div>
-        </div>
-    </div>
+                    <div class="news_post_meta_item"><strong>COMMENTS</strong></div>
+                    {% for comment in comments %}
+                    <div class="news_post">
+						  <div class="news_post_meta">
+                             <div class="news_post_text">
+							         <p> {{comment["body"]}} </p>
+						     </div>
+							  <ul>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/profile.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">By {{comment['username']}}</a></span> <br/>
+                                    <span><a href="#">{{comment['time']}}</a></span>
+								</li>
+							 </ul>
+						</div>
+					</div>
+                    {% endfor %}
+				    <form id="estate_contact_form" class="estate_contact_form" method="POST" action="process_comment">
+                            <textarea id="comment" name="comment" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Comment here" required></textarea><br/>
+                            <input type="hidden" id="qid" name="qid" value="{{question['qid']}}">
+				            <button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Post Comment" style="margin-bottom:30px;">Post Comment</button>
+				    </form>
+                </div>
+                </div>
+		</div>
+	</div>
+    
 </div>
-<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/tagsinput.js')}}"></script>
-<script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-<script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="{{url_for('static', filename='js/contact_custom.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/colorbox/jquery.colorbox-min.js')}}"></script>
+<script src="{{url_for('static', filename='js/news_custom.js')}}"></script>
 </body>
 
 </html>
