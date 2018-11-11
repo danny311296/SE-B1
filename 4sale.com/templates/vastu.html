@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Estate - VASTU</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+</head>
+
+<body>
+
+<div class="super_container">
+	
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@breather -->
+		<div class="home_background" style="background-image:url(images/contact.jpg)"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>VASTU FINDER</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="images/logo.png" alt="">
+									<span>4sale.com</span>
+								</div>
+							</a>
+						</div>
+						
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="index.html">home</a></li>
+								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="listings.html">listings</a></li>
+								<li class="main_nav_item"><a href="news.html">forums</a></li>
+								<li class="main_nav_item"><a href="#">contact</a></li>
+							</ul>
+						</nav>
+						
+						<!-- Phone Home -->
+                        <a href="register.html">
+						  <div class="phone_home text-center">
+							<span>Register</span>
+						  </div>
+                        </a>
+						
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="index.html">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="about.html">about us</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="listings.html">listings</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="news.html">forums</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="#">contact</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+
+	<!-- Contact -->
+
+	<div class="contact">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-lg-6 contact_col">
+					<div class="estate_contact_form">
+						<div class="contact_title">Evaluate Your House According to Vastu Shastra</div>
+						<div class="estate_contact_form_container">
+							<p>Location of the Kitchen</p>
+							<select id="select1" onchange="showOptions(this)" required>
+							  <option value="">Select</option>
+							  <option value="8">South-East</option>
+							  <option value="7">North-West</option>
+							  <option value="6">East</option>
+							  <option value="5">West</option>
+							  <option value="4">North</option>
+							  <option value="3">South</option>
+							  <option value="2">South-West</option>
+							  <option value="1">North-East</option>
+							</select>
+							
+							<p>Location of Master Bedroom</p>
+							<select id="select2" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">South-West</option>
+							  <option value="7">South</option>
+							  <option value="6">West</option>
+							  <option value="5">North-West</option>
+							  <option value="4">North</option>
+							  <option value="3">East</option>
+							  <option value="2">South-East</option>
+							  <option value="1">North-East</option>
+							</select>
+							
+							<p>Location of bore well/underground tanks</p>
+							<select id="select3" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">North-East</option>
+							  <option value="7">East</option>
+							  <option value="6">North</option>
+							  <option value="5">North-West</option>
+							  <option value="4">West</option>
+							  <option value="3">South</option>
+							  <option value="2">South-East</option>
+							  <option value="1">South-West/Centre</option>
+							</select>
+
+							<p>Location of Toilet and Bathroom</p>
+							<select id="select4" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">South-East</option>
+							  <option value="7">North-West</option>
+							  <option value="6">South</option>
+							  <option value="5">West</option>
+							  <option value="4">North</option>
+							  <option value="3">East</option>
+							  <option value="2">South-West</option>
+							  <option value="1">North-East</option>
+							</select>
+
+							<p>Flooring level of the house</p>
+							<select id="select5" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">North-east side down   South-west side up	
+</option>
+							  <option value="7">North-east side down   South side up</option>
+							  <option value="6">East side down   West side up</option>
+							  <option value="5">All sides are at same level</option>
+							  <option value="4">South-west side is up and  elevated than all other sides</option>
+							  <option value="3">North-west side is up and   Elevated than all other sides</option>
+							  <option value="2">Depression in the South-west/   South-east</option>
+							  <option value="1">North-east side is up   South-west side is down	
+</option>
+							</select>
+
+							<p>Position of the House with reference to the plot.</p>
+							<select id="select6" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">South-West</option>
+							  <option value="7">South</option>
+							  <option value="6">West</option>
+							  <option value="5">North-West</option>
+							  <option value="4">South-East</option>
+							  <option value="3">North</option>
+							  <option value="2">Esst</option>
+							  <option value="1">North-East</option>
+							</select>
+
+							<p>Location of the Hall and Drawing Room</p>
+							<select id="select7" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">North-East</option>
+							  <option value="7">North</option>
+							  <option value="6">East</option>
+							  <option value="5">South-East</option>
+							  <option value="4">North-West</option>
+							  <option value="3">West</option>
+							  <option value="2">South</option>
+							  <option value="1">South-West</option>
+							</select>
+
+							<p>Bedroom for children and Guests</p>
+							<select id="select8" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">South-East</option>
+							  <option value="7">North-West</option>
+							  <option value="6">East</option>
+							  <option value="5">West</option>
+							  <option value="4">North</option>
+							  <option value="3">South</option>
+							  <option value="2">South-West</option>
+							  <option value="1">North-East</option>
+							</select>
+
+							<p>Location of the Garage and Workers Quarters</p>
+							<select id="select9" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">North-West</option>
+							  <option value="7">South-East</option>
+							  <option value="6">West</option>
+							  <option value="5">South</option>
+							  <option value="4">East</option>
+							  <option value="3">North</option>
+							  <option value="2">South-West</option>
+							  <option value="1">North-East</option>
+							</select>
+
+							<p>Location of the Main Door or Main Gate</p>
+							<select id="select10" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="8">North-East</option>
+							  <option value="7">East</option>
+							  <option value="6">North</option>
+							  <option value="5">West</option>
+							  <option value="4">South</option>
+							  <option value="3">North-West</option>
+							  <option value="2">South-East</option>
+							  <option value="1">North-West</option>
+							</select>
+
+							<p>External Factors influencing the fortunes of the house</p>
+							<select id="select11" onchange="showOptions(this)" required>
+							    <option value="">Select</option>
+							  <option value="3">The size of the building either Rectangle of Square</option>
+							  <option value="3">The house has positive or good schools</option>
+							  <option value="3">The building has roads on the North or East side or on all the sides</option>
+							  <option value="3">The building is elevated than the road	
+</option>
+							  <option value="3">Compound wall is provided around the house
+
+</option>
+							  <option value="3">The main door is not afflicted by opposite trees, poles, or wells etc.,
+
+</option>
+							  <option value="2">The plot where the house is located is in a rectangular or square shape
+
+</option>
+							</select>
+							<pre></pre>
+
+							<p> <b> <h3> Total out of 100 : </h3></b></p>
+
+
+
+							<pre></pre>
+							<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" onclick="finalAnswer()">send</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 contact_col">
+					<div class="contact_title">MAX POINTS</div>
+					<ul class="contact_info_list estate_contact">
+						<pre></pre><pre></pre>
+						<li ><p>  <input id="out1" type="number"></p>
+						</li>
+						<li ><p>  <input id="out2" type="number"></p>
+						</li>
+						<li ><p>  <input id="out3" type="number"></p>
+						</li>
+						<li ><p>  <input id="out4" type="number"></p>
+						</li>
+						<li ><p>  <input id="out5" type="number"></p>
+						</li>
+						<li ><p>  <input id="out6" type="number"></p>
+						</li>
+						<li ><p>  <input id="out7" type="number"></p>
+						</li>
+						<li ><p>  <input id="out8" type="number"></p>
+						</li>
+						<li ><p>  <input id="out9" type="number"></p>
+						</li>
+						<li ><p>  <input id="out10" type="number"></p>
+						</li>
+						<li ><p>  <input id="out11" type="number"></p>
+						</li>
+						<li ><p>  <input id="final" type="number"></p>
+						</li>
+
+					</ul>
+				</div>
+
+				
+
+			</div>
+
+			SI.No.
+
+Marks obtained
+
+Fortunes of the building/house
+
+1
+
+91-100
+
+Excellent one. You can flourish well by continuing or purchasing the house.
+
+2
+
+71-90
+
+Good one. This will also bring you fortunes. You can continue or purchase the home without hesitation.
+
+3
+
+51-70
+
+Moderate house. You should improve the marks by altering the house as per vaastu. You may continue or purchase the house after the rectification.
+
+4
+
+Below 50
+
+Run away from the house. The fate is awaiting there to pull you down. This house should not be considered even as an alternative dwelling arrangement even for a shorter time. The ill-luck of the house will spoil all your fortunes and ideas. Misery is imminent.
+
+		</div>
+		<script type="text/javascript">
+
+			function showOptions(s) {
+				console.log(s[s.selectedIndex].value)
+				var val = s[s.selectedIndex].value;
+				var id = s.id.split("t");
+				
+				var out = document.getElementById("out"+id[1]); 
+				out.value = val;
+
+
+			}
+
+			function finalAnswer() {
+				var final = 0;
+				for(var i=1; i<12; i++) {
+					var v = document.getElementById("out"+i).value
+					
+					final = final + Number(v);
+				}
+				console.log(final)
+				document.getElementById("final").value = final;
+			}
+
+		</script>
+		
+</body>
+
+
+
+</html>
