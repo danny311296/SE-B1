@@ -5,6 +5,7 @@ from collections import defaultdict
 import map
 import greencover 
 import os
+import price
 from flask_dropzone import Dropzone
 from utils import *
 
@@ -157,12 +158,37 @@ def process_question():
     db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
     return redirect(url_for('question_page'))
 
+
 @app.route('/process_comment',methods=['POST'])
 def process_comment():
     data = request.form
     db.insert('comments',username=session['username'],body=data['comment'],qid=data['qid'])
-    return redirect(url_for('discuss_page',qid=data['qid']))
-    
+    return redirect(url_for('discuss_page',qid=data['qid'])
+
+
+@app.route('/reco.html')
+def reco():
+	return render_template('reco.html')
+
+@app.route('/vastu.html')
+def vastu():
+	return render_template('vastu.html')
+		    
+@app.route('/process_price', methods =['POST'])
+def process_price():
+	data = request.form
+	print(data)
+	pred = []
+	for k in data:
+		pred.append(data[k])
+	
+	print(pred)	
+	p = price.price_est(pred)
+	res = p.est(pred)
+	print(res) 
+	return render_template('reco.html', data = res)
+
+
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
