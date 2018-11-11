@@ -163,7 +163,7 @@ def process_question():
 def process_comment():
     data = request.form
     db.insert('comments',username=session['username'],body=data['comment'],qid=data['qid'])
-    return redirect(url_for('discuss_page',qid=data['qid'])
+    return redirect(url_for('discuss_page',qid=data['qid']))
 
 
 @app.route('/reco.html')
@@ -184,7 +184,7 @@ def process_price():
 	
 	print(pred)	
 	p = price.price_est(pred)
-	res = p.est(pred)
+	res = p.est(pred)[0]
 	print(res) 
 	return render_template('reco.html', data = res)
 
