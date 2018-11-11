@@ -12,7 +12,7 @@ from sklearn import metrics
 
 class price_est:
 	def __init__(self,pred):
-		self.train = pd.read_csv('/home/nicco/SE-B1/4sale.com/db/input_csv_files/train.csv')
+		self.train = pd.read_csv('db/input_csv_files/train.csv')
 		self.pred = pred	
 
 	
