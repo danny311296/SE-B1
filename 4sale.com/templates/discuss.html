@@ -215,11 +215,16 @@
 						</div>
 					</div>
                     {% endfor %}
-				    <form id="estate_contact_form" class="estate_contact_form" method="POST" action="process_comment">
+                    {% if session['username'] %}
+				        <form id="estate_contact_form" class="estate_contact_form" method="POST" action="process_comment">
                             <textarea id="comment" name="comment" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Comment here" required></textarea><br/>
                             <input type="hidden" id="qid" name="qid" value="{{question['qid']}}">
 				            <button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Post Comment" style="margin-bottom:30px;">Post Comment</button>
-				    </form>
+				        </form>
+                     {% else %}
+                        <strong> Please sign in to comment </strong>
+                    {% endif %}
+
                 </div>
                 </div>
 		</div>

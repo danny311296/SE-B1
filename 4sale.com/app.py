@@ -181,7 +181,6 @@ def process_price():
 	pred = []
 	for k in data:
 		pred.append(data[k])
-	
 	print(pred)	
 	p = price.price_est(pred)
 	res = p.est(pred)[0]
