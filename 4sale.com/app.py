@@ -158,9 +158,15 @@ def reco():
 @app.route('/process_price', methods =['POST'])
 def process_price():
 	data = request.form
-	pred = [19,2,1200,2,2,560085]
+	print(data)
+	pred = []
+	for k in data:
+		pred.append(data[k])
+	
+	print(pred)	
 	p = price.price_est(pred)
-	res = p.est(pred) 
+	res = p.est(pred)
+	print(res) 
 	return render_template('reco.html', data = res)
 
 @app.route('/process_post_ad', methods=['POST'])
