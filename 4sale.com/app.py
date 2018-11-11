@@ -49,6 +49,7 @@ def contact_page():
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
+    print(type(pid))
     data = db.query('properties',pid=pid)[0]
     tags = db.query('tags',pid=pid)
     print(data)
@@ -143,11 +144,26 @@ def news():
 def question_page():
     return render_template('question.html')
 
+@app.route('/discuss.html')
+def discuss_page():
+    qid = request.args.get('qid')
+    question = db.query('questions',qid=qid)[0]
+    print(question)
+    comments = db.query('comments',qid=qid)
+    return render_template('discuss.html',question=question,comments=comments)
+
 @app.route('/process_question',methods=['POST'])
 def process_question():
     data = request.form
     db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
     return redirect(url_for('question_page'))
+
+
+@app.route('/process_comment',methods=['POST'])
+def process_comment():
+    data = request.form
+    db.insert('comments',username=session['username'],body=data['comment'],qid=data['qid'])
+    return redirect(url_for('discuss_page',qid=data['qid'])
 
 
 @app.route('/reco.html')
@@ -168,6 +184,7 @@ def process_price():
 	res = p.est(pred)
 	print(res) 
 	return render_template('reco.html', data = res)
+
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
@@ -215,7 +232,7 @@ def get_traffic_details():
     data = request.form
     m = map.MapServices()
     traffic_details = m.get_distance_metrics(data['origin'],data['destination'])
-    return ' '.join(traffic_details)
+    return ' '.join([traffic_details[0],traffic_details[1]])
 
 @app.route('/logout')
 def logout():
