@@ -157,20 +157,18 @@
 						<div class="estate_contact_form_container">
 							<form id="estate_contact_form" class="estate_contact_form" method="post" action="{{ url_for('process_price') }}">
 
-								<input id="availability" class="estate_input_field estate_contact_form_name" type="text" placeholder="AVAILABILITY (YEAR WHEN PLACE WILL BE READY)" required="required" data-error="Name is required.">
+								<input id="availability" name="availability" class="estate_input_field estate_contact_form_name" type="text" placeholder="AVAILABILITY (YEAR WHEN PLACE WILL BE READY)" required="required" data-error="Name is required.">
 
 
-								<input id="size" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BEDROOMS" required="required">
+								<input id="size" name="size" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BEDROOMS" required="required">
 
-								<input id="tot_sqft" class="estate_input_field estate_contact_form_email" type="text" placeholder="TOTAL SQFT" required="required">
+								<input id="tot_sqft" name="tot_sqft" class="estate_input_field estate_contact_form_email" type="text" placeholder="TOTAL SQFT" required="required">
 
-								<input id="bath" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BATHROOMS" required="required">
+								<input id="bath" name="bath" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BATHROOMS" required="required">
 
-								<input id="balcony" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BALCONIES" required="required">
+								<input id="balcony" name="balcony" class="estate_input_field estate_contact_form_email" type="text" placeholder="NO OF BALCONIES" required="required">
 
-								<input id="pincode" class="estate_input_field estate_contact_form_email" type="text" placeholder="PINCODE" required="required">
-
-
+								<input id="pincode" name="pincode" class="estate_input_field estate_contact_form_email" type="text" placeholder="PINCODE" required="required">
 
 
 								<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit">SEE PRICE ESTIMATE</button>
