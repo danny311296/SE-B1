@@ -17,7 +17,6 @@ class price_est:
 
 	
 	def est(self, pred):
-		pred = self.pred  
 		#y = dataset.iloc[:, 4].values
 		
 		X_test = []
