@@ -166,27 +166,25 @@ def process_comment():
     return redirect(url_for('discuss_page',qid=data['qid']))
 
 
-@app.route('/reco.html')
+@app.route('/reco.html',methods=['GET','POST'])
 def reco():
-	return render_template('reco.html')
+    if request.method == 'POST':
+        data = request.form
+        print(data)
+        pred = []
+        for k in data:
+            pred.append(data[k])
+        print(pred)	
+        p = price.price_est(pred)
+        res = p.est(pred)[0]
+        print(res) 
+        return render_template('reco.html', data = res)
+    else:
+        return render_template('reco.html')
 
 @app.route('/vastu.html')
 def vastu():
 	return render_template('vastu.html')
-		    
-@app.route('/process_price', methods =['POST'])
-def process_price():
-	data = request.form
-	print(data)
-	pred = []
-	for k in data:
-		pred.append(data[k])
-	print(pred)	
-	p = price.price_est(pred)
-	res = p.est(pred)[0]
-	print(res) 
-	return render_template('reco.html', data = res)
-
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
