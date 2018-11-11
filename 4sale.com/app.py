@@ -184,7 +184,7 @@ def process_price():
 	
 	print(pred)	
 	p = price.price_est(pred)
-	res = p.est(pred)
+	res = p.est(pred)[0]
 	print(res) 
 	return render_template('reco.html', data = res)
 
