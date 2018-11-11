@@ -170,7 +170,10 @@ def process_comment():
 def reco():
 	return render_template('reco.html')
 
-
+@app.route('/vastu.html')
+def vastu():
+	return render_template('vastu.html')
+		    
 @app.route('/process_price', methods =['POST'])
 def process_price():
 	data = request.form
