@@ -191,7 +191,7 @@ def process_post_ad():
     data = request.form
     map_services = map.MapServices()
     map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
-    db.insert_from_dict('properties',generate_property_dict(data,map_services.lat,map_services.long))
+    db.insert_from_dict_and_kw('properties',generate_property_dict(data,map_services.lat,map_services.long),username=session['username'])
     pid = db.query('properties',cols=['max(pid)'])[0]['max']
     print(pid)
     map_services.generate_top_two_closest_places()
@@ -233,6 +233,12 @@ def get_traffic_details():
     m = map.MapServices()
     traffic_details = m.get_distance_metrics(data['origin'],data['destination'])
     return ' '.join([traffic_details[0],traffic_details[1]])
+
+@app.route('/process_request',methods=['POST'])
+def process_request():
+    data = request.form
+    db.insert('request',username=session['username'],pid=data['pid'],visit=data['visit'],message=data['message'])
+    return redirect(url_for('listings'))
 
 @app.route('/logout')
 def logout():
