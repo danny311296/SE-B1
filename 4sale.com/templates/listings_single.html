@@ -14,10 +14,63 @@
 <link href="{{url_for('static', filename='plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_single_responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
 <script
 src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
 </script>
 <style>
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#myBtn {
+    width: auto;
+	height: 32px;
+	background: #fd784f;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	cursor: pointer;
+	border: none;
+	margin-top: 39px;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -27,19 +80,24 @@ src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
     position: absolute;
     background-color: #f1f1f1;
     min-width: 500px;
-		margin: auto;
+    margin: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 .dropdown-content a {
     color: DarkSlateGray;
-		font-size: 17px;
-		font-weight: bold;
+    font-size: 17px;
+    font-weight: bold;
     text-decoration: none;
     display: block;
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
+    
+#wrapper {
+    display: flex;
+    justify-content: center;
+}
 </style>
 </head>
 
@@ -456,9 +514,9 @@ src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
             <br>
             <li class="additional_detail">
                 <span>traffic:</span> <br/>
-                <input id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
-                <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
-                <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
+                <input style="width:auto;" id="address" name="address" class="estate_input_field estate_contact_form_name" type="text" placeholder="Address Line 1" required="required"> <br/>
+                <input style="width:auto;" id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required"> <br/>
+                <input style="width:auto;" id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required"> <br/>
                 <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
                 <div id="result"></div>
                 <button id="traffic"> Compute Time </button>
@@ -480,6 +538,55 @@ src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
     </div>
 
 </div>
+<div id="wrapper">
+    <button id="myBtn" type="submit" value="Submit" style="margin-bottom:30px;"> &nbsp;&nbsp; CONTACT BUILDER &nbsp;&nbsp; </button>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <h3 style= "color:#000000;">CONTACT PROPERTY OWNER : </h3>
+
+    <form action="process_request" method="post">
+        <b>INTERESTED IN SITE VISIT (Y/N):</b> &emsp;
+        <select class="dropdown_item_select" name="visit">
+            <option> Yes  </option>
+            <option> No </option>
+        </select>
+        <textarea name="message" name="message" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Any message" required></textarea><br/>
+        <input type="hidden" id="pid" name="pid" value="{{prop_id}}">
+        <button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" style="margin-bottom:30px;">Send</button>
+    </form>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
 <script>
 function runPyScript(origin,destination){
     var jqXHR = $.ajax({
@@ -506,4 +613,4 @@ document.getElementById('traffic').onclick = function() {
 <script src="{{url_for('static', filename='js/listings_single_custom.js')}}"></script>
 </body>
 
-</html
+</html>

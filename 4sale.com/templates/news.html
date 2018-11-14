@@ -161,7 +161,12 @@
     <div class="row">
         <div class="col-lg-8 news_content_col">
         <div class="news_post">
-            <div class="button news_post_button"><a href="question.html">Ask A Question</a></div>
+            {% if session['username'] %}
+                <div class="button news_post_button"><a href="question.html">Ask A Question</a></div>
+            {% else %}
+                <div class="news_post_title"> Please sign in to start asking questions </div>
+            {% endif %}
+            
             </div>
         </div>
     </div>

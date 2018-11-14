@@ -5,15 +5,11 @@ drop database forsale;
 create database forsale;
 \c forsale
 
-create table properties(pid serial primary key, title varchar(100), locality varchar(30), type varchar(10), short_description varchar(100), description varchar(1000), bedrooms int, bathrooms int, patio int, address varchar(30), city varchar(20), pincode int, cost float, area float, latitude float, longitude float);
+create table properties(pid serial primary key, username varchar(30), posted_date timestamp default current_timestamp, title varchar(100), locality varchar(30), type varchar(10), short_description varchar(100), description varchar(1000), bedrooms int, bathrooms int, patio int, address varchar(30), city varchar(20), pincode int, cost float, area float, latitude float, longitude float);
 
-create table users( username varchar(30) primary key, passwd varchar(1000), firstname varchar(30), lastname varchar(30), email varchar(30), phone varchar(20) );
-
-create table posts_ad(username varchar(30), pid int, posted_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
+create table users(username varchar(30) primary key, passwd varchar(1000), firstname varchar(30), lastname varchar(30), email varchar(30), phone varchar(20) );
 
 create table purchase(username varchar(30), pid int, purchased_date date, primary key(pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
-
-create table request(username varchar(30), pid int, requested_date date, primary key(username,pid), FOREIGN KEY(pid) REFERENCES properties(pid), FOREIGN KEY(username) REFERENCES users(username));
 
 create table property_images(pid int, image varchar(30), primary key(pid,image));/*, FOREIGN KEY(pid) REFERENCES properties(pid));*/
 
@@ -102,6 +98,8 @@ create table ward_mapping(locality varchar(60),ward varchar(60));
 create table questions(qid serial primary key, username varchar(30), title varchar(100), body varchar(1000), category varchar(30), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username));
 
 create table comments(cid serial primary key, username varchar(30), qid int, body varchar(1000), time timestamp default current_timestamp, FOREIGN KEY(username) REFERENCES users(username), FOREIGN KEY(qid) REFERENCES questions(qid));
+
+create table request(username varchar(30), pid int, visit varchar(3), message varchar(200));
 
 /* Dummy values */
 /*

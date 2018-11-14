@@ -155,7 +155,7 @@
 					<div class="estate_contact_form">
 						<div class="contact_title">ENTER DETAILS FOR PRICE RECOMMENDATION</div>
 						<div class="estate_contact_form_container">
-							<form id="estate_contact_form" class="estate_contact_form" method="post" action="{{ url_for('process_price') }}">
+							<form id="estate_contact_form" class="estate_contact_form" method="post" action="{{ url_for('reco') }}">
 
 								<input id="availability" name="availability" class="estate_input_field estate_contact_form_name" type="text" placeholder="AVAILABILITY (YEAR WHEN PLACE WILL BE READY)" required="required" data-error="Name is required.">
 
@@ -181,8 +181,9 @@
     </div>
 </div>
 
-<div> {{data}} </div>
-
+{% if data %}
+    <div class="contact_title">{{data}}</div>
+{% endif %}
 	
 
 
