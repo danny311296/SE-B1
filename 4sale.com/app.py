@@ -243,6 +243,31 @@ def filtering_properties():
         elem['images'] = d2[elem['pid']]
     return render_template('listings.html', data = properties[::-1])
 
+@app.route('/filter_tags')
+def filter_tags():
+    tag = request.args.get('tag')
+    properties_with_tag = db.query('tags',tag=tag,cols=['pid'])
+    properties = []
+    for property_item in properties_with_tag:
+        properties.extend(db.query('properties',pid=property_item['pid']))
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    for elem in properties:
+        print('HEREEEEEEEEEEEE',elem)
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    return render_template('listings.html', data = properties[::-1])
+    
 @app.route('/traffic',methods=['POST'])
 def get_traffic_details():
     data = request.form
