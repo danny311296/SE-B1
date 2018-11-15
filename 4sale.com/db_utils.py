@@ -24,6 +24,25 @@ class db:
         self.cursor.execute(query)
         return self.cursor.fetchall()
     
+    def query_from_dict(self,table,d,cols=['*']):
+        query = "select " + ",".join(cols) + " from " + table
+        if(len(d)>0):
+            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in d.items() ])
+        print(query)
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+    
+    def query_string_from_dict(self,table,d,cols=['*']):
+        query = "select " + ",".join(cols) + " from " + table
+        if(len(d)>0):
+            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in d.items() ])
+        print(query)
+        return query 
+    
+    def execute_query_string(self,string):
+        self.cursor.execute(string)
+        return self.cursor.fetchall()
+    
     def insert(self,table,**kwargs):
         query = "insert into " + table + "(" + ",".join([column for column,_ in kwargs.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in kwargs.items()]) + ")"
         #print(query)

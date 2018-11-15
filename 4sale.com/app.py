@@ -8,6 +8,7 @@ import os
 import price
 from flask_dropzone import Dropzone
 from utils import *
+import filter
 
 #basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -113,7 +114,10 @@ def login():
 
 @app.route('/post-ad.html')
 def post_ad_page():
-    return render_template('post-ad.html')
+    if('username' in session):
+        return render_template('post-ad.html')
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():
@@ -218,7 +222,8 @@ def process_post_ad():
 def filtering_properties():
     data = request.form
     print(data)
-    properties = db.query('properties',locality=data['locality'],area=float(data['area']),bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']))
+    basicFilter = filter.Filter()
+    properties = basicFilter.basic_filter(data,db)
     print(properties)
     tags = db.query('tags')
     #print(tags)
