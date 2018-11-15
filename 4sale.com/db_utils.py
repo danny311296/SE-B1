@@ -25,19 +25,19 @@ class db:
         return self.cursor.fetchall()
     
     def insert(self,table,**kwargs):
-        query = "insert into " + table + "(" + ",".join([column for column,_ in kwargs.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in kwargs.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([column for column,_ in kwargs.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in kwargs.items()]) + ")"
         #print(query)
         self.cursor.execute(query)
         self.connection.commit()
         
     def insert_from_dict(self,table,d):
-        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in d.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in d.items()]) + ")"
         print(query)
         self.cursor.execute(query)
         self.connection.commit()
         
     def insert_from_dict_and_kw(self,table,d,**kwargs):
-        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + "," + ",".join([column for column,_ in kwargs.items()]) +  ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in d.items()]) + "," + ",".join([str(value) if not(isinstance(value, str)) else "'"+ value + "'" for _,value in kwargs.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + "," + ",".join([column for column,_ in kwargs.items()]) +  ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in d.items()]) + "," + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in kwargs.items()]) + ")"
         print(query)
         self.cursor.execute(query)
         self.connection.commit()
