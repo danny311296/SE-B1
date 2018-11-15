@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import db_utils
 from argon2 import PasswordHasher
 from collections import defaultdict
@@ -134,6 +134,16 @@ def handle_upload():
 @app.route('/register.html')
 def register_page():
     return render_template('register.html')
+
+@app.route('/check_username_taken')
+def sql_object():
+    name = request.args.get('user')
+    res = {"exists": False}
+    users = db.query('users', username=name)
+    if len(users) > 0:
+        print("TAKEN")
+        res["exists"] = True
+    return jsonify(res)
 
 @app.route('/news.html')
 def news():
