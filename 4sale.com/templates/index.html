@@ -277,66 +277,86 @@
 										<a href="#">Specific features</a>
 									</div>
 									<ul class="search_features clearfix">
+                                        {% if tags[0] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_1" class="search_features_cb">
-												<label for="search_features_1">Swimming Pool</label>
+												<input type="checkbox" id="tag1" name="tag1_{{tags[0]['tag']}}" class="search_features_cb">
+                                                <label for="tag1">{{tags[0]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[1] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_2" class="search_features_cb">
-												<label for="search_features_2">Gym</label>
+												<input type="checkbox" id="tag2" name="tag2_{{tags[1]['tag']}}" class="search_features_cb">
+                                                <label for="tag2">{{tags[1]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[2] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_3" class="search_features_cb">
-												<label for="search_features_3">kitchen</label>
+												<input type="checkbox" id="tag3" name="tag3_{{tags[2]['tag']}}" class="search_features_cb">
+                                                <label for="tag3">{{tags[2]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[3] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_4" class="search_features_cb">
-												<label for="search_features_4">garden</label>
+												<input type="checkbox" id="tag4" name="tag4_{{tags[3]['tag']}}" class="search_features_cb">
+                                                <label for="tag4">{{tags[3]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[4] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_5" class="search_features_cb">
-												<label for="search_features_5">parking</label>
+												<input type="checkbox" id="tag5" name="tag5_{{tags[4]['tag']}}" class="search_features_cb">
+												<label for="tag5">{{tags[4]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[5] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_6" class="search_features_cb">
-												<label for="search_features_6">balcony</label>
+												<input type="checkbox" id="tag6" name="tag6_{{tags[5]['tag']}}" class="tag6">
+												<label for="tag6">{{tags[5]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[6] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_7" class="search_features_cb">
-												<label for="search_features_7">terrace</label>
+												<input type="checkbox" id="tag7" name="tag7_{{tags[6]['tag']}}" class="tag7">
+												<label for="tag7">{{tags[6]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[7] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_8" class="search_features_cb">
-												<label for="search_features_8">home theatre</label>
+												<input type="checkbox" id="tag8" name="tag8_{{tags[7]['tag']}}" class="tag8">
+												<label for="tag8">{{tags[7]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[8] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_9" class="search_features_cb">
-												<label for="search_features_9">aquarium</label>
+												<input type="checkbox" id="tag9" name="tag9_{{tags[8]['tag']}}" class="tag9">
+												<label for="search_features_9">{{tags[8]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[9] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_10" class="search_features_cb">
-												<label for="search_features_10">playground</label>
+												<input type="checkbox" id="tag10" name="tag10_{{tags[9]['tag']}}" class="tag10">
+												<label for="tag10">{{tags[9]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
 									</ul>
 								</div>
 							</form>

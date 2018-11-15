@@ -37,7 +37,9 @@ def home_page():
             #print(data)
             hashedPassword = ph.hash(data["password"])
             db.insert('users',username=data["username"],passwd=hashedPassword,firstname=data["firstname"],lastname=data["lastname"],email=data["emailid"],phone=data["phone"])
-    return render_template('index.html')
+    db.cursor.execute("select tag,count(tag) from tags group by tag")
+    tags = db.cursor.fetchall()[:10]
+    return render_template('index.html',tags=tags)
 
 @app.route('/about.html')
 def about_page():
@@ -239,7 +241,6 @@ def filtering_properties():
     for elem in properties:
         elem['tags'] = d1[elem['pid']]
         elem['images'] = d2[elem['pid']]
-    
     return render_template('listings.html', data = properties[::-1])
 
 @app.route('/traffic',methods=['POST'])

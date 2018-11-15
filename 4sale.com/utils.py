@@ -28,3 +28,10 @@ def generate_property_analytics_dict(dict1,dict2):
         d['message_'+place+'1'] = dict2[place][place+'1']['message']
         d['message_'+place+'2'] = dict2[place][place+'2']['message']
     return d
+
+def generate_tag_list(tags):
+    tag_list = []
+    for tag in tags:
+        for k,v in tag.items():
+            tag_list.append(v)
+    return tag_list
