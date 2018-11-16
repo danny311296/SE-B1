@@ -1,4 +1,5 @@
 from utils import *
+import map
 
 class Filter:
     def __init__(self):
@@ -18,6 +19,8 @@ class Filter:
                 elif(key.startswith('time')):
                     advanced_filter_items.append([key,value])
                 elif(key=='greencover'):
+                    advanced_filter_items.append([key,value])
+                elif(key.startswith('place')):
                     advanced_filter_items.append([key,value])
                 elif(key not in self.l):
                     if(key != 'type' or (key == 'type' and value!='Any')):
@@ -67,6 +70,7 @@ class Filter:
         for property_item in property_items:
             property_analytics = db.query('property_analytics',pid=property_item['pid'])[0]
             numberOfPasses = 0
+            place_attributes = {}
             for key,value in advanced_filter_items:
                 if(key.startswith('distance')):
                     if(float(property_analytics[key+'1'])/1000 <= float(value) or float(property_analytics[key+'2'])/1000 <= float(value)):
@@ -77,8 +81,36 @@ class Filter:
                 elif(key=='greencover'):
                     if(float(property_analytics['green_cover']) >= float(value)):
                         numberOfPasses += 1
+                elif(key.startswith('place')):
+                    place_attributes[key] = value
             if(numberOfPasses==len(advanced_filter_items)):
                 items.append(property_item)
+            elif(len(place_attributes) > 0 and numberOfPasses == len(advanced_filter_items)-len(place_attributes)):
+            	distance = float(place_attributes['place_distance']) if 'place_distance' in place_attributes else None
+            	time = float(place_attributes['place_time']) if 'place_time' in place_attributes else None
+            	if(self.traffic_filter(property_item,place_attributes['place']+' '+place_attributes['place_locality'],distance=distance,time=time)):
+            		items.append(property_item)
         print(items)
         return items
-            
+    
+    def traffic_filter(self,property_item,place,distance=None,time=None):
+        map_services = map.MapServices()
+        property_coordinates = {'lat':property_item['latitude'],'lng':property_item['longitude']}
+        result = map_services.get_distance_metrics(property_coordinates,place)
+        if(distance and not(time)):
+        	if(result[2]/1000 <= distance):
+        		return True
+        	else:
+        		return False
+        elif(not(distance) and time):
+        	if(result[3]/60 <= time):
+        		return True
+        	else:
+        		return False
+        elif(distance and time):
+        	if(result[2]/1000<=distance and result[3]/60<=time):
+        		return True
+        	else:
+        		return False
+        else:
+        	return False
