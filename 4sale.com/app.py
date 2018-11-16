@@ -120,6 +120,37 @@ def post_ad_page():
         return render_template('post-ad.html')
     else:
         return redirect(url_for('login'))
+    
+@app.route('/advanced_filter.html')
+def advanced_filter():
+    db.cursor.execute("select tag,count(tag) from tags group by tag")
+    tags = db.cursor.fetchall()[:10]
+    return render_template('advanced_filter.html',tags=tags,place_types=map.MapServices().place_types)
+
+@app.route('/process_advanced_filter',methods=['POST'])
+def process_advanced_filter():
+    data = request.form
+    print(data)
+    basicFilter = filter.Filter()
+    properties = basicFilter.basic_filter(data,db)
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    for elem in properties:
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    return render_template('listings.html', data = properties[::-1])
+
+    
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():

@@ -1,5 +1,6 @@
 import psycopg2
 import psycopg2.extras
+from utils import *
 
 class db:
     def __init__(self,host, database, user, password):
@@ -19,7 +20,7 @@ class db:
     def query(self,table,cols=['*'],**kwargs):
         query = "select " + ",".join(cols) + " from " + table 
         if(len(kwargs)>0):
-            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in kwargs.items() ])
+            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ normalize(value) + "'" for column,value in kwargs.items() ])
         print(query)
         self.cursor.execute(query)
         return self.cursor.fetchall()
@@ -27,7 +28,7 @@ class db:
     def query_from_dict(self,table,d,cols=['*']):
         query = "select " + ",".join(cols) + " from " + table
         if(len(d)>0):
-            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in d.items() ])
+            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ normalize(value) + "'" for column,value in d.items() ])
         print(query)
         self.cursor.execute(query)
         return self.cursor.fetchall()
@@ -35,7 +36,7 @@ class db:
     def query_string_from_dict(self,table,d,cols=['*']):
         query = "select " + ",".join(cols) + " from " + table
         if(len(d)>0):
-            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ value + "'" for column,value in d.items() ])
+            query += " where " + " and ".join([ column + "=" + str(value) if not(isinstance(value, str)) else column + "=" + "'"+ normalize(value) + "'" for column,value in d.items() ])
         print(query)
         return query 
     
@@ -44,19 +45,19 @@ class db:
         return self.cursor.fetchall()
     
     def insert(self,table,**kwargs):
-        query = "insert into " + table + "(" + ",".join([column for column,_ in kwargs.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in kwargs.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([column for column,_ in kwargs.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + normalize(value) + "'" for _,value in kwargs.items()]) + ")"
         #print(query)
         self.cursor.execute(query)
         self.connection.commit()
         
     def insert_from_dict(self,table,d):
-        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in d.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + normalize(value) + "'" for _,value in d.items()]) + ")"
         print(query)
         self.cursor.execute(query)
         self.connection.commit()
         
     def insert_from_dict_and_kw(self,table,d,**kwargs):
-        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + "," + ",".join([column for column,_ in kwargs.items()]) +  ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in d.items()]) + "," + ",".join([str(value) if not(isinstance(value, str)) else "'" + value + "'" for _,value in kwargs.items()]) + ")"
+        query = "insert into " + table + "(" + ",".join([key for key,_ in d.items()]) + "," + ",".join([column for column,_ in kwargs.items()]) +  ") " + "values(" + ",".join([str(value) if not(isinstance(value, str)) else "'" + normalize(value) + "'" for _,value in d.items()]) + "," + ",".join([str(value) if not(isinstance(value, str)) else "'" + normalize(value) + "'" for _,value in kwargs.items()]) + ")"
         print(query)
         self.cursor.execute(query)
         self.connection.commit()

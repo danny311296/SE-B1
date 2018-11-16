@@ -8,10 +8,15 @@ class Filter:
         d = {}
         extra_conditions = []
         tags = []
+        advanced_filter_items = []
         for key,value in data.items():
             if(data[key]):
                 if(key.startswith('tag')):
                     tags.append(key.split('_')[1])
+                elif(key.startswith('distance')):
+                    advanced_filter_items.append([key,value])
+                elif(key.startswith('time')):
+                    advanced_filter_items.append([key,value])
                 elif(key not in self.l):
                     if(key != 'type' or (key == 'type' and value!='Any')):
                         d[key] = value
@@ -38,7 +43,10 @@ class Filter:
                 query_string += " and " + " and ".join(extra_conditions)
         print(query_string)
         if(len(tags)==0):
-            return db.execute_query_string(query_string)
+            if(len(advanced_filter_items)==0):
+                return db.execute_query_string(query_string)
+            else:
+                return self.advanced_filters(db.execute_query_string(query_string),advanced_filter_items,db)
         else:
             return self.checkTags(db.execute_query_string(query_string),tags,db)
         
@@ -50,5 +58,22 @@ class Filter:
             print(tags_list)
             if(all(i in tags_list for i in input_tags)):
                 items.append(property_item)
+        return items
+    
+    def advanced_filters(self,property_items,advanced_filter_items,db):
+        items = []
+        for property_item in property_items:
+            property_analytics = db.query('property_analytics',pid=property_item['pid'])[0]
+            numberOfPasses = 0
+            for key,value in advanced_filter_items:
+                if(key.startswith('distance')):
+                    if(float(property_analytics[key+'1'])/1000 <= float(value) or float(property_analytics[key+'2'])/1000 <= float(value)):
+                        numberOfPasses += 1
+                elif(key.startswith('time')):
+                    if(float(property_analytics[key+'1'])/60 <= float(value) or float(property_analytics[key+'2'])/60 <= float(value)):
+                        numberOfPasses += 1
+            if(numberOfPasses==len(advanced_filter_items)):
+                items.append(property_item)
+        print(items)
         return items
             
