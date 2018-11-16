@@ -17,6 +17,8 @@ class Filter:
                     advanced_filter_items.append([key,value])
                 elif(key.startswith('time')):
                     advanced_filter_items.append([key,value])
+                elif(key=='greencover'):
+                    advanced_filter_items.append([key,value])
                 elif(key not in self.l):
                     if(key != 'type' or (key == 'type' and value!='Any')):
                         d[key] = value
@@ -71,6 +73,9 @@ class Filter:
                         numberOfPasses += 1
                 elif(key.startswith('time')):
                     if(float(property_analytics[key+'1'])/60 <= float(value) or float(property_analytics[key+'2'])/60 <= float(value)):
+                        numberOfPasses += 1
+                elif(key=='greencover'):
+                    if(float(property_analytics['green_cover']) >= float(value)):
                         numberOfPasses += 1
             if(numberOfPasses==len(advanced_filter_items)):
                 items.append(property_item)
