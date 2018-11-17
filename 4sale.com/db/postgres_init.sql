@@ -101,6 +101,8 @@ create table comments(cid serial primary key, username varchar(30), qid int, bod
 
 create table request(username varchar(30), pid int, visit varchar(3), message varchar(200));
 
+create table closest_wards(ward varchar(30),ward1 varchar(30),ward2 varchar(30),ward3 varchar(30),ward4 varchar(30));
+
 /* Dummy values */
 /*
 insert into properties(title, locality, type, short_description, description, bedrooms, bathrooms, patio, address, city, pincode, cost, area, latitude, longitude) values('Beautiful Green House','Murugeshpalya','Sale','A beautiful house in bangalore region with brilliant interior design','This is an amazing house in MurugeshPalya filled with amazing features. The architecture is amazing and 10 top architects have worked on this building. It has taken 5 years to construct this house.',2,1,1,'12 S R Layout','Bangalore',560017,120300,3020,12.95100100,77.6100510);
@@ -152,6 +154,8 @@ insert into property_analytics values(5,1);
 \copy complaints from 'input_csv_files/complaints.csv' DELIMITER ',' CSV
 
 \copy ward_mapping from 'input_csv_files/ward-mapping.csv' DELIMITER ',' CSV
+
+\copy closest_wards from 'input_csv_files/closest_wards.csv' WITH CSV HEADER DELIMITER ',' 
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO root;

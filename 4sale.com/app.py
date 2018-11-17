@@ -145,7 +145,9 @@ def process_advanced_filter():
         d2[image["pid"]].append(image["image"])
     print(d1)
     print(d2)
+    print(properties)
     for elem in properties:
+        print(type(elem))
         elem['tags'] = d1[elem['pid']]
         elem['images'] = d2[elem['pid']]
     return render_template('listings.html', data = properties[::-1])
