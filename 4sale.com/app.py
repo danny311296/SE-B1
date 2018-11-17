@@ -238,9 +238,10 @@ def vastu():
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
+    print(data)
     map_services = map.MapServices()
-    map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
-    db.insert_from_dict_and_kw('properties',generate_property_dict(data,map_services.lat,map_services.long),username=session['username'])
+    map_services.set_coordinates(float(data['lat']),float(data['lng']))
+    db.insert_from_dict_and_kw('properties',generate_property_dict(data),username=session['username'])
     pid = db.query('properties',cols=['max(pid)'])[0]['max']
     print(pid)
     map_services.generate_top_two_closest_places()

@@ -1,4 +1,4 @@
-def generate_property_dict(data,lat,long):
+def generate_property_dict(data):
     d = { 'title':'Property for '+data['type']+' at ' + data['address'],
          'type':data['type'],
          'locality':data['locality'],
@@ -11,8 +11,8 @@ def generate_property_dict(data,lat,long):
          'patio':int(data['patio']),
          'area':float(data['area']),
          'cost':float(data['cost']),
-         'latitude':float(lat),
-         'longitude':float(long) }
+         'latitude':float(data['lat']),
+         'longitude':float(data['lng']) }
     return d
 
 def generate_property_analytics_dict(dict1,dict2):
