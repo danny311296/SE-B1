@@ -42,3 +42,7 @@ def normalize(string):
         if(c!='\'' and c!='"'):
             output_string += c
     return output_string
+
+def intersection(lst1, lst2): 
+    lst3 = [value for value in lst1 if value in lst2] 
+    return lst3 

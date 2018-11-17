@@ -159,7 +159,10 @@
 	</header>
     {% if session['username'] %}
     <div>
+        <!--Welcome {{session['username']}} -->
+        <p>
         Welcome {{session['username']}}
+        </p>
     </div>
     {% endif %}
 	<!-- Listings -->
@@ -184,7 +187,7 @@
 									<span>search your home</span>
 								</div>
 							</div>
-                            <form class="search_form" action="filtering_properties" method="POST">
+							<form class="search_form" action="filtering_properties" method="POST">
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
 										<li class="dropdown_item dropdown_item_5">
@@ -213,7 +216,6 @@
 										</li>
 									</ul>
 								</div>
-
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
 										<li class="dropdown_item dropdown_item_4">
@@ -239,7 +241,6 @@
 										</li>
 									</ul>
 								</div>
-
 								<div class="search_features_container">
 									<div class="search_features_trigger">
 										<a href="#">Specific features</a>
@@ -263,8 +264,8 @@
 									</ul>
 								</div>
 							</form>
+
 							<!-- Search Form -->
-                            <!--
 							<form class="search_form" action="filtering_properties" method="POST">
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
@@ -388,7 +389,7 @@
 										</li>
 									</ul>
 								</div>
-							</form>-->
+							</form>
 						</div>	
 					</div>
 				</div>
@@ -457,7 +458,8 @@
 
 								<div class="room_tags">
                                     {% for tag in item['tags'] %}
-									<span class="room_tag"><a href="filter_tags?tag={{tag}}">{{tag}}</a></span>
+                                    <span class="room_tag"><a href="filter_tags?tag={{tag}}">{{tag}}</a></span>
+									<!--<span class="room_tag"><a href="#">{{tag}}</a></span>-->
                                     {% endfor %}
 								</div>
 							</div>
