@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Estate - News</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{url_for('static', filename='plugins/colorbox/colorbox.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/news_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/news_responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/contact_responsive.css')}}">
+</head>
+
+<body>
+
+<div class="super_container">
+	
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@jbriscoe -->
+		<div class="home_background" style="background-image:url({{url_for('static', filename='images/news.jpg')}})"></div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>listings</h2>
+						</div>
+						<div class="breadcrumbs">
+							<span><a href="index.html">Home</a></span>
+							<span><a href="#"> News</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
+									<span>4sale.com</span>
+								</div>
+							</a>
+						</div>
+						
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="index.html">home</a></li>
+								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
+								<li class="main_nav_item"><a href="listings.html">listings</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
+							</ul>
+						</nav>
+						
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
+                            <div class="phone_home text-center">
+							     <span>SIGN IN</span>
+						    </div>
+                        </a>
+                        <a href="register.html">
+                            <div class="phone_home text-center">
+							     <span>REGISTER</span>
+						    </div>
+                        </a>
+                        {% endif %}
+						
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="index.html">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="about.html">about us</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="listings.html">listings</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="#">news</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="contact.html">contact</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+    
+<div class="news">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-8 news_content_col">
+
+					<!-- News Post -->
+                    
+					<div class="news_post">
+						<div class="news_post_date">{{question["time"]}}</div>
+						<div class="news_post_title"><a href="discuss.html?qid={question['qid']}}">{{question["title"]}}</a></div>
+						<div class="news_post_meta">
+							<ul>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/profile.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">{{question["username"]}}</a></span>
+								</li>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/favorite.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">{{question["category"]}}</a></span>
+								</li>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/speech-bubble.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">3 Comments</a></span>
+								</li>
+							</ul>
+						</div>
+						<div class="news_post_text">
+							<p> {{question["body"]}} </p>
+						</div>
+					</div>
+                    <div class="news_post_meta_item"><strong>COMMENTS</strong></div>
+                    {% for comment in comments %}
+                    <div class="news_post">
+						  <div class="news_post_meta">
+                             <div class="news_post_text">
+							         <p> {{comment["body"]}} </p>
+						     </div>
+							  <ul>
+								<li class="news_post_meta_item">
+									<div class="news_post_meta_icon">
+										<img src="{{url_for('static', filename='images/profile.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									<span><a href="#">By {{comment['username']}}</a></span> <br/>
+                                    <span><a href="#">{{comment['time']}}</a></span>
+								</li>
+							 </ul>
+						</div>
+					</div>
+                    {% endfor %}
+                    {% if session['username'] %}
+				        <form id="estate_contact_form" class="estate_contact_form" method="POST" action="process_comment">
+                            <textarea id="comment" name="comment" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Comment here" required></textarea><br/>
+                            <input type="hidden" id="qid" name="qid" value="{{question['qid']}}">
+				            <button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Post Comment" style="margin-bottom:30px;">Post Comment</button>
+				        </form>
+                     {% else %}
+                        <strong> Please sign in to comment </strong>
+                    {% endif %}
+
+                </div>
+                </div>
+		</div>
+	</div>
+    
+</div>
+<script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/colorbox/jquery.colorbox-min.js')}}"></script>
+<script src="{{url_for('static', filename='js/news_custom.js')}}"></script>
+</body>
+
+</html>

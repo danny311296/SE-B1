@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Estate - Listings</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/listings_responsive.css')}}">
+
+
+</head>
+
+<body >
+
+<div class="super_container">
+
+	<!-- Home -->
+	<div class="home">
+		<!-- Image by: https://unsplash.com/@jbriscoe -->
+		<div class="home_background" style="background-image:url({{url_for('static', filename='images/listings.jpg')}})"></div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_content">
+						<div class="home_title">
+							<h2>listings</h2>
+						</div>
+						<div class="breadcrumbs">
+							<span><a href="index.html">Home</a></span>
+							<span><a href="#"> Search</a></span>
+							<span><a href="#"> Listings</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
+									<span>the estate</span>
+								</div>
+							</a>
+						</div>
+
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="index.html">home</a></li>
+								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
+								<li class="main_nav_item"><a href="news.html">Forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
+							</ul>
+						</nav>
+
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
+                            <div class="phone_home text-center">
+							     <span>SIGN IN</span>
+						    </div>
+                        </a>
+                        <a href="register.html">
+                            <div class="phone_home text-center">
+							     <span>REGISTER</span>
+						    </div>
+                        </a>
+                        {% endif %}
+
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="index.html">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="about.html">about us</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="#">listings</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="news.html">news</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="contact.html">contact</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+    {% if session['username'] %}
+    <div>
+        Welcome {{session['username']}}
+    </div>
+    {% endif %}
+	<!-- Listings -->
+
+	<div class="listings">
+		<div class="container">
+			<div class="row">
+				
+				<!-- Search Sidebar -->
+
+				<div class="col-lg-4 sidebar_col">
+					<!-- Search Box -->
+
+					<div class="search_box">
+
+						<div class="search_box_content">
+
+							<!-- Search Box Title -->
+							<div class="search_box_title text-center">
+								<div class="search_box_title_inner">
+									<div class="search_box_title_icon d-flex flex-column align-items-center justify-content-center"><img src="{{url_for('static', filename='images/search.png')}}" alt=""></div>
+									<span>search your home</span>
+								</div>
+							</div>
+                            <form class="search_form" action="filtering_properties" method="POST">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Locality</div>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Any</option>
+												<option>Sale</option>
+												<option>Rent</option>
+											</select>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bedrooms no</div>
+                                            <input type="text" name="bedrooms" id="bedrooms"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bathrooms no</div>
+                                            <input type="text" name="bathrooms" id="bathrooms"/>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Patio no</div>
+                                            <input type="text" name="patio" id="patio"/>
+										</li>
+									</ul>
+								</div>
+
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Price</div>
+                                            <input type="text" name="min_price" id="min_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Price</div>
+                                            <input type="text" name="max_price" id="max_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text" name="min_area" id="min_area"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text" name="max_area" id="max_area"/>
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="search_features_container">
+									<div class="search_features_trigger">
+										<a href="#">Specific features</a>
+									</div>
+									<ul class="search_features clearfix">
+                                        
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="tag1" name="a" class="search_features_cb">
+                                                <label for="tag1">anc</label>
+											</div>
+										</li>
+                                        
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="tag2" name="a" class="search_features_cb">
+                                                <label for="tag2">laa </label>
+											</div>
+										</li>
+                                        
+									</ul>
+								</div>
+							</form>
+							<!-- Search Form -->
+                            <!--
+							<form class="search_form" action="filtering_properties" method="POST">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Locality</div>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Area (in sqft)</div>
+                                            <input type="text" id="area" name="area"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="property_status" id="property_status" class="dropdown_item_select">
+												<option>Any</option>
+												<option>Buy</option>
+												<option>Rent</option>
+											</select>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bedrooms no</div>
+                                            <input type="text" name="bedrooms"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bathrooms no</div>
+                                            <input type="text" name="bathrooms"/>
+										</li>
+									</ul>
+								</div>
+
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Price</div>
+                                            <input type="text"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Price</div>
+                                            <input type="text"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text"/>
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="search_features_container">
+									<div class="search_features_trigger">
+										<a href="#">Specific features</a>
+									</div>
+									<ul class="search_features clearfix">
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_1" class="search_features_cb">
+												<label for="search_features_1">Swimming Pool</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_2" class="search_features_cb">
+												<label for="search_features_2">Gym</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_3" class="search_features_cb">
+												<label for="search_features_3">kitchen</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_4" class="search_features_cb">
+												<label for="search_features_4">garden</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_5" class="search_features_cb">
+												<label for="search_features_5">parking</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_6" class="search_features_cb">
+												<label for="search_features_6">balcony</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_7" class="search_features_cb">
+												<label for="search_features_7">terrace</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_8" class="search_features_cb">
+												<label for="search_features_8">home theatre</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_9" class="search_features_cb">
+												<label for="search_features_9">aquarium</label>
+											</div>
+										</li>
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="search_features_10" class="search_features_cb">
+												<label for="search_features_10">playground</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</form>-->
+						</div>	
+					</div>
+				</div>
+				<!-- Listings -->
+
+				<div class="col-lg-8 listings_col">
+
+					<!-- Listings Item -->
+                    {% for item in data %}
+					<div class="listing_item">
+						<div class="listing_item_inner d-flex flex-md-row flex-column trans_300">
+							<div class="listing_image_container">
+								<div class="listing_image">
+                                    {% set pic_name = item['images'][0] %}
+                                    {% set pid = item['pid'] %}
+                                    {% set filename = 'images/properties/' + pid|string + '/property_pics/' + pic_name %}
+                                    {% set url = url_for('static',filename=filename) %}
+									<!-- Image by: https://unsplash.com/@breather -->
+                                    <div class="listing_background" style="background-image:url({{url}})"></div>
+								</div>
+								<div class="featured_card_box d-flex flex-row align-items-center trans_300">
+									<img src="{{url_for('static', filename='images/tag.svg')}}" alt="https://www.flaticon.com/authors/lucy-g">
+									<div class="featured_card_box_content">
+										<div class="featured_card_price_title trans_300">{{item["type"]}}</div>
+										<div class="featured_card_price trans_300">₹{{item["cost"]}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="listing_content">
+								<div class="listing_title"><a href="listings_single.html?id={{item['pid']}}">{{item["title"]}}</a></div>
+								<div class="listing_text">{{item["short_description"]}}</div>
+                                <div class="listing_text">Locality: {{item["locality"]}}</div>
+								<div class="rooms">
+
+									<div class="room">
+										<span class="room_title">Bedrooms</span>
+										<div class="room_content">
+											<div class="room_image"><img src="{{url_for('static', filename='images/bedroom.png')}}" alt=""></div>
+											<span class="room_number">{{item["bedrooms"]}}</span>
+										</div>
+									</div>
+
+									<div class="room">
+										<span class="room_title">Bathrooms</span>
+										<div class="room_content">
+											<div class="room_image"><img src="{{url_for('static', filename='images/shower.png')}}" alt=""></div>
+											<span class="room_number">{{item["bathrooms"]}}</span>
+										</div>
+									</div>
+									<div class="room">
+										<span class="room_title">Patio</span>
+										<div class="room_content">
+											<div class="room_image"><img src="{{url_for('static', filename='images/patio.png')}}" alt=""></div>
+											<span class="room_number">{{item["patio"]}}</span>
+										</div>
+									</div>
+									<div class="room">
+										<span class="room_title">Area</span>
+										<div class="room_content">
+											<div class="room_image"><img src="{{url_for('static', filename='images/area.png')}}" alt=""></div>
+											<span class="room_number">{{item["area"]}} Sq Ft</span>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="room_tags">
+                                    {% for tag in item['tags'] %}
+									<span class="room_tag"><a href="filter_tags?tag={{tag}}">{{tag}}</a></span>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col clearfix">
+					<div class="listings_nav">
+						<ul>
+							<li class="listings_nav_item active"><a href="#">01.</a></li>
+							<li class="listings_nav_item"><a href="#">02.</a></li>
+							<li class="listings_nav_item"><a href="#">03.</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
+<script src="{{url_for('static', filename='js/listings_custom.js')}}"></script>
+</div>
+</body>
+
+</html>
