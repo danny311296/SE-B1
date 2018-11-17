@@ -64,7 +64,7 @@
 								<li class="main_nav_item"><a href="about.html">about us</a></li>
 								<li class="main_nav_item"><a href="listings.html">listings</a></li>
 								<li class="main_nav_item"><a href="news.html">forums</a></li>
-								<li class="main_nav_item"><a href="#">contact</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact</a></li>
 							</ul>
 						</nav>
 						
@@ -286,30 +286,28 @@
 
 							<p>External Factors influencing the fortunes of the house</p>
 							<select id="select11" onchange="showOptions(this)" required>
-							    <option value="">Select</option>
+							  <option value="">Select</option>
 							  <option value="3">The size of the building either Rectangle of Square</option>
 							  <option value="3">The house has positive or good schools</option>
 							  <option value="3">The building has roads on the North or East side or on all the sides</option>
-							  <option value="3">The building is elevated than the road	
-</option>
-							  <option value="3">Compound wall is provided around the house
-
-</option>
-							  <option value="3">The main door is not afflicted by opposite trees, poles, or wells etc.,
-
-</option>
-							  <option value="2">The plot where the house is located is in a rectangular or square shape
-
-</option>
+							  <option value="3">The building is elevated than the road	</option>
+							  <option value="3">Compound wall is provided around the house</option>
+							  <option value="3">The main door is not afflicted by opposite trees, poles, or wells etc.,</option>
+							  <option value="2">The plot where the house is located is in a rectangular or square shape</option>
 							</select>
-							<pre></pre>
 
+							
+
+							
+
+
+							
+							<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" onclick="finalAnswer()">send</button>
+							<br>
+							<br>
 							<p> <b> <h3> Total out of 100 : </h3></b></p>
 
-
-
-							<pre></pre>
-							<button id="estate_contact_send_btn" type="submit" class="estate_contact_send_btn trans_200" value="Submit" onclick="finalAnswer()">send</button>
+							<p>  <input id="final" type="number"></p>
 						</div>
 					</div>
 				</div>
@@ -317,68 +315,68 @@
 				<div class="col-lg-3 contact_col">
 					<div class="contact_title">MAX POINTS</div>
 					<ul class="contact_info_list estate_contact">
-						<pre></pre><pre></pre>
+						<pre></pre><pre></pre> <br> <br>
 						<li ><p>  <input id="out1" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out2" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out3" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out4" type="number"></p>
-						</li>
+						</li> <br><br>
 						<li ><p>  <input id="out5" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out6" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out7" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out8" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out9" type="number"></p>
-						</li>
+						</li> <br>
 						<li ><p>  <input id="out10" type="number"></p>
-						</li>
+						</li> <br><br>
 						<li ><p>  <input id="out11" type="number"></p>
-						</li>
-						<li ><p>  <input id="final" type="number"></p>
-						</li>
+						</li> <br>
+						<!--<li ><p>  <input id="final" type="number"></p>
+						</li> -->
 
 					</ul>
-				</div>
 
+
+				</div>
+				
 				
 
 			</div>
 
-			SI.No.
+			
+<br>
+<b>Marks obtained</b>
+<br>
 
-Marks obtained
+Fortunes of the building/house <br>
 
-Fortunes of the building/house
-
-1
-
-91-100
+1. <b>91-100 </b><br>
 
 Excellent one. You can flourish well by continuing or purchasing the house.
 
-2
+<br>
 
-71-90
+2.<b>71-90 </b><br>
 
-Good one. This will also bring you fortunes. You can continue or purchase the home without hesitation.
+Good one. This will also bring you fortunes. You can continue or purchase the home without hesitation.<br>
 
-3
+3.<b>51-70 </b> <br>
 
-51-70
+Moderate house. You should improve the marks by altering the house as per vaastu. You may continue or purchase the house after the rectification. <br>
 
-Moderate house. You should improve the marks by altering the house as per vaastu. You may continue or purchase the house after the rectification.
-
-4
-
-Below 50
+4.<b>Below 50</b> <br>
 
 Run away from the house. The fate is awaiting there to pull you down. This house should not be considered even as an alternative dwelling arrangement even for a shorter time. The ill-luck of the house will spoil all your fortunes and ideas. Misery is imminent.
+
+<br>
+<br>
 
 		</div>
 		<script type="text/javascript">
@@ -408,6 +406,94 @@ Run away from the house. The fate is awaiting there to pull you down. This house
 		</script>
 		
 </body>
+
+<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer About -->
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
+									<span>the estate</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="footer_social">
+						<ul class="footer_social_list">
+							<li class="footer_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+							<li class="footer_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li class="footer_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li class="footer_social_item"><a href="#"><i class="fab fa-dribbble"></i></a></li>
+							<li class="footer_social_item"><a href="#"><i class="fab fa-behance"></i></a></li>
+						</ul>
+					</div>
+					<div class="footer_about">
+						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
+					</div>
+				</div>
+
+				<!-- Footer Useful Links -->
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">useful links</div>
+					<ul class="footer_useful_links">
+						<li class="useful_links_item"><a href="#">Listings</a></li>
+						<li class="useful_links_item"><a href="#">Favorite Cities</a></li>
+						<li class="useful_links_item"><a href="#">Clients Testimonials</a></li>
+						<li class="useful_links_item"><a href="#">Featured Listings</a></li>
+						<li class="useful_links_item"><a href="#">Properties on Offer</a></li>
+						<li class="useful_links_item"><a href="#">Services</a></li>
+						<li class="useful_links_item"><a href="#">News</a></li>
+						<li class="useful_links_item"><a href="#">Our Agents</a></li>
+					</ul>
+				</div>
+
+				<!-- Footer Contact Form -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">feedback form</div>
+					<div class="footer_contact_form_container">
+						<form id="footer_contact_form" class="footer_contact_form" method="post">
+							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+							<button id="contact_send_btn" type="submit" class="contact_send_btn trans_200" value="Submit">send</button>
+						</form>
+					</div>
+				</div>
+
+				<!-- Footer Contact Info -->
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_col_title">contact info</div>
+					<ul class="contact_info_list">
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{{url_for('static', filename='images/placeholder.svg')}}" alt=""></div></div>
+							<div class="contact_info_text">4127 Raoul Wallenber 45b-c Gibraltar</div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{{url_for('static', filename='images/phone-call.svg')}}" alt=""></div></div>
+							<div class="contact_info_text">2556-808-8613</div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{{url_for('static', filename='images/message.svg')}}" alt=""></div></div>
+							<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">contactme@gmail.com</a></div>
+						</li>
+						<li class="contact_info_item d-flex flex-row">
+							<div><div class="contact_info_icon"><img src="{{url_for('static', filename='images/planet-earth.svg')}}" alt=""></div></div>
+							<div class="contact_info_text"><a href="https://colorlib.com">www.colorlib.com</a></div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</footer>
 
 
 
