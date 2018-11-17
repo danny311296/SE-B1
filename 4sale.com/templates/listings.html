@@ -187,6 +187,83 @@
 									<span>search your home</span>
 								</div>
 							</div>
+							<form class="search_form" action="filtering_properties" method="POST">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Locality</div>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Any</option>
+												<option>Sale</option>
+												<option>Rent</option>
+											</select>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bedrooms no</div>
+                                            <input type="text" name="bedrooms" id="bedrooms"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bathrooms no</div>
+                                            <input type="text" name="bathrooms" id="bathrooms"/>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Patio no</div>
+                                            <input type="text" name="patio" id="patio"/>
+										</li>
+									</ul>
+								</div>
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Price</div>
+                                            <input type="text" name="min_price" id="min_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Price</div>
+                                            <input type="text" name="max_price" id="max_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text" name="min_area" id="min_area"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text" name="max_area" id="max_area"/>
+										</li>
+										<li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="search_features_container">
+									<div class="search_features_trigger">
+										<a href="#">Specific features</a>
+									</div>
+									<ul class="search_features clearfix">
+                                        
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="tag1" name="a" class="search_features_cb">
+                                                <label for="tag1">anc</label>
+											</div>
+										</li>
+                                        
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="tag2" name="a" class="search_features_cb">
+                                                <label for="tag2">laa </label>
+											</div>
+										</li>
+                                        
+									</ul>
+								</div>
+							</form>
 
 							<!-- Search Form -->
 							<form class="search_form" action="filtering_properties" method="POST">
@@ -381,7 +458,8 @@
 
 								<div class="room_tags">
                                     {% for tag in item['tags'] %}
-									<span class="room_tag"><a href="#">{{tag}}</a></span>
+                                    <span class="room_tag"><a href="filter_tags?tag={{tag}}">{{tag}}</a></span>
+									<!--<span class="room_tag"><a href="#">{{tag}}</a></span>-->
                                     {% endfor %}
 								</div>
 							</div>
