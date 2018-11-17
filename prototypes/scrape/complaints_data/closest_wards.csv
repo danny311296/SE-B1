@@ -1,0 +1,51 @@
+ward,closest_ward1,closest_ward2,closest_ward3,closest_ward4
+Yelachenahalli,Jaraganahalli,Kumaraswamy Layout,Shakambari Nagar,Banashankari Temple
+Singasandra,Muneshwara Nagar,Hongasandra,Mangammanapalya,Begur
+Begur,Singasandra,Muneshwara Nagar,Hongasandra,Mangammanapalya
+Gottigere,Anjanapur,Arakere,Konanakunte,Puttenahalli
+Anjanapur,Gottigere,Konanakunte,Yelachenahalli,Puttenahalli
+Uttarahalli,Kumaraswamy Layout,Padmanabha Nagar,Chikkalasandra,Vasanthapura
+Konanakunte,Yelachenahalli,Vasanthapura,Puttenahalli,Jaraganahalli
+Vasanthapura,Kumaraswamy Layout,Konanakunte,Uttarahalli,Yelachenahalli
+HSR Layout,Mangammanapalya,Muneshwara Nagar,Jakkasandra,Singasandra
+Bommanahalli,Bilekahalli,Hongasandra,Arakere,Kuvempu Nagar
+Jaraganahalli,Yelachenahalli,Sarakki,Shakambari Nagar,Puttenahalli
+Puttenahalli,Sarakki,J.P.Nagar,Jaraganahalli,Arakere
+Bilekahalli,Bommanahalli,Arakere,Kuvempu Nagar,BTM Layout
+Hongasandra,Bommanahalli,Muneshwara Nagar,Bilekahalli,Begur
+Mangammanapalya,Muneshwara Nagar,HSR Layout,Jakkasandra,Hongasandra
+Arakere,Bilekahalli,Puttenahalli,Bommanahalli,Sarakki
+Shettyhalli,Mallasandra,T-Dasarahalli,Chokkasandra,H.M.T
+Mallasandra,Shettyhalli,T-Dasarahalli,Bagalagunte,Chokkasandra
+Bagalagunte,Mallasandra,T-Dasarahalli,Chokkasandra,Shettyhalli
+T-Dasarahalli,Mallasandra,Chokkasandra,Bagalagunte,Shettyhalli
+Chokkasandra,Peenya Industrial Area,T-Dasarahalli,Shettyhalli,Rajagopala Nagar
+Peenya Industrial Area,Lakshmidevi Nagar,Rajagopala Nagar,Chokkasandra,Laggere
+Rajagopala Nagar,Hegganahalli,Laggere,Peenya Industrial Area,Lakshmidevi Nagar
+Hegganahalli,Rajagopala Nagar,Laggere,Lakshmidevi Nagar,Peenya Industrial Area
+Benniganahalli,C.V.Raman Nagar,A.Narayanapura,Vijinapura,Banasawadi
+C.V.Raman Nagar,Byrasandra,Vignana Nagar,A.Narayanapura,Jeevanbhima Nagar
+Hosathippasandra,HSR Layout,Singasandra,Muneshwara Nagar,Bellandur
+Sarvagna Nagar,Ulsoor,Jogupalya,Dommalur,Benniganahalli
+Hoysala Nagar,Horamavu,Ramamurthy Nagar,Vijinapura,Banasawadi
+Jeevanbhima Nagar,Konena Agrahara,HAL Airport,Dommalur,Byrasandra
+Konena Agrahara,Jeevanbhima Nagar,HAL Airport,Dommalur,Chowdeshwari
+Radhakrishna Temple,Sanjay Nagar,Mathikere,Ganga Nagar,Aramane Nagar
+Sanjay Nagar,Radhakrishna Temple,Mathikere,Hebbal,Aramane Nagar
+Ganga Nagar,Hebbal,Aramane Nagar,Manorayanapalya,Kavalbyrasandra
+Hebbal,Vishwanathnagenahalli,Manorayanapalya,Nagavara,Ganga Nagar
+Vishwanathnagenahalli,Manorayanapalya,Hebbal,Nagavara,Kavalbyrasandra
+Manorayanapalya,Vishwanathnagenahalli,Hebbal,Kavalbyrasandra,Ganga Nagar
+Gangenahalli,Herohalli,Ullalu,Kottigepalya,Vrushabhavathi
+Jayachamarajendra Nagar,Agrahara Dasarahalli,Rajaji Nagar,Shiva Nagar,Basaveshwara Nagar
+Kushal Nagar,Kadugondanahalli,Kavalbyrasandra,Sagayapuram,Devarajeevanahalli
+Kavalbyrasandra,Kushal Nagar,Manorayanapalya,Kadugondanahalli,Sagayapuram
+Devarajeevanahalli,Sagayapuram,Kadugondanahalli,Pulikeshi Nagar,Kushal Nagar
+Muneshwara Nagar,Mangammanapalya,HSR Layout,Singasandra,Hongasandra
+Sagayapuram,Devarajeevanahalli,Kadugondanahalli,Kushal Nagar,Pulikeshi Nagar
+S.K.Garden,Pulikeshi Nagar,Jayamahal,Devarajeevanahalli,Sagayapuram
+Pulikeshi Nagar,S.K.Garden,Sagayapuram,Devarajeevanahalli,Shivaji Nagar
+Nagavara,HBR Layout,Thanisandra,Vishwanathnagenahalli,Manorayanapalya
+HBR Layout,Kacharakanahalli,Kammanahalli,Kadugondanahalli,Kushal Nagar
+Banasawadi,Kammanahalli,Horamavu,Maruthiseva Nagar,Kacharakanahalli
+Kammanahalli,Kacharakanahalli,Ramaswamy Palya,Lingarajapura,Banasawadi
