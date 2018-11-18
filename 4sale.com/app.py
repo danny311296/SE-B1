@@ -320,7 +320,6 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home_page'))
 
-#if __name__ == '__main__':
-db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
+if __name__ == '__main__':
+    db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
 ph = PasswordHasher()
-app.run()
