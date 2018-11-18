@@ -3,14 +3,23 @@ import psycopg2.extras
 from utils import *
 
 class db:
+    __instance = None
+    def getInstance():
+        if db.__instance == None:
+            db()  
+        return db.__instance        
     def __init__(self,host, database, user, password):
-        self.host = host
-        self.database = database
-        self.user = user
-        self.password = password
-        self.connection = psycopg2.connect(database=database, user=user, password=password, host=host)
-        self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-        
+        if db.__instance!=None:
+            raise Exception("The db class is a singleton class")
+        else:
+            db.__instance=self
+            self.host = host
+            self.database = database
+            self.user = user
+            self.password = password
+            self.connection = psycopg2.connect(database=database, user=user, password=password, host=host)
+            self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+         
     def get_connection(self):
         return self.connection
     
