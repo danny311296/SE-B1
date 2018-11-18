@@ -538,9 +538,15 @@ src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js">
     </div>
 
 </div>
+{% if session['username'] %}
 <div id="wrapper">
     <button id="myBtn" type="submit" value="Submit" style="margin-bottom:30px;"> &nbsp;&nbsp; CONTACT BUILDER &nbsp;&nbsp; </button>
 </div>
+{% else %}
+<div class="listing_subtitle" style="margin-bottom: 20px;" id="wrapper">
+    Please login to get in contact with the seller
+</div>
+{% endif %}
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

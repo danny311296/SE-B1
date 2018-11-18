@@ -1,0 +1,199 @@
+ward,closest_ward1,closest_ward2,closest_ward3,closest_ward4
+Yelachenahalli,Jaraganahalli,Kumaraswamy Layout,Shakambari Nagar,Banashankari Temple
+Singasandra,Muneshwara Nagar,Hongasandra,Mangammanapalya,Begur
+Begur,Singasandra,Muneshwara Nagar,Hongasandra,Mangammanapalya
+Gottigere,Anjanapur,Arakere,Konanakunte,Puttenahalli
+Anjanapur,Gottigere,Konanakunte,Yelachenahalli,Puttenahalli
+Uttarahalli,Kumaraswamy Layout,Padmanabha Nagar,Chikkalasandra,Vasanthapura
+Konanakunte,Yelachenahalli,Vasanthapura,Puttenahalli,Jaraganahalli
+Vasanthapura,Kumaraswamy Layout,Konanakunte,Uttarahalli,Yelachenahalli
+HSR Layout,Mangammanapalya,Muneshwara Nagar,Jakkasandra,Singasandra
+Bommanahalli,Bilekahalli,Hongasandra,Arakere,Kuvempu Nagar
+Jaraganahalli,Yelachenahalli,Sarakki,Shakambari Nagar,Puttenahalli
+Puttenahalli,Sarakki,J.P.Nagar,Jaraganahalli,Arakere
+Bilekahalli,Bommanahalli,Arakere,Kuvempu Nagar,BTM Layout
+Hongasandra,Bommanahalli,Muneshwara Nagar,Bilekahalli,Begur
+Mangammanapalya,Muneshwara Nagar,HSR Layout,Jakkasandra,Hongasandra
+Arakere,Bilekahalli,Puttenahalli,Bommanahalli,Sarakki
+Shettyhalli,Mallasandra,T-Dasarahalli,Chokkasandra,H.M.T
+Mallasandra,Shettyhalli,T-Dasarahalli,Bagalagunte,Chokkasandra
+Bagalagunte,Mallasandra,T-Dasarahalli,Chokkasandra,Shettyhalli
+T-Dasarahalli,Mallasandra,Chokkasandra,Bagalagunte,Shettyhalli
+Chokkasandra,Peenya Industrial Area,T-Dasarahalli,Shettyhalli,Rajagopala Nagar
+Peenya Industrial Area,Lakshmidevi Nagar,Rajagopala Nagar,Chokkasandra,Laggere
+Rajagopala Nagar,Hegganahalli,Laggere,Peenya Industrial Area,Lakshmidevi Nagar
+Hegganahalli,Rajagopala Nagar,Laggere,Lakshmidevi Nagar,Peenya Industrial Area
+Benniganahalli,C.V.Raman Nagar,A.Narayanapura,Vijinapura,Banasawadi
+C.V.Raman Nagar,Byrasandra,Vignana Nagar,A.Narayanapura,Jeevanbhima Nagar
+Hosathippasandra,HSR Layout,Singasandra,Muneshwara Nagar,Bellandur
+Sarvagna Nagar,Ulsoor,Jogupalya,Dommalur,Benniganahalli
+Hoysala Nagar,Horamavu,Ramamurthy Nagar,Vijinapura,Banasawadi
+Jeevanbhima Nagar,Konena Agrahara,HAL Airport,Dommalur,Byrasandra
+Konena Agrahara,Jeevanbhima Nagar,HAL Airport,Dommalur,Chowdeshwari
+Radhakrishna Temple,Sanjay Nagar,Mathikere,Ganga Nagar,Aramane Nagar
+Sanjay Nagar,Radhakrishna Temple,Mathikere,Hebbal,Aramane Nagar
+Ganga Nagar,Hebbal,Aramane Nagar,Manorayanapalya,Kavalbyrasandra
+Hebbal,Vishwanathnagenahalli,Manorayanapalya,Nagavara,Ganga Nagar
+Vishwanathnagenahalli,Manorayanapalya,Hebbal,Nagavara,Kavalbyrasandra
+Manorayanapalya,Vishwanathnagenahalli,Hebbal,Kavalbyrasandra,Ganga Nagar
+Gangenahalli,Herohalli,Ullalu,Kottigepalya,Vrushabhavathi
+Jayachamarajendra Nagar,Agrahara Dasarahalli,Rajaji Nagar,Shiva Nagar,Basaveshwara Nagar
+Kushal Nagar,Kadugondanahalli,Kavalbyrasandra,Sagayapuram,Devarajeevanahalli
+Kavalbyrasandra,Kushal Nagar,Manorayanapalya,Kadugondanahalli,Sagayapuram
+Devarajeevanahalli,Sagayapuram,Kadugondanahalli,Pulikeshi Nagar,Kushal Nagar
+Muneshwara Nagar,Mangammanapalya,HSR Layout,Singasandra,Hongasandra
+Sagayapuram,Devarajeevanahalli,Kadugondanahalli,Kushal Nagar,Pulikeshi Nagar
+S.K.Garden,Pulikeshi Nagar,Jayamahal,Devarajeevanahalli,Sagayapuram
+Pulikeshi Nagar,S.K.Garden,Sagayapuram,Devarajeevanahalli,Shivaji Nagar
+Nagavara,HBR Layout,Thanisandra,Vishwanathnagenahalli,Manorayanapalya
+HBR Layout,Kacharakanahalli,Kammanahalli,Kadugondanahalli,Kushal Nagar
+Banasawadi,Kammanahalli,Horamavu,Maruthiseva Nagar,Kacharakanahalli
+Kammanahalli,Kacharakanahalli,Ramaswamy Palya,Lingarajapura,Banasawadi
+Kacharakanahalli,Kammanahalli,Ramaswamy Palya,Lingarajapura,Banasawadi
+Kadugondanahalli,Kushal Nagar,Kavalbyrasandra,Sagayapuram,Devarajeevanahalli
+Lingarajapura,Ramaswamy Palya,Kammanahalli,Kacharakanahalli,Maruthiseva Nagar
+Maruthiseva Nagar,Ramaswamy Palya,Lingarajapura,Banasawadi,Pulikeshi Nagar
+Jogupalya,Ulsoor,Agaram,Sarvagna Nagar,Vannarpet
+Shanthala Nagar,Chalavadipalya,Shivaji Nagar,Sudam Nagar,Shanthi Nagar
+Dommalur,Agaram,Konena Agrahara,Jeevanbhima Nagar,Jogupalya
+Agaram,Vannarpet,Neelasandra,Shanthala Nagar,Chalavadipalya
+Vannarpet,Neelasandra,Agaram,Sri Rammandira,Ejipura
+Neelasandra,Vannarpet,Agaram,Sri Rammandira,Adugodi
+Shanthi Nagar,Sudam Nagar,Lakkasandra,Dharmarayaswamy Temple,Visvesvarapuram
+Ramaswamy Palya,Lingarajapura,Kammanahalli,Kacharakanahalli,Banasawadi
+Jayamahal,Shivaji Nagar,Vasanth Nagar,S.K.Garden,Pulikeshi Nagar
+Ulsoor,Sarvagna Nagar,Jogupalya,Pulikeshi Nagar,Agaram
+Bharathi Nagar,Basavanapura,Devasandra,Hoodi,K.R.Puram
+Shivaji Nagar,Pulikeshi Nagar,Vasanth Nagar,Jayamahal,S.K.Garden
+Vasanth Nagar,Jayamahal,Shivaji Nagar,Sampangiram Nagar,S.K.Garden
+Sampangiram Nagar,Okalipuram,Rajamahal,Kempegowda,Dr.Rajkumar
+Horamavu,Hoysala Nagar,Banasawadi,Kammanahalli,Ramamurthy Nagar
+Ramamurthy Nagar,Vijinapura,Hoysala Nagar,Banasawadi,Horamavu
+Vijinapura,Ramamurthy Nagar,Hoysala Nagar,K.R.Puram,Benniganahalli
+K.R.Puram,C.V.Raman Nagar,A.Narayanapura,Byrasandra,Benniganahalli
+Basavanapura,Bharathi Nagar,Hoodi,Devasandra,K.R.Puram
+Devasandra,K.R.Puram,Basavanapura,Hoodi,Bharathi Nagar
+A.Narayanapura,C.V.Raman Nagar,Vijinapura,Vignana Nagar,Byrasandra
+Vignana Nagar,Byrasandra,C.V.Raman Nagar,A.Narayanapura,HAL Airport
+HAL Airport,Konena Agrahara,Jeevanbhima Nagar,Chowdeshwari,Marathalli
+Hoodi,Garudacharpalya,Basavanapura,Devasandra,Bharathi Nagar
+Garudacharpalya,Hoodi,Doddanekkundi,A.Narayanapura,Vijinapura
+Kadugudi,Hagadooru,Siddapura,Hoodi,Varthur
+Hagadooru,Siddapura,Kadugudi,Varthur,Marathalli
+Doddanekkundi,Chowdeshwari,Marathalli,Garudacharpalya,HAL Airport
+Marathalli,Chowdeshwari,Doddanekkundi,Siddapura,HAL Airport
+Varthur,Siddapura,Hagadooru,Kadugudi,Chowdeshwari
+Bellandur,Jakkasandra,Chowdeshwari,Hosathippasandra,Marathalli
+H.M.T,Jalahalli,Shettyhalli,Chokkasandra,Yeshwanthpur
+Lakshmidevi Nagar,Laggere,Nandini Layout,Hegganahalli,Peenya Industrial Area
+Jalahalli,H.M.T,Shettyhalli,J.P.Park,Yeshwanthpur
+J.P.Park,Mathikere,Sanjay Nagar,Radhakrishna Temple,Subramanya Nagar
+Yeshwanthpur,Mahalakshmipuram,Nandini Layout,Peenya Industrial Area,Chokkasandra
+Laggere,Lakshmidevi Nagar,Hegganahalli,Rajagopala Nagar,Nagapura
+Kottigepalya,Vrushabhavathi,Kamakshipalya,Moodalapalya,Kaveripura
+Jnanabharathi,Marappana Palya,Nagarabhavi,Nayandanahalli,Ullalu
+Rajarajeshwari Nagar,Nayandanahalli,Jnanabharathi,Giri Nagar,Hosakerehalli
+Ullalu,Nagarabhavi,Marappana Palya,Jnanabharathi,Herohalli
+Kengeri,Hemmigepura,Rajarajeshwari Nagar,Nayandanahalli,Ullalu
+Hemmigepura,Kengeri,Jnanabharathi,Rajarajeshwari Nagar,Hosakerehalli
+Dodda Bidarkallu,Chokkasandra,Peenya Industrial Area,Bagalagunte,T-Dasarahalli
+Herohalli,Kottigepalya,Vrushabhavathi,Kamakshipalya,Hegganahalli
+Basavangudi,Shankaramata,Ganeshmandira,Sunkenahalli,Dattathreya Temple
+Hanumantha Nagar,Sunkenahalli,Vidyapeetha,Shankaramata,Dattathreya Temple
+Sri Nagar,Giri Nagar,Azad Nagar,Hanumantha Nagar,Sunkenahalli
+Giri Nagar,Sri Nagar,Hanumantha Nagar,Vidyapeetha,Azad Nagar
+Katriguppe,Vidyapeetha,Dattathreya Temple,Ganeshmandira,Hanumantha Nagar
+Vidyapeetha,Dattathreya Temple,Katriguppe,Ganeshmandira,Hanumantha Nagar
+Lakkasandra,Adugodi,Hombegowda Nagar,Shanthi Nagar,Jayangar
+Adugodi,Lakkasandra,Hombegowda Nagar,Sudduguntepalya,Koramangala
+Ejipura,Sri Rammandira,Vannarpet,Neelasandra,Dommalur
+Koramangala,Ejipura,Sri Rammandira,Madiwala,Jakkasandra
+Sudduguntepalya,Madiwala,BTM Layout,Gurappanapalya,Koramangala
+Madiwala,Sudduguntepalya,Koramangala,BTM Layout,Ejipura
+Jakkasandra,Koramangala,HSR Layout,Ejipura,Mangammanapalya
+BTM Layout,Kuvempu Nagar,Sudduguntepalya,Madiwala,Gurappanapalya
+Sudam Nagar,Visvesvarapuram,Dharmarayaswamy Temple,Basavangudi,Lakkasandra
+Dharmarayaswamy Temple,K.R.Market,Chikpete,Sudam Nagar,Dr.Rajkumar
+Sunkenahalli,Hanumantha Nagar,Shankaramata,Basavangudi,Vidyapeetha
+Visvesvarapuram,Dharmarayaswamy Temple,Chamrajpet,Sudam Nagar,Basavangudi
+Siddapura,Hagadooru,Varthur,Kadugudi,Marathalli
+Hombegowda Nagar,Jayangar,Lakkasandra,Jayanagar East,Pattabhiram Nagar
+Jayangar,Pattabhiram Nagar,Marenahalli,Gurappanapalya,Jayanagar East
+Kaveripura,Kamakshipalya,Moodalapalya,Govindraja Nagara,Vijay Nagar
+Govindraja Nagara,Vijay Nagar,Maruthi Mandira,Kaveripura,Basaveshwara Nagar
+Agrahara Dasarahalli,Jayachamarajendra Nagar,Basaveshwara Nagar,Govindraja Nagara,Shiva Nagar
+Dr.Rajkumar,Rajamahal,Chikpete,K.R.Market,Okalipuram
+Marenahalli,J.P.Nagar,Pattabhiram Nagar,Shakambari Nagar,Sarakki
+Maruthi Mandira,Hampi Nagar,Vijay Nagar,Govindraja Nagara,Attiguppe
+Moodalapalya,Vijay Nagar,Kaveripura,Maruthi Mandira,Govindraja Nagara
+Nagarabhavi,Marappana Palya,Attiguppe,Deepanjali Nagar,Moodalapalya
+Nayandanahalli,Gali Anjaneya Swamy Temple,Rajarajeshwari Nagar,Deepanjali Nagar,Attiguppe
+Pattabhiram Nagar,Jayangar,Jayanagar East,Marenahalli,Gurappanapalya
+Byrasandra,C.V.Raman Nagar,Vignana Nagar,Jeevanbhima Nagar,Konena Agrahara
+Jayanagar East,Basavangudi,Ganeshmandira,Shankaramata,Dattathreya Temple
+Gurappanapalya,BTM Layout,Sudduguntepalya,Jayangar,Kuvempu Nagar
+J.P.Nagar,Marenahalli,Shakambari Nagar,Sarakki,Banashankari Temple
+Sarakki,Puttenahalli,J.P.Nagar,Jaraganahalli,Shakambari Nagar
+Shakambari Nagar,Banashankari Temple,J.P.Nagar,Karisandra,Marenahalli
+Hosakerehalli,Chikkalasandra,Uttarahalli,Vasanthapura,Padmanabha Nagar
+Ganeshmandira,Dattathreya Temple,Shankaramata,Vidyapeetha,Sunkenahalli
+Karisandra,Shakambari Nagar,Padmanabha Nagar,Ganeshmandira,Kumaraswamy Layout
+Yadiyuru,Hosahalli,Thanisandra,Yelahanka Satellite,Jakkur
+Banashankari Temple,Karisandra,Shakambari Nagar,Marenahalli,J.P.Nagar
+Kumaraswamy Layout,Uttarahalli,Vasanthapura,Yelachenahalli,Padmanabha Nagar
+Padmanabha Nagar,Chikkalasandra,Uttarahalli,Karisandra,Katriguppe
+Chikkalasandra,Uttarahalli,Padmanabha Nagar,Kumaraswamy Layout,Katriguppe
+Kempapura Agrahara,Binnipet,Padarayanapura,Jagareevanram Nagar,Rayapuram
+Vijay Nagar,Govindraja Nagara,Maruthi Mandira,Moodalapalya,Attiguppe
+Hosahalli,Yadiyuru,Thanisandra,Jakkur,Byatarayanapura
+Attiguppe,Deepanjali Nagar,Hampi Nagar,Maruthi Mandira,Vijay Nagar
+Hampi Nagar,Maruthi Mandira,Bapuji Nagar,Attiguppe,Gali Anjaneya Swamy Temple
+Bapuji Nagar,Gali Anjaneya Swamy Temple,Hampi Nagar,Attiguppe,Maruthi Mandira
+Gali Anjaneya Swamy Temple,Deepanjali Nagar,Sri Nagar,Giri Nagar,Attiguppe
+Deepanjali Nagar,Attiguppe,Gali Anjaneya Swamy Temple,Bapuji Nagar,Hampi Nagar
+Padarayanapura,Jagareevanram Nagar,Rayapuram,Kempapura Agrahara,Binnipet
+Jagareevanram Nagar,Padarayanapura,Rayapuram,Binnipet,Kempapura Agrahara
+Rayapuram,Jagareevanram Nagar,Padarayanapura,Binnipet,Cottonpet
+Chalavadipalya,Shanthala Nagar,Dharmarayaswamy Temple,Shivaji Nagar,Sudam Nagar
+K.R.Market,Dharmarayaswamy Temple,Chikpete,Dr.Rajkumar,Kempegowda
+Chamrajpet,Azad Nagar,Binnipet,Cottonpet,Visvesvarapuram
+Azad Nagar,Chamrajpet,Sri Nagar,Gali Anjaneya Swamy Temple,Binnipet
+Dattathreya Temple,Ganeshmandira,Vidyapeetha,Sunkenahalli,Hanumantha Nagar
+Gandhi Nagar,Hosahalli,Bagalagunte,T-Dasarahalli,Chokkasandra
+Subhash Nagar,Chikpete,Kempegowda,K.R.Market,Rajamahal
+Okalipuram,Kempegowda,Dayananda Nagar,Rajamahal,Prakash Nagar
+Chikpete,K.R.Market,Dr.Rajkumar,Dharmarayaswamy Temple,Kempegowda
+Cottonpet,Binnipet,Subhash Nagar,Rayapuram,Chamrajpet
+Binnipet,Cottonpet,Kempapura Agrahara,Subhash Nagar,Rayapuram
+Nandini Layout,Lakshmidevi Nagar,Laggere,Nagapura,Yeshwanthpur
+Marappana Palya,Jnanabharathi,Nagarabhavi,Ullalu,Nayandanahalli
+Nagapura,Subramanya Nagar,Shakthiganapathi Nagar,Gayathri Nagar,Mahalakshmipuram
+Mahalakshmipuram,Subramanya Nagar,Yeshwanthpur,Gayathri Nagar,Nagapura
+Shakthiganapathi Nagar,Basaveshwara Nagar,Shiva Nagar,Kamakshipalya,Jayachamarajendra Nagar
+Shankaramata,Basavangudi,Sunkenahalli,Hanumantha Nagar,Ganeshmandira
+Vrushabhavathi,Kamakshipalya,Shakthiganapathi Nagar,Kaveripura,Basaveshwara Nagar
+Aramane Nagar,Kadumalleshwara,Jayamahal,Sampangiram Nagar,Mathikere
+Mathikere,Sanjay Nagar,Radhakrishna Temple,J.P.Park,Ganga Nagar
+Malleshwaram,Kadumalleshwara,Subramanya Nagar,Sampangiram Nagar,Gayathri Nagar
+Rajamahal,Dr.Rajkumar,Chikpete,Okalipuram,Kempegowda
+Kadumalleshwara,Malleshwaram,Sampangiram Nagar,Subramanya Nagar,Aramane Nagar
+Subramanya Nagar,Gayathri Nagar,Malleshwaram,Nagapura,Kadumalleshwara
+Gayathri Nagar,Subramanya Nagar,Prakash Nagar,Rajaji Nagar,Shiva Nagar
+Dayananda Nagar,Prakash Nagar,Okalipuram,Rajaji Nagar,Sampangiram Nagar
+Prakash Nagar,Rajaji Nagar,Dayananda Nagar,Shiva Nagar,Gayathri Nagar
+Rajaji Nagar,Shiva Nagar,Prakash Nagar,Jayachamarajendra Nagar,Dayananda Nagar
+Basaveshwara Nagar,Shakthiganapathi Nagar,Agrahara Dasarahalli,Jayachamarajendra Nagar,Govindraja Nagara
+Kamakshipalya,Vrushabhavathi,Kaveripura,Shakthiganapathi Nagar,Govindraja Nagara
+Shiva Nagar,Rajaji Nagar,Jayachamarajendra Nagar,Shakthiganapathi Nagar,Basaveshwara Nagar
+Sri Rammandira,Ejipura,Koramangala,Vannarpet,Neelasandra
+Jakkur,Thanisandra,HBR Layout,Nagavara,Kadugondanahalli
+Thanisandra,Jakkur,HBR Layout,Nagavara,Kadugondanahalli
+Byatarayanapura,Kodigehalli,Hebbal,Jakkur,Vishwanathnagenahalli
+Kodigehalli,Byatarayanapura,Doddabommasandra,Sanjay Nagar,Radhakrishna Temple
+Vidyaranyapura,Attur,Yelahanka Satellite,Kodigehalli,Doddabommasandra
+Doddabommasandra,Kodigehalli,Vidyaranyapura,Byatarayanapura,Jalahalli
+Kuvempu Nagar,BTM Layout,Madiwala,Sudduguntepalya,Gurappanapalya
+Kempegowda,Chikpete,Rajamahal,Dr.Rajkumar,K.R.Market
+Chowdeshwari,Marathalli,Doddanekkundi,HAL Airport,Konena Agrahara
+Attur,Yelahanka Satellite,Vidyaranyapura,Kodigehalli,Byatarayanapura
+Yelahanka Satellite,Attur,Vidyaranyapura,Kodigehalli,Byatarayanapura

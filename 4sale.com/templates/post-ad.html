@@ -185,6 +185,10 @@
                                 <input id="city" name="city" class="estate_input_field estate_contact_form_name" type="text" placeholder="City" required="required">
                                 <input id="pincode" name="pincode" class="estate_input_field estate_contact_form_name" type="text" placeholder="Pincode" required="required">
                                 <input style="width:auto;" id="locality" name="locality" class="estate_input_field estate_contact_form_name" type="text" placeholder="Locality" required="required"><br/>
+                                <button id="geocode_btn"> PinPoint Location on Map </button>
+                                 <input type="hidden" id="lat" name="lat">
+                                 <input type="hidden" id="lng" name="lng">
+                                <div id="map" style="display:none;width:500px;height:500px;"></div>
                                 <textarea name="short_description" name="short_description" class="estate_text_field estate_contact_form_name" cols="40" rows="6" placeholder="Description"></textarea><br/>
                                 <input id="bedrooms" name="bedrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bedrooms" required="required">
                                 <input id="bathrooms" name="bathrooms" class="estate_input_field estate_contact_form_name" type="text" placeholder="Number of bathrooms" required="required">
@@ -206,6 +210,66 @@
 </div>
 <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="{{url_for('static', filename='js/jquery.imageuploader.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQwF0Ca4KCHcL8hhD7e-H_eNKHsJIVj0s&callback=initMap" async defer></script>
+<script type="text/javascript">
+	var map;
+	var markers = [];
+	function removeMarkers()
+	{
+		for(i=0; i<markers.length; i++)
+		{
+        	markers[i].setMap(null);
+    	}
+	}
+
+    function initMap() 
+    {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 12.9165, lng: 77.5924},
+          zoom: 18
+        });
+        geocoder = new google.maps.Geocoder();
+        document.getElementById('geocode_btn').addEventListener('click', function() {
+          document.getElementById('map').style.display = "block";
+          geocodeAddress(geocoder, map);
+      	});
+      	google.maps.event.addListener(map, "click", function(event) {
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+                removeMarkers();
+                marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(clickLat,clickLon),
+                        map: map,
+                        icon: "http://1.bp.blogspot.com/_GZzKwf6g1o8/S6xwK6CSghI/AAAAAAAAA98/_iA3r4Ehclk/s1600/marker-green.png"
+                     });
+                document.getElementById('lat').value = clickLat;
+                document.getElementById('lng').value = clickLon;
+                markers.push(marker);
+      });
+    }
+
+	function geocodeAddress(geocoder, resultsMap) 
+	{
+        var address = document.getElementById('address').value + " " + document.getElementById('city').value + " " + document.getElementById('pincode').value;
+        console.log(address);
+        geocoder.geocode({'address': address}, function(results, status) {
+          	if (status === 'OK') {
+            	resultsMap.setCenter(results[0].geometry.location);
+            	removeMarkers();
+             	marker = new google.maps.Marker({
+              		map: resultsMap,
+              		position: results[0].geometry.location,
+              		icon:"http://1.bp.blogspot.com/_GZzKwf6g1o8/S6xwK6CSghI/AAAAAAAAA98/_iA3r4Ehclk/s1600/marker-green.png"
+            	});
+                document.getElementById('lat').value = results[0].geometry.location.lat();
+                document.getElementById('lng').value = results[0].geometry.location.lng();
+             	markers.push(marker);
+          	} else {
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+     }
+</script>
 <script>
 var options = {
     submitButtonCopy: 'Upload Selected Files',
@@ -227,7 +291,6 @@ $('.js-uploader__box').uploader(options);
 <script src="{{url_for('static', filename='js/tagsinput.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="{{url_for('static', filename='js/contact_custom.js')}}"></script>
  <script>
 

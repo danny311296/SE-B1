@@ -2,7 +2,7 @@ import googlemaps
 
 class MapServices:
     def __init__(self):
-        self.gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
+        self.gmaps = googlemaps.Client(key='AIzaSyAQwF0Ca4KCHcL8hhD7e-H_eNKHsJIVj0s')
         self.place_types = ['hospital','bank','book_store','bus_station','school','clothing_store','restaurant','gym','gas_station','electronics_store','supermarket','beauty_salon','car_repair','cafe','bakery','dentist','hindu_temple','atm']
     
     def geocode_address(self,address):

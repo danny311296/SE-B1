@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Estate</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Estate Teplate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/main_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/responsive.css')}}">
+</head>
+
+<body>
+
+<div class="super_container">
+
+	<!-- Home -->
+	<div class="home">
+
+		<!-- Home Slider -->
+		<div class="home_slider_container">
+			<div class="owl-carousel owl-theme home_slider">
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+					<!-- Image by https://unsplash.com/@aahubs -->
+					<div class="home_slider_background" style="background-image:url({{url_for('static', filename='images/home_slider_bcg.jpg')}})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+					<!-- Image by https://unsplash.com/@aahubs -->
+					<div class="home_slider_background" style="background-image:url({{url_for('static', filename='images/home_slider_bcg.jpg')}})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+
+				<!-- Home Slider Item -->
+				<div class="owl-item home_slider_item">
+					<!-- Image by https://unsplash.com/@aahubs -->
+					<div class="home_slider_background" style="background-image:url({{url_for('static', filename='images/home_slider_bcg.jpg')}})"></div>
+					<div class="home_slider_content_container text-center">
+						<div class="home_slider_content">
+							<h1 data-animation-in="flipInX" data-animation-out="animate-out fadeOut">find your home</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Home Slider Nav -->
+			<div class="home_slider_nav_left home_slider_nav d-flex flex-row align-items-center justify-content-end">
+				<img src="{{url_for('static', filename='images/nav_left.png')}}" alt="">
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Header -->
+
+	<header class="header trans_300">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_container d-flex flex-row align-items-center trans_300">
+
+						<!-- Logo -->
+
+						<div class="logo_container">
+							<a href="#">
+								<div class="logo">
+									<img src="{{url_for('static', filename='images/logo.png')}}" alt="">
+									<span>4sale.com</span>
+								</div>
+							</a>
+						</div>
+
+						<!-- Main Navigation -->
+
+						<nav class="main_nav">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="about.html">about</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
+								<li class="main_nav_item"><a href="listings.html">listings</a></li>
+								<li class="main_nav_item"><a href="news.html">forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
+							</ul>
+						</nav>
+
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
+                            <div class="phone_home text-center">
+							     <span>SIGN IN</span>
+						    </div>
+                        </a>
+                        <a href="register.html">
+                            <div class="phone_home text-center">
+							     <span>REGISTER</span>
+						    </div>
+                        </a>
+                        {% endif %}
+
+						<!-- Hamburger -->
+
+						<div class="hamburger_container menu_mm">
+							<div class="hamburger menu_mm">
+								<i class="fas fa-bars trans_200 menu_mm"></i>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+
+		<div class="menu menu_mm">
+			<ul class="menu_list">
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="#">home</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="about.html">about us</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="listings.html">listings</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="news.html">news</a>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="menu_item">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<a href="contact.html">contact</a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</header>
+
+	<!-- Search Box -->
+
+
+	<div class="search_box">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="search_box_outer">
+						<div class="search_box_inner">
+
+							<!-- Search Box Title -->
+							<div class="search_box_title text-center">
+								<div class="search_box_title_inner">
+									<div class="search_box_title_icon d-flex flex-column align-items-center justify-content-center"><img src="{{url_for('static', filename='images/search.png')}}" alt=""></div>
+									<span>find properties</span>
+								</div>
+							</div>
+
+							<!-- Search Arrow -->
+							<div class="search_arrow_box">
+								<div class="search_arrow_box_inner">
+									<div class="search_arrow_circle d-flex flex-column align-items-center justify-content-center"><span>Search it here</span></div>
+									<img src="{{url_for('static', filename='images/search_arrow.png')}}" alt="">
+								</div>
+							</div>
+
+							<!-- Search Form -->
+							<form class="search_form" action="process_advanced_filter" method="POST">
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Locality</div>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Property Type</div>
+											<select name="type" id="type" class="dropdown_item_select">
+												<option>Any</option>
+												<option>Sale</option>
+												<option>Rent</option>
+											</select>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bedrooms no</div>
+                                            <input type="text" name="bedrooms" id="bedrooms"/>
+										</li>
+										<li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Bathrooms no</div>
+                                            <input type="text" name="bathrooms" id="bathrooms"/>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Patio no</div>
+                                            <input type="text" name="patio" id="patio"/>
+										</li>
+									</ul>
+								</div>
+
+								<div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Price</div>
+                                            <input type="text" name="min_price" id="min_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Price</div>
+                                            <input type="text" name="max_price" id="max_price"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text" name="min_area" id="min_area"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text" name="max_area" id="max_area"/>
+										</li>
+									</ul>
+								</div>
+                                {% for place in place_types %}
+                                <div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+                                        <li class="dropdown_item dropdown_item_4">
+											{{place}}
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Distance (within)</div>
+                                            <input type="text" name="distance_{{place}}" id="distance_{{place}}"/>
+										</li>
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Time (within)</div>
+                                            <input type="text" name="time_{{place}}" id="time_{{place}}"/>
+										</li>
+										
+									</ul>
+								</div>
+                                {% endfor %}
+                                <div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Green Cover</div>
+                                            <input type="text" name="greencover" id="greencover"/>
+										</li>
+										
+									</ul>
+								</div>
+                                <div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+										<li class="dropdown_item dropdown_item_4">
+											<div class="dropdown_item_title">Traffic</div>
+                                            <input type="text" name="place" placeholder="place" id="place"/>
+                                            <input type="text" name="place_locality" placeholder="locality" id="place_locality"/>
+                                            <input type="text" name="place_distance" placeholder="distance" id="place_distance"/>
+                                            <input type="text" name="place_time" placeholder="time" id="place_time"/>
+										</li>
+										
+									</ul>
+								</div>
+                                <div class="search_box_container">
+									<ul class="dropdown_row clearfix">
+                                        <li class="dropdown_item">
+											<div class="search_button">
+												<input value="search" type="submit" class="search_submit_button">
+											</div>
+								        </li>		
+									</ul>
+								</div>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/scrollTo/jquery.scrollTo.min.js')}}"></script>
+<script src="{{url_for('static', filename='plugins/easing/easing.js')}}"></script>
+<script src="{{url_for('static', filename='js/custom.js')}}"></script>
+</body>
+
+</html>
