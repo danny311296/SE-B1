@@ -30,8 +30,8 @@ app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_USERNAME'] = 'Enter'
-app.config['MAIL_PASSWORD'] = 'Enter'
+app.config['MAIL_USERNAME'] = 'Enter a valid mail address in string format'
+app.config['MAIL_PASSWORD'] = 'Enter the password in string format'
 
 
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
