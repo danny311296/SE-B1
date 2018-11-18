@@ -4,7 +4,9 @@ from argon2 import PasswordHasher
 from collections import defaultdict
 import map
 import greencover 
+from flask_mail import Mail,Message
 import os
+import price
 from flask_dropzone import Dropzone
 from utils import *
 
@@ -22,9 +24,18 @@ app.config.update(
     DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_USERNAME'] = ## ENTER ANY OF YOUR ACCOUNT HERE
+app.config['MAIL_PASSWORD'] = ## ENTER ANY OF YOUR PASSWOR HERE
+## THEN CHANGE Go to Google's Account Security Settings: www.google.com/settings/security
+
+## Find the field "Access for less secure apps". Set it to "Allowed".
 
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-
+mail=Mail(app)
 dropzone = Dropzone(app)
 
 @app.route('/')
@@ -48,6 +59,7 @@ def contact_page():
 @app.route('/listings_single.html')
 def listings_single():
     pid = request.args.get('id')
+    print(type(pid))
     data = db.query('properties',pid=pid)[0]
     tags = db.query('tags',pid=pid)
     print(data)
@@ -135,40 +147,63 @@ def register_page():
 
 @app.route('/news.html')
 def news():
-    return render_template('news.html')
+    questions = db.query('questions')
+    return render_template('news.html',questions=questions)
 
-@app.route('/ques_ans.html')
-def ques_ans():
-    data = db.query('question')
-    #print(data)
-    return render_template('ques_ans.html', data = data)
+@app.route('/question.html')
+def question_page():
+    return render_template('question.html')
 
-@app.route('/process_ques', methods=['POST'])
-def process_ques():
+@app.route('/discuss.html')
+def discuss_page():
+    qid = request.args.get('qid')
+    question = db.query('questions',qid=qid)[0]
+    print(question)
+    comments = db.query('comments',qid=qid)
+    return render_template('discuss.html',question=question,comments=comments)
+
+@app.route('/process_question',methods=['POST'])
+def process_question():
     data = request.form
-    db.insert('posts',body=data['question_text'])
-    return render_template('ques_ans.html')
+    db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
+    
+
+    return redirect(url_for('question_page'))
 
 
-@app.route('/reply.html')
-def reply():
-    quesid = request.args.get('id')
-    data_ques = conn.query('question',qid=quesid)
-    data_reply = conn.query('comments',qid=quesid)
-    data_reply = data_reply[::-1]
-    #print(data_ques)
-    #print(data_reply)
-    data = array()
-    data = data.append(data_ques)
-    data = data.append(data_reply)
-    return render_template('reply.html', data = data)
+@app.route('/process_comment',methods=['POST'])
+def process_comment():
+    data = request.form
+    db.insert('comments',username=session['username'],body=data['comment'],qid=data['qid'])
+    return redirect(url_for('discuss_page',qid=data['qid']))
+
+
+@app.route('/reco.html',methods=['GET','POST'])
+def reco():
+    if request.method == 'POST':
+        data = request.form
+        print(data)
+        pred = []
+        for k in data:
+            pred.append(data[k])
+        print(pred)	
+        p = price.price_est(pred)
+        res = p.est(pred)[0]
+        print(res) 
+        return render_template('reco.html', data = res)
+    else:
+        return render_template('reco.html')
+
+@app.route('/vastu.html')
+def vastu():
+	return render_template('vastu.html')
 
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
     map_services = map.MapServices()
     map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
-    db.insert_from_dict('properties',generate_property_dict(data,map_services.lat,map_services.long))
+    db.insert_from_dict_and_kw('properties',generate_property_dict(data,map_services.lat,map_services.long),username=session['username'])
     pid = db.query('properties',cols=['max(pid)'])[0]['max']
     print(pid)
     map_services.generate_top_two_closest_places()
@@ -209,7 +244,24 @@ def get_traffic_details():
     data = request.form
     m = map.MapServices()
     traffic_details = m.get_distance_metrics(data['origin'],data['destination'])
-    return ' '.join(traffic_details)
+    return ' '.join([traffic_details[0],traffic_details[1]])
+
+@app.route('/process_request',methods=['POST'])
+def process_request():
+    data = request.form
+    db.insert('request',username=session['username'],pid=data['pid'],visit=data['visit'],message=data['message'])
+    user = db.query('users',username=session['username'])
+    user_email= user[0]["email"]
+    user_phone= user[0]["phone"]
+    user_firstname=user[0]["firstname"]
+    user_lastname=user[0]["lastname"]
+    owner=db.query('properties', pid=data['pid'])
+    owner_username= owner[0]["username"]
+    owner_details=db.query('users',username=owner_username)
+    msg="New Message: "+ data['message']+"from user:"+user_firstname+ " "+user_lastname+" with number "+ user_phone +"and preference to site visit as: "+ data['visit']
+    send_msg=Message(msg,sender=user_email, recipients=[owner_details[0]["email"]])
+    mail.send(send_msg)
+    return redirect(url_for('listings'))
 
 @app.route('/logout')
 def logout():
