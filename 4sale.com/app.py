@@ -1,14 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import db_utils
 from argon2 import PasswordHasher
 from collections import defaultdict
 import map
 import greencover 
-from flask_mail import Mail,Message
 import os
+from flask_mail import Mail,Message
 import price
 from flask_dropzone import Dropzone
 from utils import *
+import filter
 
 #basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -24,15 +25,14 @@ app.config.update(
     DROPZONE_UPLOAD_ACTION='handle_upload',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
+
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_USERNAME'] = ## ENTER ANY OF YOUR ACCOUNT HERE
-app.config['MAIL_PASSWORD'] = ## ENTER ANY OF YOUR PASSWOR HERE
-## THEN CHANGE Go to Google's Account Security Settings: www.google.com/settings/security
+app.config['MAIL_USERNAME'] = 'chetnasureka1501'
+app.config['MAIL_PASSWORD'] = 'ashirwad35'
 
-## Find the field "Access for less secure apps". Set it to "Allowed".
 
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 mail=Mail(app)
@@ -46,7 +46,9 @@ def home_page():
             #print(data)
             hashedPassword = ph.hash(data["password"])
             db.insert('users',username=data["username"],passwd=hashedPassword,firstname=data["firstname"],lastname=data["lastname"],email=data["emailid"],phone=data["phone"])
-    return render_template('index.html')
+    db.cursor.execute("select tag,count(tag) from tags group by tag")
+    tags = db.cursor.fetchall()[:10]
+    return render_template('index.html',tags=tags)
 
 @app.route('/about.html')
 def about_page():
@@ -123,7 +125,43 @@ def login():
 
 @app.route('/post-ad.html')
 def post_ad_page():
-    return render_template('post-ad.html')
+    if('username' in session):
+        return render_template('post-ad.html')
+    else:
+        return redirect(url_for('login'))
+    
+@app.route('/advanced_filter.html')
+def advanced_filter():
+    db.cursor.execute("select tag,count(tag) from tags group by tag")
+    tags = db.cursor.fetchall()[:10]
+    return render_template('advanced_filter.html',tags=tags,place_types=map.MapServices().place_types)
+
+@app.route('/process_advanced_filter',methods=['POST'])
+def process_advanced_filter():
+    data = request.form
+    print(data)
+    basicFilter = filter.Filter()
+    properties = basicFilter.basic_filter(data,db)
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    print(properties)
+    for elem in properties:
+        print(type(elem))
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    return render_template('listings.html', data = properties[::-1])
+
+    
 
 @app.route('/upload', methods=['POST'])
 def handle_upload():
@@ -144,6 +182,16 @@ def handle_upload():
 @app.route('/register.html')
 def register_page():
     return render_template('register.html')
+
+@app.route('/check_username_taken')
+def sql_object():
+    name = request.args.get('user')
+    res = {"exists": False}
+    users = db.query('users', username=name)
+    if len(users) > 0:
+        print("TAKEN")
+        res["exists"] = True
+    return jsonify(res)
 
 @app.route('/news.html')
 def news():
@@ -166,8 +214,6 @@ def discuss_page():
 def process_question():
     data = request.form
     db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
-    
-
     return redirect(url_for('question_page'))
 
 
@@ -201,9 +247,10 @@ def vastu():
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
+    print(data)
     map_services = map.MapServices()
-    map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
-    db.insert_from_dict_and_kw('properties',generate_property_dict(data,map_services.lat,map_services.long),username=session['username'])
+    map_services.set_coordinates(float(data['lat']),float(data['lng']))
+    db.insert_from_dict_and_kw('properties',generate_property_dict(data),username=session['username'])
     pid = db.query('properties',cols=['max(pid)'])[0]['max']
     print(pid)
     map_services.generate_top_two_closest_places()
@@ -220,7 +267,8 @@ def process_post_ad():
 def filtering_properties():
     data = request.form
     print(data)
-    properties = db.query('properties',locality=data['locality'],area=float(data['area']),bedrooms=int(data['bedrooms']),bathrooms=int(data['bathrooms']))
+    basicFilter = filter.Filter()
+    properties = basicFilter.basic_filter(data,db)
     print(properties)
     tags = db.query('tags')
     #print(tags)
@@ -236,9 +284,33 @@ def filtering_properties():
     for elem in properties:
         elem['tags'] = d1[elem['pid']]
         elem['images'] = d2[elem['pid']]
-    
     return render_template('listings.html', data = properties[::-1])
 
+@app.route('/filter_tags')
+def filter_tags():
+    tag = request.args.get('tag')
+    properties_with_tag = db.query('tags',tag=tag,cols=['pid'])
+    properties = []
+    for property_item in properties_with_tag:
+        properties.extend(db.query('properties',pid=property_item['pid']))
+    print(properties)
+    tags = db.query('tags')
+    #print(tags)
+    images = db.query('property_images')
+    d1 = defaultdict(list)
+    d2 = defaultdict(list)
+    for tag in tags:
+        d1[tag["pid"]].append(tag["tag"])
+    for image in images:
+        d2[image["pid"]].append(image["image"])
+    print(d1)
+    print(d2)
+    for elem in properties:
+        print('HEREEEEEEEEEEEE',elem)
+        elem['tags'] = d1[elem['pid']]
+        elem['images'] = d2[elem['pid']]
+    return render_template('listings.html', data = properties[::-1])
+    
 @app.route('/traffic',methods=['POST'])
 def get_traffic_details():
     data = request.form
@@ -262,7 +334,7 @@ def process_request():
     send_msg=Message(msg,sender=user_email, recipients=[owner_details[0]["email"]])
     mail.send(send_msg)
     return redirect(url_for('listings'))
-
+    
 @app.route('/logout')
 def logout():
     session.pop('username', None)
