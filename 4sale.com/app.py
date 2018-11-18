@@ -145,7 +145,9 @@ def process_advanced_filter():
         d2[image["pid"]].append(image["image"])
     print(d1)
     print(d2)
+    print(properties)
     for elem in properties:
+        print(type(elem))
         elem['tags'] = d1[elem['pid']]
         elem['images'] = d2[elem['pid']]
     return render_template('listings.html', data = properties[::-1])
@@ -236,9 +238,10 @@ def vastu():
 @app.route('/process_post_ad', methods=['POST'])
 def process_post_ad():
     data = request.form
+    print(data)
     map_services = map.MapServices()
-    map_services.geocode_address(' '.join([data['address'],data['locality'],data['city'],data['pincode']]))
-    db.insert_from_dict_and_kw('properties',generate_property_dict(data,map_services.lat,map_services.long),username=session['username'])
+    map_services.set_coordinates(float(data['lat']),float(data['lng']))
+    db.insert_from_dict_and_kw('properties',generate_property_dict(data),username=session['username'])
     pid = db.query('properties',cols=['max(pid)'])[0]['max']
     print(pid)
     map_services.generate_top_two_closest_places()
@@ -317,7 +320,7 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home_page'))
 
-if __name__ == '__main__':
-    db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
-    ph = PasswordHasher()
-    app.run()
+#if __name__ == '__main__':
+db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
+ph = PasswordHasher()
+app.run()
