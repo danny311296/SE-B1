@@ -12,7 +12,7 @@ class Abstraction:
         self._imp = imp
 
     def operation(self,data,db):
-        self._imp.basic_filter(data,db)
+        return self._imp.basic_filter(data,db)
 
 # A class to carry out property filtering tasks
 class Filter:
