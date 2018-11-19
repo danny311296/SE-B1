@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="The Estate Teplate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/bootstrap4/bootstrap.min.css')}}">
 <link href="{{url_for('static', filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
@@ -19,10 +19,10 @@
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Home -->
 	<div class="home">
-		
+
 		<!-- Home Slider -->
 		<div class="home_slider_container">
 			<div class="owl-carousel owl-theme home_slider">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Home Slider Nav -->
 			<div class="home_slider_nav_left home_slider_nav d-flex flex-row align-items-center justify-content-end">
 				<img src="{{url_for('static', filename='images/nav_left.png')}}" alt="">
@@ -88,33 +88,39 @@
 								</div>
 							</a>
 						</div>
-						
+
 						<!-- Main Navigation -->
 
 						<nav class="main_nav">
 							<ul class="main_nav_list">
-								<li class="main_nav_item"><a href="#">home</a></li>
-								<li class="main_nav_item"><a href="about.html">about us</a></li>
+								<li class="main_nav_item"><a href="about.html">about</a></li>
+								<li class="main_nav_item"><a href="post-ad.html">post ad</a></li>
 								<li class="main_nav_item"><a href="listings.html">listings</a></li>
-								<li class="main_nav_item"><a href="news.html">forums</a></li>
-								<li class="main_nav_item"><a href="contact.html">contact</a></li>
+								<li class="main_nav_item"><a href="news.html">forum</a></li>
+								<li class="main_nav_item"><a href="contact.html">contact us</a></li>
 							</ul>
 						</nav>
-						
-						<!-- Log in/Register -->
 
-						<a style="margin-right:10px;" href="login.html">
+						<!-- Log in/Register -->
+                        {% if session['username'] %}
+						<a style="margin-right:10px;" href="logout">
+                            <div class="phone_home text-center">
+							     <span>LOG OUT</span>
+						    </div>
+                        </a>
+                        {% else %}
+                        <a style="margin-right:10px;" href="login.html">
                             <div class="phone_home text-center">
 							     <span>SIGN IN</span>
 						    </div>
                         </a>
-                        
                         <a href="register.html">
                             <div class="phone_home text-center">
 							     <span>REGISTER</span>
 						    </div>
                         </a>
-						
+                        {% endif %}
+
 						<!-- Hamburger -->
 
 						<div class="hamburger_container menu_mm">
@@ -181,10 +187,10 @@
 		</div>
 
 	</header>
-	
+
 	<!-- Search Box -->
 
-    
+
 	<div class="search_box">
 		<div class="container">
 			<div class="row">
@@ -210,32 +216,32 @@
 							</div>
 
 							<!-- Search Form -->
-							<form class="search_form" action="#">
+							<form class="search_form" action="filtering_properties" method="POST">
 								<div class="search_box_container">
 									<ul class="dropdown_row clearfix">
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Locality</div>
-                                            <input type="text" class="row1" id="locality"/>
-										</li>
-										<li class="dropdown_item dropdown_item_5">
-											<div class="dropdown_item_title">Area (in sqft)</div>
-                                            <input type="text" id="area"/>
+                                            <input type="text" class="row1" id="locality" name="locality"/>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Property Type</div>
-											<select name="property_status" id="property_status" class="dropdown_item_select">
+											<select name="type" id="type" class="dropdown_item_select">
 												<option>Any</option>
-												<option>Buy</option>
+												<option>Sale</option>
 												<option>Rent</option>
 											</select>
 										</li>
                                         <li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bedrooms no</div>
-                                            <input type="text"/>
+                                            <input type="text" name="bedrooms" id="bedrooms"/>
 										</li>
 										<li class="dropdown_item dropdown_item_5">
 											<div class="dropdown_item_title">Bathrooms no</div>
-                                            <input type="text"/>
+                                            <input type="text" name="bathrooms" id="bathrooms"/>
+										</li>
+                                        <li class="dropdown_item dropdown_item_5">
+											<div class="dropdown_item_title">Patio no</div>
+                                            <input type="text" name="patio" id="patio"/>
 										</li>
 									</ul>
 								</div>
@@ -244,19 +250,19 @@
 									<ul class="dropdown_row clearfix">
 										<li class="dropdown_item dropdown_item_4">
 											<div class="dropdown_item_title">Min Price</div>
-                                            <input type="text"/>
+                                            <input type="text" name="min_price" id="min_price"/>
 										</li>
 										<li class="dropdown_item dropdown_item_4">
 											<div class="dropdown_item_title">Max Price</div>
-                                            <input type="text"/>
+                                            <input type="text" name="max_price" id="max_price"/>
 										</li>
 										<li class="dropdown_item dropdown_item_4">
-											<div class="dropdown_item_title">Min Sq Ft</div>
-                                            <input type="text"/>
+											<div class="dropdown_item_title">Min Area(in Sq Ft)</div>
+                                            <input type="text" name="min_area" id="min_area"/>
 										</li>
 										<li class="dropdown_item dropdown_item_4">
-											<div class="dropdown_item_title">Max Sq Ft</div>
-                                            <input type="text"/>
+											<div class="dropdown_item_title">Max Area(in Sq Ft)</div>
+                                            <input type="text" name="max_area" id="max_area"/>
 										</li>
 										<li class="dropdown_item">
 											<div class="search_button">
@@ -271,66 +277,86 @@
 										<a href="#">Specific features</a>
 									</div>
 									<ul class="search_features clearfix">
+                                        {% if tags[0] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_1" class="search_features_cb">
-												<label for="search_features_1">Swimming Pool</label>
-											</div>	
-										</li>
-										<li class="search_features_item">
-											<div>
-												<input type="checkbox" id="search_features_2" class="search_features_cb">
-												<label for="search_features_2">Gym</label>
+												<input type="checkbox" id="tag1" name="tag1_{{tags[0]['tag']}}" class="search_features_cb">
+                                                <label for="tag1">{{tags[0]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[1] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_3" class="search_features_cb">
-												<label for="search_features_3">Feature 3</label>
+												<input type="checkbox" id="tag2" name="tag2_{{tags[1]['tag']}}" class="search_features_cb">
+                                                <label for="tag2">{{tags[1]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[2] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_4" class="search_features_cb">
-												<label for="search_features_4">Feature 4</label>
+												<input type="checkbox" id="tag3" name="tag3_{{tags[2]['tag']}}" class="search_features_cb">
+                                                <label for="tag3">{{tags[2]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[3] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_5" class="search_features_cb">
-												<label for="search_features_5">Feature 5</label>
+												<input type="checkbox" id="tag4" name="tag4_{{tags[3]['tag']}}" class="search_features_cb">
+                                                <label for="tag4">{{tags[3]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[4] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_6" class="search_features_cb">
-												<label for="search_features_6">Feature 6</label>
+												<input type="checkbox" id="tag5" name="tag5_{{tags[4]['tag']}}" class="search_features_cb">
+												<label for="tag5">{{tags[4]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[5] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_7" class="search_features_cb">
-												<label for="search_features_7">Feature 7</label>
+												<input type="checkbox" id="tag6" name="tag6_{{tags[5]['tag']}}" class="tag6">
+												<label for="tag6">{{tags[5]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[6] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_8" class="search_features_cb">
-												<label for="search_features_7">Feature 8</label>
+												<input type="checkbox" id="tag7" name="tag7_{{tags[6]['tag']}}" class="tag7">
+												<label for="tag7">{{tags[6]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[7] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_9" class="search_features_cb">
-												<label for="search_features_7">Feature 9</label>
+												<input type="checkbox" id="tag8" name="tag8_{{tags[7]['tag']}}" class="tag8">
+												<label for="tag8">{{tags[7]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[8] %}
 										<li class="search_features_item">
 											<div>
-												<input type="checkbox" id="search_features_10" class="search_features_cb">
-												<label for="search_features_7">Feature 10</label>
+												<input type="checkbox" id="tag9" name="tag9_{{tags[8]['tag']}}" class="tag9">
+												<label for="search_features_9">{{tags[8]['tag']}}</label>
 											</div>
 										</li>
+                                        {% endif %}
+                                        {% if tags[9] %}
+										<li class="search_features_item">
+											<div>
+												<input type="checkbox" id="tag10" name="tag10_{{tags[9]['tag']}}" class="tag10">
+												<label for="tag10">{{tags[9]['tag']}}</label>
+											</div>
+										</li>
+                                        {% endif %}
 									</ul>
 								</div>
 							</form>
@@ -339,7 +365,7 @@
 
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<!-- Featured Properties -->
@@ -587,7 +613,69 @@
 			</div>
 		</div>
 	</div>
-	
+
+<div class="cta_1">
+		<div class="cta_1_background" style="background-image:url({{url_for('static', filename='images/cta_1.jpg')}})"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<h3 class="cta_1_text text-lg-left text-center">Do you want any <span>real estate advice?</span></h3>
+						<a href="reco.html" class="cta_1_phone">
+                            <div> Get Advice!</div>
+                        </a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cta_1">
+		<div class="cta_1_background" style="background-image:url({{url_for('static', filename='images/cta_1.jpg')}})"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<h3 class="cta_1_text text-lg-left text-center"> Want to know your home's <span> vastu score?</span></h3>
+						<a href="vastu.html" class="cta_1_phone">
+                            <div>Find out!</div>
+                        </a>
+					</div>
+
+					
+
+				</div>
+			</div>
+		</div>
+<div class="cta_1">
+		<div class="cta_1_background" style="background-image:url({{url_for('static', filename='images/cta_1.jpg')}})"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<h3 class="cta_1_text text-lg-left text-center"> Want to filter nearby <span> location?</span></h3>
+						<a href="advanced_filter.html" class="cta_1_phone">
+                            <div>Find out!</div>
+                        </a>
+					</div>
+
+					
+
+				</div>
+			</div>
+		</div>
+
+			<!--<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
+				<h3 class="cta_1_text text-lg-left text-center">Want to filter nearby <span>locations</span></h3>
+				<a href="advanced_filter.html" class="cta_1_phone">
+                    <div>Find out!</div>
+                </a>
+			</div>-->
+	</div>
+
 	<!-- Workflow -->
 
 	<div class="workflow">
@@ -616,11 +704,11 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_1.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Choose a Locality</div>
-							<p class="workflow_text">Choose any locatity in Bangalore. 
+							<p class="workflow_text">Choose any locatity in Bangalore.
                             </p>
 						</div>
 					</div>
@@ -638,7 +726,7 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_2.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Find the Perfect Home</div>
@@ -659,7 +747,7 @@
 							<div class="workflow_image">
 								<img src="{{url_for('static', filename='images/workflow_3.png')}}" alt="">
 							</div>
-							
+
 						</div>
 						<div class="workflow_item_content text-center">
 							<div class="workflow_title">Book Meeting and buy property</div>
@@ -674,31 +762,13 @@
 
 	<!-- Call to Action -->
 
-	<div class="cta_1">
-		<div class="cta_1_background" style="background-image:url({{url_for('static', filename='images/cta_1.jpg')}})"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<div class="cta_1_content d-flex flex-lg-row flex-column align-items-center justify-content-start">
-						<h3 class="cta_1_text text-lg-left text-center">Do you want any <span>real estate advice?</span></h3>
-						<a href="#" class="cta_1_phone">
-                            <div> Get Advice!</div>
-                        </a>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
 	
 	<!-- Footer -->
 
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
-				
+
 				<!-- Footer About -->
 
 				<div class="col-lg-3 footer_col">
@@ -725,7 +795,7 @@
 						<p>Lorem ipsum dolor sit amet, cons ectetur  quis ferme adipiscing elit. Suspen dis se tellus eros, placerat quis ferme ntum et, viverra sit amet lacus. Nam gravida  quis ferme semper augue.</p>
 					</div>
 				</div>
-				
+
 				<!-- Footer Useful Links -->
 
 				<div class="col-lg-3 footer_col">
@@ -746,7 +816,7 @@
 				<div class="col-lg-3 footer_col">
 					<div class="footer_col_title">feedback form</div>
 					<div class="footer_contact_form_container">
-						<form id="footer_contact_form" class="footer_contact_form" action="post">
+						<form id="footer_contact_form" class="footer_contact_form" method="post">
 							<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
 							<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
 							<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
@@ -784,7 +854,7 @@
 	</footer>
 
 
-</div>   
+</div>
 
 <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='styles/bootstrap4/popper.js')}}"></script>
