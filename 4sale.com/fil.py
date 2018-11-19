@@ -100,7 +100,8 @@ class Filter:
     def test_traffic(self):
         pass
 
-class Filter1(Filter):    
+class Filter1(Filter):
+    # A Level 2 function to shortlist properties from a given list of properties based on attributes like distance and time to nearest hospitals,gyms,etc and greencover. If traffic based filtering is still needed, it calls another function to test traffic metrics and shortlist accordingly
     def advanced_filters(self,property_items,advanced_filter_items,db):
         items = []
         for property_item in property_items:
