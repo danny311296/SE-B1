@@ -209,7 +209,12 @@ def sql_object():
 @app.route('/news.html')
 def news():
     questions = db.query('questions')
-    return render_template('news.html',questions=questions)
+    d = defaultdict(list)
+    for question in questions:
+        d[question['qid']] = len(db.query('comments',qid=question['qid']))
+    for question in questions:
+        question['comments'] = d[question['qid']]
+    return render_template('news.html',questions=questions[::-1])
 
 # Handling question page
 @app.route('/question.html')
@@ -230,7 +235,8 @@ def discuss_page():
 def process_question():
     data = request.form
     db.insert('questions',username=session['username'],title=data['title'],body=data['description'],category=data['category'])
-    return redirect(url_for('question_page'))
+    max_qid = db.query('questions',cols=['max(qid)'])[0]['max']
+    return redirect(url_for('discuss_page',qid=max_qid))
 
 #  Handling comment posting processing
 @app.route('/process_comment',methods=['POST'])
