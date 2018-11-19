@@ -4,10 +4,7 @@ from utils import *
 
 class db:
     __instance = None
-    def getInstance():
-        if db.__instance == None:
-            db()  
-        return db.__instance        
+     
     def __init__(self,host, database, user, password):
         if db.__instance!=None:
             raise Exception("The db class is a singleton class")
