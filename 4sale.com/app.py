@@ -363,4 +363,4 @@ def logout():
 if __name__ == '__main__':
     db = db_utils.db(database="forsale", user="root", password="root", host="localhost")
     ph = PasswordHasher()
-app.run()
+    app.run()
