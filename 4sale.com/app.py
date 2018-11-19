@@ -5,6 +5,7 @@ from collections import defaultdict
 import map
 import greencover 
 import os
+from flask_mail import Mail,Message
 import price
 from flask_dropzone import Dropzone
 from utils import *
@@ -25,8 +26,16 @@ app.config.update(
     DROPZONE_UPLOAD_BTN_ID='estate_contact_send_btn',
 )
 
-app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_USERNAME'] = 'Enter a valid mail address in string format'
+app.config['MAIL_PASSWORD'] = 'Enter the password in string format'
 
+
+app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+mail=Mail(app)
 dropzone = Dropzone(app)
 
 @app.route('/')
@@ -313,8 +322,19 @@ def get_traffic_details():
 def process_request():
     data = request.form
     db.insert('request',username=session['username'],pid=data['pid'],visit=data['visit'],message=data['message'])
+    user = db.query('users',username=session['username'])
+    user_email= user[0]["email"]
+    user_phone= user[0]["phone"]
+    user_firstname=user[0]["firstname"]
+    user_lastname=user[0]["lastname"]
+    owner=db.query('properties', pid=data['pid'])
+    owner_username= owner[0]["username"]
+    owner_details=db.query('users',username=owner_username)
+    msg="New Message: "+ data['message']+"from user:"+user_firstname+ " "+user_lastname+" with number "+ user_phone +"and preference to site visit as: "+ data['visit']
+    send_msg=Message(msg,sender=user_email, recipients=[owner_details[0]["email"]])
+    mail.send(send_msg)
     return redirect(url_for('listings'))
-
+    
 @app.route('/logout')
 def logout():
     session.pop('username', None)
