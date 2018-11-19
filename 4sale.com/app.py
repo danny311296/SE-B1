@@ -9,7 +9,7 @@ from flask_mail import Mail,Message
 import price
 from flask_dropzone import Dropzone
 from utils import *
-import filter
+from filter import *
 
 #basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -148,7 +148,7 @@ def advanced_filter():
 def process_advanced_filter():
     data = request.form
     print(data)
-    basicFilter = filter.Filter()
+    basicFilter = Filter()
     properties = basicFilter.basic_filter(data,db)
     print(properties)
     tags = db.query('tags')
