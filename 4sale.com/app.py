@@ -11,6 +11,7 @@ from flask_dropzone import Dropzone
 from utils import *
 from fil import *
 
+
 #basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
@@ -151,6 +152,7 @@ def process_advanced_filter():
     filter_1=Filter1()
     abstraction_imp=Abstraction(filter_1)
     properties = abstraction_imp.operation(data,db)
+
     print(properties)
     tags = db.query('tags')
     #print(tags)
