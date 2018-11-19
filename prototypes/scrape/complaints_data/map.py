@@ -1,6 +1,6 @@
 import googlemaps
 
-gmaps = googlemaps.Client(key='AIzaSyDRjavHrEvei0wuHLRYUEbEtRH3YMGcKpQ')
+gmaps = googlemaps.Client(key='AIzaSyCvy01kFS-AO-xUzJRmhpcCXUk3PqJxk9I')
 place_types = ['atm','bakery','bank','beauty_salon','book_store','bus_station','cafe','car_repair','church','clothing_store','dentist','doctor','electronics_store','gas_station','gym','hindu_temple','hospital','mosque','movie_theater','pharmacy','restaurant','school','subway_station','supermarket','train_station']
 
 def get_latitude_and_longitude(address):
@@ -17,7 +17,7 @@ def get_closest_places(location,place_type,num=2,radius=600):
 
 def get_distance_and_time(origin,destination):
 	t = gmaps.distance_matrix([origin],[destination],mode='driving')['rows'][0]['elements'][0]
-	return t['distance']['text'], t['duration']['text']
+	return t['distance']['text'], t['duration']['text'], float(t['distance']['value']), float(t['duration']['value'])
 
 #for testing
 if __name__ == '__main__':
